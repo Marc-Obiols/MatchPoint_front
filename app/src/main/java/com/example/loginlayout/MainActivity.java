@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         String aux2 = pass.getText().toString();
         Toast.makeText(this, aux1, Toast.LENGTH_SHORT).show();
         Toast.makeText(this, aux2, Toast.LENGTH_SHORT).show();
+        //Pasar datos al back, en función de si existe o no el usuario
 
         //llamar a donde sea y tratar el resultado
     }
