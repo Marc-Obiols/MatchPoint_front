@@ -34,18 +34,15 @@ public class MainActivity extends AppCompatActivity {
         user = (EditText) findViewById(R.id.editText);
         pass = (EditText) findViewById(R.id.editText2);
 
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setIcon(R.mipmap.ic_launcher);
+        //getSupportActionBar().setDisplayShowHomeEnabled(true);
+        //getSupportActionBar().setIcon(R.mipmap.ic_launcher);
         queue = Volley.newRequestQueue(this); //inicializar el requestqueue
-        Request();
     }
 
     public void login(View view) {
-        String aux1 = user.getText().toString();
-        String aux2 = pass.getText().toString();
-        Toast.makeText(this, aux1, LENGTH_SHORT).show();
-        Toast.makeText(this, aux2, LENGTH_SHORT).show();
-
+        String username = user.getText().toString();
+        String password = pass.getText().toString();
+        Request(username,password);
         //llamar a donde sea y tratar el resultado
     }
 
@@ -54,29 +51,34 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    private void Request() {
-        String url = "https://api.androidhive.info/contacts/";
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-                @Override
-                public void onResponse(JSONObject response) {
-                    try {
-                        JSONArray mj = response.getJSONArray("contacts");
-                        for (int i = 0; i < mj.length(); i++) {
-                            JSONObject obj = mj.getJSONObject(i);
-                            String name = obj.getString("name");
-                            Toast.makeText(MainActivity.this, name, LENGTH_SHORT).show();
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
+    private void Request(String username, String password) {
+        String url = "http://10.4.41.144:3000/posts";
+        JSONObject req = new JSONObject();
+        try {
+            req.put("title",username);
+            req.put("age",password);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
-
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, req, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    String responses = response.getString("title").toString();
+                    Toast.makeText(MainActivity.this, responses, LENGTH_SHORT).show();
+                    System.out.println(responses);
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-            });
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(MainActivity.this, error.toString(), LENGTH_SHORT).show();
+                System.out.println(error.toString());
+            }
+        });
         queue.add(request);
     }
 }
