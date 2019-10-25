@@ -22,7 +22,7 @@ import static android.widget.Toast.LENGTH_SHORT;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText user;
+    private EditText emailT;
     private EditText pass;
     private RequestQueue queue; //cola de las solicitudes
 
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        user = (EditText) findViewById(R.id.editText);
+        emailT = (EditText) findViewById(R.id.editText);
         pass = (EditText) findViewById(R.id.editText2);
 
         //getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -40,9 +40,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void login(View view) {
-        String username = user.getText().toString();
+        String email = emailT.getText().toString();
         String password = pass.getText().toString();
-        Request(username,password);
+        Request(email,password);
         //llamar a donde sea y tratar el resultado
     }
 
@@ -51,27 +51,22 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    private void Request(String username, String password) {
-        String url = "http://10.4.41.144:3000/register";
+    private void Request(String email, String password) {
+        String url = "http://10.4.41.144:3000/login";
         JSONObject req = new JSONObject();
         try {
-            req.put("email","sans.ignasi@gmail.com");
-            req.put("username",username);
+            req.put("email",email);
             req.put("password",password);
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, req, new Response.Listener<JSONObject>() {
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, req, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                try {
-                    String responses = response.getString("title").toString();
-                    Toast.makeText(MainActivity.this, responses, LENGTH_SHORT).show();
-                    System.out.println(responses);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                String responses = response.toString();
+                Toast.makeText(MainActivity.this, responses, LENGTH_SHORT).show();
+                System.out.println(responses);
             }
         }, new Response.ErrorListener() {
             @Override
