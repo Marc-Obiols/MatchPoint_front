@@ -52,11 +52,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void Request(String username, String password) {
-        String url = "http://10.4.41.144:3000/posts";
+        String url = "http://10.4.41.144:3000/register";
         JSONObject req = new JSONObject();
         try {
-            req.put("title",username);
-            req.put("age",password);
+            req.put("email","sans.ignasi@gmail.com");
+            req.put("username",username);
+            req.put("password",password);
         } catch (JSONException e) {
             e.printStackTrace();
         }
