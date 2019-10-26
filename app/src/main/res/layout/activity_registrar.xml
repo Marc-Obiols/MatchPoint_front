@@ -40,7 +40,7 @@
         android:layout_marginBottom="25dp"
         android:background="#FFFFFF"
         android:ems="10"
-        android:inputType="textPassword"
+        android:inputType="text"
         app:layout_constraintBottom_toTopOf="@+id/b_register"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -66,7 +66,7 @@
         android:layout_marginBottom="24dp"
         android:background="#FFFFFF"
         android:ems="10"
-        android:inputType="textPassword"
+        android:inputType="text"
         app:layout_constraintBottom_toTopOf="@+id/textView11"
         app:layout_constraintStart_toStartOf="parent" />
 
