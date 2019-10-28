@@ -66,13 +66,10 @@ public class Registrar extends AppCompatActivity {
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, req, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                try {
-                    String responses = response.getString("title").toString();
-                    Toast.makeText(Registrar.this, responses, LENGTH_SHORT).show();
-                    System.out.println(responses);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                String responses = response.toString();
+                Toast.makeText(Registrar.this, responses, LENGTH_SHORT).show();
+                System.out.println(responses);
+
             }
         }, new Response.ErrorListener() {
             @Override
