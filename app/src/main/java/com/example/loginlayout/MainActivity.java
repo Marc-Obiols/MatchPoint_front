@@ -87,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
         String password = pass.getText().toString();
 
         Request(email,password);
-
     }
 
 
