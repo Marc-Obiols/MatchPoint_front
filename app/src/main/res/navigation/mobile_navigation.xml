@@ -22,4 +22,11 @@
         android:name="com.example.loginlayout.ui.notifications.NotificationsFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.example.loginlayout.activity_profile"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile" />
+
 </navigation>
