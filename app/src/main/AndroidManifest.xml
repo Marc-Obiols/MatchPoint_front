@@ -19,7 +19,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".activity_profile"></activity>
-        <activity android:name=".activity_crear_evento" />
+        <activity android:name=".PruebaMapa" />
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -34,7 +34,7 @@
             android:value="@string/google_maps_key" />
 
 
-        <activity android:name=".PruebaMapa">
+        <activity android:name=".activity_crear_evento">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
