@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#363434"
-    tools:context=".activity_profile_completo">
+    tools:context=".activity_profile_completo_modificable">
 
-    <TextView
+    <EditText
         android:id="@+id/nombreApellidos"
         android:layout_width="293dp"
         android:layout_height="60dp"
@@ -22,7 +22,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <EditText
         android:id="@+id/profileDescripcion"
         android:layout_width="344dp"
         android:layout_height="123dp"
@@ -42,7 +42,7 @@
         android:layout_height="63dp"
         android:layout_marginStart="40dp"
         android:layout_marginLeft="40dp"
-        android:text="MODIFICAR"
+        android:text="GUARDAR CAMBIOS"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -66,7 +66,7 @@
         tools:ignore="MissingConstraints"
         tools:srcCompat="@tools:sample/avatars[10]" />
 
-    <TextView
+    <EditText
         android:id="@+id/textoGenero"
         android:layout_width="64dp"
         android:layout_height="21dp"
@@ -79,7 +79,7 @@
         app:layout_constraintStart_toEndOf="@+id/imageProfile"
         app:layout_constraintTop_toBottomOf="@+id/nombreApellidos" />
 
-    <TextView
+    <EditText
         android:id="@+id/textoNacimiento"
         android:layout_width="98dp"
         android:layout_height="23dp"
@@ -92,7 +92,7 @@
         app:layout_constraintStart_toEndOf="@+id/imageProfile"
         app:layout_constraintTop_toBottomOf="@+id/textoGenero" />
 
-    <TextView
+    <EditText
         android:id="@+id/valoracionTexto"
         android:layout_width="91dp"
         android:layout_height="22dp"
@@ -105,7 +105,7 @@
         app:layout_constraintStart_toEndOf="@+id/imageProfile"
         app:layout_constraintTop_toBottomOf="@+id/textoNacimiento" />
 
-    <TextView
+    <EditText
         android:id="@+id/opcionGenero"
         android:layout_width="86dp"
         android:layout_height="21dp"
@@ -120,7 +120,7 @@
         app:layout_constraintStart_toEndOf="@+id/textoGenero"
         app:layout_constraintTop_toBottomOf="@+id/nombreApellidos" />
 
-    <TextView
+    <EditText
         android:id="@+id/fechaNacimiento"
         android:layout_width="95dp"
         android:layout_height="23dp"
@@ -133,7 +133,7 @@
         app:layout_constraintStart_toEndOf="@+id/textoNacimiento"
         app:layout_constraintTop_toBottomOf="@+id/opcionGenero" />
 
-    <TextView
+    <EditText
         android:id="@+id/valoracionNumero"
         android:layout_width="14dp"
         android:layout_height="22dp"
@@ -147,5 +147,4 @@
         app:layout_constraintHorizontal_bias="0.097"
         app:layout_constraintStart_toEndOf="@+id/valoracionTexto"
         app:layout_constraintTop_toBottomOf="@+id/fechaNacimiento" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
