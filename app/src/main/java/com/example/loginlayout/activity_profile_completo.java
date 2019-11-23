@@ -15,7 +15,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -49,7 +48,7 @@ public class activity_profile_completo extends AppCompatActivity {
         textoGenero = findViewById(R.id.textoGenero);
         textoNacimiento = findViewById(R.id.textoNacimiento);
         valoracionTexto = findViewById(R.id.valoracionTexto);
-        valoracionNumero = findViewById(R.id.valoracionNumero);
+        valoracionNumero = findViewById(R.id.telefonoNumero);
         fechaNacimiento = findViewById(R.id.fechaNacimiento);
         buttonModificar = findViewById(R.id.buttonModificar);
 
