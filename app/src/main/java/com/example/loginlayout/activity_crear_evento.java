@@ -14,12 +14,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
-
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
@@ -27,12 +21,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Calendar;
-import java.util.Vector;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
 
-public class activity_crear_evento extends AppCompatActivity {
+public class activity_crear_evento extends AppCompatActivity implements Interfaz {
 
     private Spinner deportes;
     private Spinner nivel;
@@ -42,75 +35,7 @@ public class activity_crear_evento extends AppCompatActivity {
     private EditText Part_total;
     private EditText Part;
     private EditText Descripcion;
-    private RequestQueue queue;
-    private boolean correcto;
-    private String [] res;
-    private Vector<String> aux;
-
-    private void Request_crear(String dep, String niv, String pt, String p, String desc, String fecha, String ini) {
-
-        String url = "http://10.4.41.144:3000/event/new";
-        JSONObject req = new JSONObject();
-        JSONArray users = new JSONArray();
-        String date = fecha + "T" + ini;
-        try {
-
-            users.put("5dbd924d784f2e5873f2c148");
-            req.put("creator","5dbd924d784f2e5873f2c148");
-            req.put("latitude",1);
-            req.put("longitude",1);
-            req.put("sport",dep);
-            req.put("level",niv);
-            req.put("max_users",pt);
-            req.put("initial_users",p);
-            req.put("description",desc);
-            req.put("date", date);
-            req.put("users",users);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, req, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                Toast.makeText(activity_crear_evento.this, "Se ha creado el evento correctamente", LENGTH_SHORT).show();
-                System.out.println(correcto);
-                correcto = true;
-                System.out.println(correcto);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(activity_crear_evento.this, error.toString(), LENGTH_SHORT).show();
-                System.out.println("ERROR");
-            }
-        });
-        queue.add(request);
-    }
-
-    private void Request_sport() {
-        String url = "http://10.4.41.144:3000/sport";
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    String [] ress = new String[response.length()];
-                    for(int i = 0; i < response.length(); ++i) {
-                        String name = String.valueOf(i);
-                        ress[i] = response.getString(name);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(activity_crear_evento.this, error.toString(), LENGTH_SHORT).show();
-                System.out.println("ERROR");
-            }
-        });
-        queue.add(request);
-    }
+    private int llamada;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,19 +52,16 @@ public class activity_crear_evento extends AppCompatActivity {
         Part_total = (EditText) findViewById(R.id.editText9);
         Part = (EditText) findViewById(R.id.editText10);
         Descripcion = (EditText) findViewById(R.id.editText7);
-        queue = Volley.newRequestQueue(this);
-        correcto = false;
 
-        ArrayAdapter<String> aaDep;
         ArrayAdapter<String> aaNiv;
         String [] niv = new String[] {"Ninguno", "Aficionado", "Principiante", "Profesional", "Experto"};
         //llamar al servidor
         aaNiv = new ArrayAdapter<String >(this, android.R.layout.simple_spinner_item, niv); //activity para mostrar, tipo de spinner, listado de valores
         nivel.setAdapter(aaNiv);
-        //Request_sport();
-        String [] list_dep = new String[] {"Futbol", "Tenis", "Baloncesto", "Padel", "Hockey", "Golf", "Rugby"};
-        aaDep = new ArrayAdapter<String >(this, android.R.layout.simple_spinner_item, list_dep); //activity para mostrar, tipo de spinner, listado de valores
-        deportes.setAdapter(aaDep);
+        llamada = 1;
+        Connection con = new Connection(this);
+        con.execute("http://10.4.41.144:3000/sport", "GET", null);
+
     }
 
     public void MostrarCalendario(View view) {
@@ -192,17 +114,36 @@ public class activity_crear_evento extends AppCompatActivity {
         int minutos_act = c.get(Calendar.YEAR) * 525600 + (c.get(Calendar.MONTH)+1) * 43200 + c.get(Calendar.DAY_OF_MONTH) * 1440 + (c.get(Calendar.HOUR_OF_DAY)+1) * 60 + c.get(Calendar.MINUTE);
 
         if((minutos_tot - minutos_act) > 0) {
-            String fecha = any + "-" + mes + "-" + dia;
-            String ini = hora + ":" + min;
-            Request_crear(dep, niv, pt, p, desc, fecha, ini);
-            System.out.println(correcto);
-            if (correcto) {
-                Intent i = new Intent(this, activity_main.class);
-                startActivity(i);
+            if (Integer.parseInt(p) < Integer.parseInt(pt)) {
+                String fecha = any + "-" + mes + "-" + dia;
+                String ini = hora + ":" + min;
+                JSONObject req = new JSONObject();
+                JSONArray users = new JSONArray();
+                String date = fecha + "T" + ini;
+                try {
+
+                    users.put("5dbd924d784f2e5873f2c148");
+                    req.put("creator","5dbd924d784f2e5873f2c148");
+                    req.put("latitude",1);
+                    req.put("longitude",1);
+                    req.put("sport",dep);
+                    req.put("level",niv);
+                    req.put("max_users",pt);
+                    req.put("initial_users",p);
+                    req.put("description",desc);
+                    req.put("date", date);
+                    req.put("users",users);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                llamada = 2;
+                Connection con = new Connection(this);
+                con.execute("http://10.4.41.144:3000/event/new", "POST", req.toString());
             }
-            Intent i = new Intent(this, activity_main.class);
-            //i.putExtra("nombre", valor)
-            startActivity(i);
+            else {
+                //error de participantes iniciales
+            }
+
         }
 
         else {
@@ -213,5 +154,39 @@ public class activity_crear_evento extends AppCompatActivity {
     public void Menu_Principal(View view) {
         Intent i = new Intent(this, activity_main.class);
         startActivity(i);
+    }
+
+    @Override
+    public void Respuesta(JSONObject datos) {
+        if (llamada == 2) {
+            try {
+                if (datos.getInt("codigo") == 200) {
+                    Intent i = new Intent(this, activity_main.class);
+                    startActivity(i);
+                }
+                else {
+                    Toast.makeText(activity_crear_evento.this, "error q flipas loco", LENGTH_SHORT).show();
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        else if (llamada == 1) {
+
+            String [] ress = new String[datos.length()-1];
+            for(int i = 0; i < datos.length()-1; ++i) {
+                System.out.println(i);
+                String name = String.valueOf(i);
+                try {
+                    ress[i] = datos.getString(name);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            ArrayAdapter<String> aaDep;
+            aaDep = new ArrayAdapter<String >(this, android.R.layout.simple_spinner_item, ress); //activity para mostrar, tipo de spinner, listado de valores
+            deportes.setAdapter(aaDep);
+        }
     }
 }

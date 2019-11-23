@@ -34,8 +34,6 @@ public class activity_login extends AppCompatActivity {
         emailT = (EditText) findViewById(R.id.editText);
         pass = (EditText) findViewById(R.id.editText2);
 
-        //getSupportActionBar().setDisplayShowHomeEnabled(true);
-        //getSupportActionBar().setIcon(R.mipmap.ic_launcher);
         queue = Volley.newRequestQueue(this); //inicializar el requestqueue
     }
 

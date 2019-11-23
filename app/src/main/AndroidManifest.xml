@@ -46,5 +46,4 @@
         <activity android:name=".activity_profile_completo" />
         <activity android:name=".activity_login"></activity>
     </application>
-
 </manifest>
