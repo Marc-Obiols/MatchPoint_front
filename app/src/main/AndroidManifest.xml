@@ -41,5 +41,4 @@
         <activity android:name=".activity_profile_completo_modificable" android:exported="true"></activity>
         <activity android:name=".activity_login"></activity>
     </application>
-
 </manifest>
