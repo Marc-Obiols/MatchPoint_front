@@ -34,17 +34,11 @@
             android:value="@string/google_maps_key" />
 
 
-        <activity android:name=".activity_crear_evento">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity android:name=".activity_register" />
         <activity android:name=".activity_main" />
         <activity android:name=".activity_profile_completo" />
+        <activity android:name=".activity_profile_completo_modificable" android:exported="true"></activity>
         <activity android:name=".activity_login"></activity>
     </application>
-
 </manifest>
