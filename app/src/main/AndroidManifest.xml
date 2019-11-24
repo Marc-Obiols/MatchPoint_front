@@ -13,14 +13,22 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_foreground2"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".activity_profile"></activity>
-        <activity android:name=".PruebaMapa" />
 
+
+        <activity
+            android:name=".PruebaMapa"
+            android:label="MatchPoint">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -40,5 +48,6 @@
         <activity android:name=".activity_profile_completo" />
         <activity android:name=".activity_profile_completo_modificable" android:exported="true"></activity>
         <activity android:name=".activity_login"></activity>
+        <activity android:name=".activity_crear_evento" />
     </application>
 </manifest>
