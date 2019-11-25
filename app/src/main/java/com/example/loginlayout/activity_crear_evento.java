@@ -57,9 +57,9 @@ public class activity_crear_evento extends AppCompatActivity {
 
             users.put("5dbd924d784f2e5873f2c148");
             req.put("creator","5dbd924d784f2e5873f2c148");
-            Double lat = getIntent().getDoubleExtra("lat",0); //pillar la lat y long del new event (pablo)
+            Double lat = getIntent().getDoubleExtra("lat",99); //pillar la lat y long del new event (pablo)
             req.put("latitude",lat);
-            Double lng = getIntent().getDoubleExtra("lng",0);
+            Double lng = getIntent().getDoubleExtra("lng",99);
             req.put("longitude",lng);
             req.put("sport",dep);
             req.put("level",niv);

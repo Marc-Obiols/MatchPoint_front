@@ -14,9 +14,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -37,23 +40,28 @@ public class fragment_map extends Fragment implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private ImageView addbutton;
+    private ImageView refreshbutton;
     private int pulsado = 0;
-    private HashMap<Integer, JSONObject> events;
+    private HashMap<String, JSONObject> events;
+    private RequestQueue queue;
 
     private void cargareventos() {//cargar todos los eventos de la BD en el mapa y crear map idEvent/JSON
+
         String url = "http://10.4.41.144:3000/event/all";
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
-            public void onResponse(JSONObject response) {
+            public void onResponse(JSONArray response) {
                 try {
-                    JSONArray vecJSONS = response.getJSONArray(""); //obtener vec JSONS
-                    for (int i = 0; i < vecJSONS.length(); i++) {
-                        JSONObject aux = vecJSONS.getJSONObject(i); //JSON d 1 evento
-                        int idEvent = aux.getInt("id"); //id de ese evento
+                    System.out.println(response.length());
+                    for (int i = 0; i < response.length(); i++) {
+                        JSONObject aux = response.getJSONObject(i); //JSON d 1 evento
+                        String idEvent = aux.getString("_id"); //id de ese evento
+
                         events.put(idEvent, aux); //se guarda en el map de JSONS de eventos
                         String deporte = aux.getString("sport"); //deporte del evento
                         Double lat = aux.getDouble("latitude");
                         Double lng = aux.getDouble("longitude"); //coords
+                        System.out.println(lat+" "+lng);
                         if (deporte == "Futbol")
                             mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title("Nom Event").icon(BitmapDescriptorFactory.fromResource(R.drawable.soccer))).setTag(idEvent); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
                         else if (deporte == "Baloncesto")
@@ -66,11 +74,12 @@ public class fragment_map extends Fragment implements OnMapReadyCallback {
                             mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title("Nom Event").icon(BitmapDescriptorFactory.fromResource(R.drawable.soccer))).setTag(idEvent); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
                         else if (deporte == "Golf")
                             mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title("Nom Event").icon(BitmapDescriptorFactory.fromResource(R.drawable.soccer))).setTag(idEvent); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
-                        else if (deporte == "Rugby")
+                        else
                             mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title("Nom Event").icon(BitmapDescriptorFactory.fromResource(R.drawable.soccer))).setTag(idEvent); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    System.out.println("CODIGOCATCH");
                 }
             }
 
@@ -79,8 +88,10 @@ public class fragment_map extends Fragment implements OnMapReadyCallback {
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getActivity(), error.toString(), LENGTH_SHORT).show();
                 System.out.println(error.toString());
+                System.out.println("CODIGOERROR");
             }
         });
+        queue.add(request);
     }
 
 
@@ -101,6 +112,16 @@ public class fragment_map extends Fragment implements OnMapReadyCallback {
                 pulsado = 1;
             }
         });
+        refreshbutton = (ImageView) view.findViewById(R.id.refreshbutton);
+        refreshbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               cargareventos();
+            }
+        });
+
+        events = new HashMap<>();
+        queue = Volley.newRequestQueue(getActivity());
         cargareventos();
         return (view);
     }
@@ -121,15 +142,11 @@ public class fragment_map extends Fragment implements OnMapReadyCallback {
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                Integer clickCount = (Integer) marker.getTag();
-                if (clickCount != null) {
-                    clickCount = clickCount + 1;
-                    marker.setTag(clickCount);
+
                     Toast.makeText(getActivity(),
-                            marker.getTitle() +
-                                    " has been clicked " + clickCount + " times.",
+                            marker.getTag().toString(),
                             Toast.LENGTH_SHORT).show();
-                }
+
 
                 return false;
             }
