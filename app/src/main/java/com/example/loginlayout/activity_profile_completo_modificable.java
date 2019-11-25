@@ -54,7 +54,7 @@ public class activity_profile_completo_modificable extends AppCompatActivity {
 
     public void modificar(View v){
 
-            final String nombreApellidosModif;
+            String nombreApellidosModif;
             String profileDescripcionModif;
             String opcionGeneroModif;
             String fechaNacimientoModif;
