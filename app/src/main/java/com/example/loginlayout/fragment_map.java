@@ -58,24 +58,35 @@ public class fragment_map extends Fragment implements OnMapReadyCallback {
                         String idEvent = aux.getString("_id"); //id de ese evento
 
                         events.put(idEvent, aux); //se guarda en el map de JSONS de eventos
+
                         String deporte = aux.getString("sport"); //deporte del evento
+
                         Double lat = aux.getDouble("latitude");
                         Double lng = aux.getDouble("longitude"); //coords
-                        System.out.println(lat+" "+lng);
+
+                        String nomevent = "Evento de "+deporte;
+
+                        String infoevent =
+                                "Participantes totales: " + aux.getInt("max_users")  + "\n" +
+                                "Plazas restantes: " + "Implementar" + "\n" +
+                                "Nivel: " + aux.getString("level") + "\n" +
+                                "Descripción: " +aux.getString("description");
+
+
                         if (deporte == "Futbol")
-                            mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title("Nom Event").icon(BitmapDescriptorFactory.fromResource(R.drawable.soccer))).setTag(idEvent); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
+                            mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.soccer)).snippet(infoevent)).setTag(idEvent); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
                         else if (deporte == "Baloncesto")
-                            mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title("Nom Event").icon(BitmapDescriptorFactory.fromResource(R.drawable.soccer))).setTag(idEvent); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
+                            mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.soccer)).snippet(infoevent)).setTag(idEvent); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
                         else if (deporte == "Tenis")
-                            mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title("Nom Event").icon(BitmapDescriptorFactory.fromResource(R.drawable.soccer))).setTag(idEvent); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
+                            mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.soccer)).snippet(infoevent)).setTag(idEvent); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
                         else if (deporte == "Padel")
-                            mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title("Nom Event").icon(BitmapDescriptorFactory.fromResource(R.drawable.soccer))).setTag(idEvent); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
+                            mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.soccer)).snippet(infoevent)).setTag(idEvent); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
                         else if (deporte == "Hockey")
-                            mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title("Nom Event").icon(BitmapDescriptorFactory.fromResource(R.drawable.soccer))).setTag(idEvent); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
+                            mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.soccer)).snippet(infoevent)).setTag(idEvent); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
                         else if (deporte == "Golf")
-                            mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title("Nom Event").icon(BitmapDescriptorFactory.fromResource(R.drawable.soccer))).setTag(idEvent); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
+                            mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.soccer)).snippet(infoevent)).setTag(idEvent); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
                         else
-                            mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title("Nom Event").icon(BitmapDescriptorFactory.fromResource(R.drawable.soccer))).setTag(idEvent); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
+                            mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.soccer)).snippet(infoevent)).setTag(idEvent); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -127,27 +138,18 @@ public class fragment_map extends Fragment implements OnMapReadyCallback {
     }
 
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-
-                    Toast.makeText(getActivity(),
-                            marker.getTag().toString(),
-                            Toast.LENGTH_SHORT).show();
-
-
+                mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(getContext()));
+                if(marker.isInfoWindowShown()){
+                    marker.hideInfoWindow();
+                }else{
+                    marker.showInfoWindow();
+                }
                 return false;
             }
         });
