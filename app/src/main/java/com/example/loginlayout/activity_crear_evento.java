@@ -127,8 +127,10 @@ public class activity_crear_evento extends AppCompatActivity implements Interfaz
 
                     users.put("5db49aadffc609546f5091e3");
                     req.put("creator","5db49aadffc609546f5091e3");
-                    req.put("latitude",1);
-                    req.put("longitude",1);
+                    Double lat = getIntent().getDoubleExtra("lat",99); //pillar la lat y long del new event (pablo)
+                    req.put("latitude",lat);
+                    Double lng = getIntent().getDoubleExtra("lng",99);
+                    req.put("longitude",lng);
                     req.put("sport",dep);
                     req.put("level",niv);
                     req.put("max_users",pt);

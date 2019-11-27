@@ -68,7 +68,7 @@ public class fragment_map extends Fragment implements OnMapReadyCallback {
 
                         String infoevent =
                                 "Participantes totales: " + aux.getInt("max_users")  + "\n" +
-                                "Plazas restantes: " + "Implementar" + "\n" +
+                                "Plazas restantes: " + (aux.getInt("max_users")-aux.getInt("initial_users"))+ "\n" +
                                 "Nivel: " + aux.getString("level") + "\n" +
                                 "Descripción: " +aux.getString("description");
 
@@ -141,15 +141,11 @@ public class fragment_map extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
                 mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(getContext()));
-                if(marker.isInfoWindowShown()){
-                    marker.hideInfoWindow();
-                }else{
-                    marker.showInfoWindow();
-                }
                 return false;
             }
         });

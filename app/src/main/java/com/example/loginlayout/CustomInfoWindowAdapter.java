@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.Marker;
@@ -21,9 +22,14 @@ public class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
 
     public CustomInfoWindowAdapter(Context context) {
         mContext = context;
-
         mWindow = LayoutInflater.from(context).inflate(R.layout.custom_info_window, null);
         buttonunirse = mWindow.findViewById(R.id.buttonunirse);
+        buttonunirse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+            }
+        });
     }
 
     private void rendowWindowText(Marker marker, View view){
