@@ -26,9 +26,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.util.Calendar;
 import java.util.Vector;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
@@ -52,13 +55,14 @@ public class activity_modificar_evento extends AppCompatActivity {
         setContentView(R.layout.activity_modificar_evento);
 
         spinnerDeportes = (Spinner)  findViewById(R.id.spinner1);
-        //spinnerNiveles = (Spinner)  findViewById(R.id.spinner1);
+        spinnerNiveles = (Spinner)  findViewById(R.id.spinner2);
         tv_hora = (EditText) findViewById(R.id.tv_hora);
         tv_fecha = (EditText) findViewById(R.id.tv_fecha);
         numeroParticipantes = (EditText) findViewById(R.id.numeroParticipantes);
         numeroAsistentes = (EditText) findViewById(R.id.numeroAsistentes);
         descripcionText = (EditText) findViewById(R.id.descriptionText);
 
+        System.out.println("ENTRA ONCREATE");
 
         String [] list_dep = new String[] {"Tenis", "Futbol", "Baloncesto", "Padel", "Hockey", "Golf", "Rugby"};
 
@@ -70,27 +74,45 @@ public class activity_modificar_evento extends AppCompatActivity {
         ArrayAdapter<String> opcionesNiveles;
         String [] niv = new String[] {"Ninguno", "Aficionado", "Principiante", "Profesional", "Experto"};
 
-        opcionesDeportes = new ArrayAdapter<String >(this, android.R.layout.simple_spinner_item, niv); //activity para mostrar, tipo de spinner, listado de valores
-        //spinner.setAdapter(opcionesDeportes);
+        opcionesNiveles = new ArrayAdapter<String >(this, android.R.layout.simple_spinner_item, niv); //activity para mostrar, tipo de spinner, listado de valores
+        spinnerNiveles.setAdapter(opcionesNiveles);
 
         queue = Volley.newRequestQueue(this);
-        Request("5dcb0b24081dfc145cee33cd");
+        Request("5ddc07c50213c0169a70bae9");
     }
 
     private void Request(String id) {
-
+        System.out.println("ENTRA PARA PONER SET y link peta");
         String url = "http://10.4.41.144:3000/event/info/" + id;
+        System.out.println("ENTRA PARA PONER SET y link peta");
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-            //@Override
+        System.out.println("ENTRA Y PETA ARRAY");
+        //JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {   //@Override
             public void onResponse(JSONObject response) {
+                System.out.println("ENTRA PARA PONER SET");
                 try {
-                    numeroAsistentes.setText(response.getInt("initial_users"));
-                    numeroParticipantes.setText(response.getInt("max_users"));
-                    spinnerDeportes.setPrompt(response.getString("sport"));
-                    tv_hora.setText(response.getString("hour")); //modificar, s'ha d'afegir a la BD
+                    numeroAsistentes.setText(Integer.toString(response.getInt("initial_users")));
+                    numeroParticipantes.setText(Integer.toString(response.getInt("max_users")));
+                    System.out.println(response.getString("sport"));
+
+                    ArrayAdapter myAdapEsp = (ArrayAdapter) spinnerDeportes.getAdapter();
+                    int spinnerPositionEsport = myAdapEsp.getPosition(response.getString("sport"));
+                    spinnerDeportes.setSelection(spinnerPositionEsport);
+
+
+
+                    ArrayAdapter myAdapNiv = (ArrayAdapter) spinnerNiveles.getAdapter();
+                    int spinnerPositionNiv = myAdapNiv.getPosition(response.getString("level"));
+                    spinnerNiveles.setSelection(spinnerPositionNiv);
+
+
+                    tv_hora.setText(response.getString("date").substring(11, 16));
+
                     tv_fecha.setText(response.getString("date").substring(0, 10));
                     descripcionText.setText(response.getString("description"));
+                    spinnerNiveles.setPrompt(response.getString("level"));
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -107,8 +129,7 @@ public class activity_modificar_evento extends AppCompatActivity {
 
     public void Modificar(View v){
 
-        System.out.println("Entra en modificar");
-
+        String spinnerStringNivelesModif;
         String spinnerStringDeportesModif;
         Integer numeroAsistentesModif;
         Integer numeroParticipantesModif;
@@ -117,24 +138,23 @@ public class activity_modificar_evento extends AppCompatActivity {
         String descripcionTextModif;
         final Calendar c = Calendar.getInstance();
 
-        System.out.println(spinnerDeportes.getSelectedItem().toString());
-
-
-
+        spinnerStringNivelesModif = spinnerNiveles.getSelectedItem().toString();
         spinnerStringDeportesModif = spinnerDeportes.getSelectedItem().toString();
 
-        System.out.println(spinnerDeportes.getSelectedItem().toString());
-
+        System.out.println("peta aqui");
         numeroAsistentesModif = Integer.parseInt( numeroAsistentes.getText().toString());
-        numeroParticipantesModif = Integer.parseInt( numeroParticipantes.getText().toString());
 
+        numeroParticipantesModif = Integer.parseInt( numeroParticipantes.getText().toString());
+        System.out.println(numeroAsistentesModif+"AAAAA");
 
         tv_horaModif = tv_hora.getText().toString();
         tv_fechaModif = tv_fecha.getText().toString();
+
+
+        //numeroAsistentesModif = numeroAsistentes.getText();
         descripcionTextModif = descripcionText.getText().toString();
 
-        //String idCreator = "5dbd924d784f2e5873f2c148";
-        String idEvento = "5dcc79e7b6d2e43b8d92bf8f";
+        String idEvento = "5ddc07c50213c0169a70bae9";
         String url = "http://10.4.41.144:3000/event/modify/" + idEvento;
 
         JSONObject req = new JSONObject();
@@ -143,10 +163,17 @@ public class activity_modificar_evento extends AppCompatActivity {
             req.put("sport",spinnerStringDeportesModif);
             req.put("initial_users",numeroAsistentesModif);
             req.put("max_users",numeroParticipantesModif);
-            req.put("date",tv_fechaModif);
-            req.put("hour",tv_horaModif);
+
+            //Date convertedDate = new Date();
+            //SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSZ");
+            String nuevaFecha = tv_fechaModif + "T" + tv_horaModif;
+           // convertedDate = dateFormat.parse(dateString);
+          //  Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(nuevaFecha);
+          //  req.put("date", DateFormat(nuevaFecha));
+            //req.put("date",tv_fechaModif);
+            req.put("date",nuevaFecha);
             req.put("description",descripcionTextModif);
-            System.out.println("Peta en put");
+            req.put("level",spinnerStringNivelesModif);
         } catch (JSONException e) {
             e.printStackTrace();
         }
