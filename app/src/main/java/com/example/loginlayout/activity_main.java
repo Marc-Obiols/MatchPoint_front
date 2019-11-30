@@ -1,5 +1,6 @@
 package com.example.loginlayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -34,13 +35,38 @@ public class activity_main extends AppCompatActivity {
                             selectedFragment = new fragment_map();
                             break;
                         case R.id.nav_events:
-                            selectedFragment = new fragment_events();
+                            if(UsuariSingleton.getInstance().getNom_usuari() == null){
+                                Intent i = new Intent(getApplicationContext(),activity_login.class);
+                                i.putExtra("From","main");
+                                startActivity(i);
+                                return true;
+                            }
+                            else {
+                                selectedFragment = new fragment_events();
+                            }
                             break;
+
                         case R.id.nav_msgs:
-                            selectedFragment = new fragment_msgs();
+                            if(UsuariSingleton.getInstance().getNom_usuari() == null){
+                                Intent i = new Intent(getApplicationContext(),activity_login.class);
+                                i.putExtra("From","main");
+                                startActivity(i);
+                                return true;
+                            }
+                            else {
+                                selectedFragment = new fragment_msgs();
+                            }
                             break;
                         case R.id.nav_profile:
-                            selectedFragment = new fragment_profile();
+                            if(UsuariSingleton.getInstance().getNom_usuari() == null){
+                                Intent i = new Intent(getApplicationContext(),activity_login.class);
+                                i.putExtra("From","main");
+                                startActivity(i);
+                                return true;
+                            }
+                            else {
+                                selectedFragment = new fragment_profile();
+                            }
                             break;
                     }
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,

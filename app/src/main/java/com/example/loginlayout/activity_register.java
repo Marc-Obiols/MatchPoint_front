@@ -40,6 +40,7 @@ public class activity_register extends AppCompatActivity {
 
     public void login(View view) {
         Intent i = new Intent(this, activity_login.class);
+        i.putExtra("From","register");
         startActivity(i);
     }
 
@@ -59,6 +60,7 @@ public class activity_register extends AppCompatActivity {
             req.put("email",email);
             req.put("username",username);
             req.put("password",password);
+            System.out.println("request");
         } catch (JSONException e) {
             e.printStackTrace();
         }
