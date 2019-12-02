@@ -176,4 +176,17 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/valoracionTexto"
         app:layout_constraintTop_toBottomOf="@+id/fechaNacimiento" />
+
+    <Button
+        android:id="@+id/buttonerase"
+        android:layout_width="142dp"
+        android:layout_height="49dp"
+        android:background="#F04141"
+        android:text="ELIMINAR CUENTA"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.873"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonModificar"
+        app:layout_constraintVertical_bias="0.683" />
 </androidx.constraintlayout.widget.ConstraintLayout>

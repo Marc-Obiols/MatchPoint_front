@@ -25,7 +25,7 @@ import java.text.NumberFormat;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
-public class activity_profile_completo_modificable extends AppCompatActivity {
+public class activity_profile_completo_modificable extends AppCompatActivity implements fragment_delete_profile_dialog.DialogListener{
     private EditText nombreApellidos;
     private ImageView imageProfile;
     private EditText profileDescripcion;
@@ -33,6 +33,7 @@ public class activity_profile_completo_modificable extends AppCompatActivity {
     private EditText fechaNacimiento;
     private Button buttonModificar;
     private TextView numeroTelefono;
+    private Button eraseButton;
 
     private RequestQueue queue; //cola de las solicitudes
     private String id;
@@ -50,6 +51,14 @@ public class activity_profile_completo_modificable extends AppCompatActivity {
         fechaNacimiento = findViewById(R.id.fechaNacimiento);
         buttonModificar = findViewById(R.id.buttonModificar);
         numeroTelefono = findViewById(R.id.telefonoNumero);
+        eraseButton = findViewById(R.id.buttonerase);
+
+        eraseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDialog();
+            }
+        });
         Intent i = getIntent();
         id = i.getStringExtra("id");
         url = "http://10.4.41.144:3000/profile/modify/"+ id;
@@ -117,6 +126,39 @@ public class activity_profile_completo_modificable extends AppCompatActivity {
                } catch (JSONException e) {
                    e.printStackTrace();
                }
+           }
+       }, new Response.ErrorListener() {
+           @Override
+           public void onErrorResponse(VolleyError error) {
+               Toast.makeText(activity_profile_completo_modificable.this, error.toString(), LENGTH_SHORT).show();
+               System.out.println(error.toString());
+           }
+       });
+       queue.add(request);
+   }
+
+   public void openDialog(){
+        fragment_delete_profile_dialog deleteAccount = new fragment_delete_profile_dialog();
+        deleteAccount.show(getSupportFragmentManager(), "DeleteAccount");
+   }
+
+   @Override
+   public void DeleteAccount(String mail, String passwd){
+       String url = "http://10.4.41.144:3000/user/delete";
+       JSONObject req = new JSONObject();
+       try {
+           req.put("email",mail);
+           req.put("password",passwd);
+       } catch (JSONException e) {
+           e.printStackTrace();
+       }
+       System.out.println("FUK");
+       final JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, req, new Response.Listener<JSONObject>() {
+           @Override
+           public void onResponse(JSONObject response) {
+               String responses = response.toString();
+               Toast.makeText(activity_profile_completo_modificable.this, responses, LENGTH_SHORT).show();
+               System.out.println(responses);
            }
        }, new Response.ErrorListener() {
            @Override
