@@ -55,7 +55,7 @@ public class activity_profile_completo extends AppCompatActivity {
         System.out.println("MAIN");
         queue = Volley.newRequestQueue(this); //inicializar el requestqueue
         System.out.println("QUEUE");
-        Request("5dcb09294b4cfe0300646aa6");
+        Request(UsuariSingleton.getInstance().getId());
         System.out.println("PETA");
     }
 

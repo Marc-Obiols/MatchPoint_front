@@ -1,5 +1,6 @@
 package com.example.loginlayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,10 +41,11 @@ public class fragment_profile extends Fragment {
     private TextView valoracionNumero;
     private TextView fechaNacimiento;
     private Button buttonModificar;
+    private String idUser;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_main_profile_completo, container, false);
-
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        idUser = UsuariSingleton.getInstance().getId();
         nombreApellidos = view.findViewById(R.id.nombreApellidos);
         imageProfile = view.findViewById(R.id.imageProfile);
         profileDescripcion = view.findViewById(R.id.profileDescripcion);
@@ -55,10 +57,19 @@ public class fragment_profile extends Fragment {
         fechaNacimiento = view.findViewById(R.id.fechaNacimiento);
         buttonModificar = view.findViewById(R.id.buttonModificar);
 
+        buttonModificar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(),activity_profile_completo_modificable.class);
+                i.putExtra("id",idUser);
+                startActivity(i);
+            }
+        });
+
         System.out.println("MAIN");
         queue = Volley.newRequestQueue(getActivity()); //inicializar el requestqueue
         System.out.println("QUEUE");
-        Request("5dcb09294b4cfe0300646aa6");
+        Request(UsuariSingleton.getInstance().getId());
         System.out.println("PETA");
         return view;
     }

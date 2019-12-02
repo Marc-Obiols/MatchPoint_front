@@ -1,6 +1,7 @@
 package com.example.loginlayout;
 
 import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
 
 import android.os.Bundle;
 import android.view.View;
@@ -34,6 +35,8 @@ public class activity_profile_completo_modificable extends AppCompatActivity {
     private TextView numeroTelefono;
 
     private RequestQueue queue; //cola de las solicitudes
+    private String id;
+    private String url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +50,12 @@ public class activity_profile_completo_modificable extends AppCompatActivity {
         fechaNacimiento = findViewById(R.id.fechaNacimiento);
         buttonModificar = findViewById(R.id.buttonModificar);
         numeroTelefono = findViewById(R.id.telefonoNumero);
+        Intent i = getIntent();
+        id = i.getStringExtra("id");
+        url = "http://10.4.41.144:3000/profile/modify/"+ id;
 
         queue = Volley.newRequestQueue(this); //inicializar el requestqueue
-        Request("5dcb09294b4cfe0300646aa6");
+        Request(id);
     }
 
     public void modificar(View v){
@@ -65,9 +71,6 @@ public class activity_profile_completo_modificable extends AppCompatActivity {
             opcionGeneroModif = opcionGenero.getText().toString();
             fechaNacimientoModif = fechaNacimiento.getText().toString();
             numeroTelefonoModif = Integer.parseInt( numeroTelefono.getText().toString() );
-
-            String id = "5dcb09294b4cfe0300646aa6";
-            String url = "http://10.4.41.144:3000/profile/modify/"+ id;
 
             JSONObject req = new JSONObject();
             try {
