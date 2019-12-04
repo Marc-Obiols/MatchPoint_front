@@ -46,7 +46,7 @@ public class activity_modificar_evento extends AppCompatActivity {
     private EditText numeroParticipantes;
     private EditText numeroAsistentes;
     private EditText descripcionText;
-
+    private String id;
     private RequestQueue queue;
 
     @Override
@@ -61,6 +61,9 @@ public class activity_modificar_evento extends AppCompatActivity {
         numeroParticipantes = (EditText) findViewById(R.id.numeroParticipantes);
         numeroAsistentes = (EditText) findViewById(R.id.numeroAsistentes);
         descripcionText = (EditText) findViewById(R.id.descriptionText);
+
+        Intent i = getIntent();
+        id = i.getStringExtra("id");
 
         System.out.println("ENTRA ONCREATE");
 
@@ -78,7 +81,7 @@ public class activity_modificar_evento extends AppCompatActivity {
         spinnerNiveles.setAdapter(opcionesNiveles);
 
         queue = Volley.newRequestQueue(this);
-        Request("5ddc07c50213c0169a70bae9");
+        Request(id);
     }
 
     private void Request(String id) {
