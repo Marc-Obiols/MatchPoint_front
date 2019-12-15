@@ -7,10 +7,10 @@
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the 'MyLocation' functionality.
     -->
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher_foreground2"
@@ -20,20 +20,20 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity_chat"></activity>
+        <activity android:name=".menu_chats"></activity>
+        <activity android:name=".activity_chat" />
         <activity android:name=".activity_main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".activity_crear_evento"/>
-        <activity android:name=".activity_login"/>
-        <activity android:name=".activity_register"/>
-        <activity android:name=".activity_profile_completo_modificable"/>
-
-
+        <activity android:name=".activity_crear_evento" />
+        <activity android:name=".activity_login" />
+        <activity android:name=".activity_register" />
+        <activity android:name=".activity_profile_completo_modificable" />
+        <activity android:name=".fragment_msgs" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

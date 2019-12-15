@@ -10,60 +10,79 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class AdapterMensajes  extends RecyclerView.Adapter<HolderMensaje> {
 
-    private List<MensajeRecibir> listMensaje = new ArrayList<>();
+    private List<LMensaje> listMensaje = new ArrayList<>();
     private Context c;
 
     public AdapterMensajes(Context c) {
         this.c = c;
     }
 
-    public void addMensaje(MensajeRecibir m) {
-        listMensaje.add(m);
+    public void addMensaje(LMensaje lm) {
+        listMensaje.add(lm);
         notifyItemInserted(listMensaje.size());
     }
 
     @NonNull
     @Override
     public HolderMensaje onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(c).inflate(R.layout.card_view_mensajes,parent,false);
+        View v;
+        if (viewType == 1) {
+            v = LayoutInflater.from(c).inflate(R.layout.card_view_mensaje_emisor,parent,false);
+        }
+        else
+            v = LayoutInflater.from(c).inflate(R.layout.card_view_mensaje_receptor,parent,false);
         return new HolderMensaje(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull HolderMensaje holder, int position) {
-        holder.getNombre().setText(listMensaje.get(position).getNombre());
-        holder.getMensaje().setText(listMensaje.get(position).getMensaje());
-        if(listMensaje.get(position).getType_mensaje().equals("2")) {
+
+        LMensaje lMensaje = listMensaje.get(position);
+        //System.out.println(lMensaje.getKey());
+        //System.out.println(lMensaje.getlUsuari().getKey());
+        //System.out.println(lMensaje.getlUsuari().getUsuari().getNombre());
+        //holder.getNombre().setText(lMensaje.getlUsuari().getUsuari().getNombre());
+        holder.getMensaje().setText(lMensaje.getMensaje().getMensaje());
+
+        if(lMensaje.getMensaje().isContieneFoto()) {
             holder.getFotoMensajeEnviado().setVisibility(View.VISIBLE);
             holder.getMensaje().setVisibility(View.VISIBLE);
-            Glide.with(c).load(listMensaje.get(position).getUrlFoto()).into(holder.getFotoMensajeEnviado());
+            Glide.with(c).load(lMensaje.getMensaje().getUrlFoto()).into(holder.getFotoMensajeEnviado());
         }
-        else if (listMensaje.get(position).getType_mensaje().equals("1")) {
+        else {
             holder.getFotoMensajeEnviado().setVisibility(View.GONE);
             holder.getMensaje().setVisibility(View.VISIBLE);
         }
-        if (listMensaje.get(position).getFotoPerfil().isEmpty()) {
+
+        /*if (lMensaje.getlUsuari().getUsuari().getFotoPerfilUrl().isEmpty()) {
             holder.getFotoMensaje().setImageResource(R.mipmap.ic_launcher);
         }
         else {
-            Glide.with(c).load(listMensaje.get(position).getFotoPerfil()).into(holder.getFotoMensaje());
+            Glide.with(c).load(lMensaje.getlUsuari().getUsuari().getFotoPerfilUrl()).into(holder.getFotoMensaje());
+        }*/
 
-        }
-        Long codigoHora = listMensaje.get(position).getHora();
-        Date d = new Date(codigoHora);
-        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a");
-        holder.getHora().setText(sdf.format(d));
+        holder.getHora().setText(lMensaje.fechaDeCreacionDelMensaje());
     }
 
     @Override
     public int getItemCount() {
         return listMensaje.size();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (listMensaje.get(position).getlUsuari() != null) {
+            System.out.println("NO ES NULL");
+            if(listMensaje.get(position).getlUsuari().getKey().equals(UsuariSingleton.getInstance().getId())) {
+                return 1;
+            }
+            return -1;
+        }
+        return -1;
     }
 }

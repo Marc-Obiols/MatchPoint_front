@@ -54,7 +54,9 @@ public class activity_main extends AppCompatActivity {
                                 return true;
                             }
                             else {
-                                selectedFragment = new fragment_msgs();
+                                //Intent i = new Intent(getApplicationContext(), menu_chats.class);
+                                //startActivity(i);
+                                selectedFragment = new menu_chats();
                             }
                             break;
                         case R.id.nav_profile:
