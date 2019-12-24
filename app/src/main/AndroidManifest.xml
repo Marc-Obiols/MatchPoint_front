@@ -21,7 +21,7 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".menu_chats" />
-        <activity android:name=".activity_evento" >
+        <activity android:name=".activity_main" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

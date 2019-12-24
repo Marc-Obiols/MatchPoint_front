@@ -2,34 +2,34 @@ package com.example.loginlayout;
 
 public class Usuari { //clase para el firebase
 
-    private String nombre;
-    private String correo;
-    private String FotoPerfilUrl;
+    private String nom_usuari;
+    private String mail;
+    private String fotoPerfil;
 
     public Usuari() {
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNom_usuari() {
+        return nom_usuari;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNom_usuari(String nom_usuari) {
+        this.nom_usuari = nom_usuari;
     }
 
-    public String getCorreo() {
-        return correo;
+    public String getMail() {
+        return mail;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
-    public String getFotoPerfilUrl() {
-        return FotoPerfilUrl;
+    public String getFotoPerfil() {
+        return fotoPerfil;
     }
 
-    public void setFotoPerfilUrl(String fotoPerfilUrl) {
-        FotoPerfilUrl = fotoPerfilUrl;
+    public void setFotoPerfil(String fotoPerfil) {
+        this.fotoPerfil = fotoPerfil;
     }
 }

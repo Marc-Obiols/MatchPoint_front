@@ -1,6 +1,7 @@
 package com.example.loginlayout;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,10 +45,13 @@ public class AdapterMensajes  extends RecyclerView.Adapter<HolderMensaje> {
     public void onBindViewHolder(@NonNull HolderMensaje holder, int position) {
 
         LMensaje lMensaje = listMensaje.get(position);
-        //System.out.println(lMensaje.getKey());
+        System.out.println(lMensaje.getKey());
         //System.out.println(lMensaje.getlUsuari().getKey());
         //System.out.println(lMensaje.getlUsuari().getUsuari().getNombre());
-        //holder.getNombre().setText(lMensaje.getlUsuari().getUsuari().getNombre());
+        holder.getNombre().setText(lMensaje.getlUsuari().getUsuari().getNom_usuari());
+        //Uri uriFotoPerfil = Uri.parse(lMensaje.getlUsuari().getUsuari().getFotoPerfil());
+        Picasso.get().load(lMensaje.getlUsuari().getUsuari().getFotoPerfil()).into(holder.getFotoMensaje());
+        //holder.getFotoMensaje().setImageURI(uriFotoPerfil);
         holder.getMensaje().setText(lMensaje.getMensaje().getMensaje());
 
         if(lMensaje.getMensaje().isContieneFoto()) {

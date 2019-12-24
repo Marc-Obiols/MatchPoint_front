@@ -1,10 +1,14 @@
 package com.example.loginlayout;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UsuariSingleton {
 
     private String id;
     private String nom_usuari;
     private String mail;
+    private List<String> eventos_part;
 
     private static final UsuariSingleton ourInstance = new UsuariSingleton();
 
@@ -29,6 +33,15 @@ public class UsuariSingleton {
     public String getMail() {return mail;}
     public String getNom_usuari() {return nom_usuari;}
 
+    public void addIdEvento(String id) {
+        eventos_part.add(id);
+    }
+
+    public void deleteIdEvento(String id) {
+        eventos_part.remove(id);
+    }
+
     private UsuariSingleton() {
+        eventos_part = new ArrayList<>();
     }
 }
