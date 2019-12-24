@@ -31,24 +31,20 @@
 
     <TextView
         android:id="@+id/deporte"
-        android:layout_width="330dp"
-        android:layout_height="51dp"
+        android:layout_width="311dp"
+        android:layout_height="45dp"
         android:layout_marginStart="18dp"
         android:layout_marginLeft="18dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="18dp"
-        android:layout_marginRight="18dp"
         android:gravity="center"
         android:text="Deporte"
         android:textSize="36sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/buttonModificar"
+        android:id="@+id/buttonApuntarse"
         android:layout_width="360dp"
         android:layout_height="70dp"
         android:layout_marginStart="8dp"
@@ -71,7 +67,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="16dp"
         android:background="@android:color/holo_red_light"
         android:onClick="Eliminar"
         android:text="ELIMINAR EVENTO"
@@ -202,5 +198,21 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <ImageView
+        android:id="@+id/infoView"
+        android:layout_width="36dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@color/quantum_googblue500"
+        android:onClick="MostrarInfoDeporte"
+        android:shape="ring"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.368"
+        app:layout_constraintStart_toEndOf="@+id/deporte"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_info_details" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -33,6 +33,7 @@ public class activity_evento extends AppCompatActivity {
     private Button buttonModificar;
     private Button buttonEliminar;
     private String idEvento;
+    private String nombreDeporte;
 
     private RequestQueue queue; //cola de las solicitudes
 
@@ -53,16 +54,9 @@ public class activity_evento extends AppCompatActivity {
 
         idEvento = "5ddeb5c0b43de93e240d015d";
 
-        buttonModificar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                System.out.println("Entra en Modificar");
-                Intent i = new Intent(v.getContext(),activity_modificar_evento.class);
-                i.putExtra("id",idEvento);
-                System.out.println("Peta en Modificar");
-                startActivity(i);
-            }
-        });
+        System.out.println("ENTRA AQUI");
+
+        System.out.println("PETA AQUI");
 
         queue = Volley.newRequestQueue(this); //inicializar el requestqueue
         Request(idEvento);
@@ -75,7 +69,8 @@ public class activity_evento extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    deporteText.setText("Evento de " + response.getString("sport"));
+                    nombreDeporte = response.getString("sport");
+                    deporteText.setText("Evento de " + nombreDeporte);
                     descripcionText.setText(response.getString("description"));
                     horaText.setText(response.getString("date").substring(11, 16));
                     fechaText.setText(response.getString("date").substring(0, 10));
@@ -121,8 +116,17 @@ public class activity_evento extends AppCompatActivity {
         queue.add(request);
     }
 
+    public void Modificar(View v) {
+        Intent i = new Intent(this, activity_modificar_evento.class);
+        i.putExtra("id", idEvento);
+        startActivity(i);
+    }
 
-
+    public void MostrarInfoDeporte(View v){
+        Intent i = new Intent(this, activity_info_deporte.class);
+        i.putExtra("nombreDeporte", nombreDeporte);
+        startActivity(i);
+    }
 
 
 }

@@ -1,13 +1,19 @@
 package com.example.loginlayout;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.drawable.RoundedBitmapDrawable;
+import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +54,8 @@ public class activity_evento_participante extends AppCompatActivity implements I
     private RequestQueue queue; //cola de las solicitudes
     private int llamada;
     private View view;
+    private ImageView imageInfo;
+    private String nombreDeporte;
 
     boolean estaApuntado;
 
@@ -56,6 +64,7 @@ public class activity_evento_participante extends AppCompatActivity implements I
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_evento_participante);
 
+        imageInfo = findViewById(R.id.infoView);
         deporteText = findViewById(R.id.deporte);
         fechaText = findViewById(R.id.tv_fecha);
         horaText = findViewById(R.id.tv_hora2);
@@ -96,11 +105,18 @@ public class activity_evento_participante extends AppCompatActivity implements I
         System.out.println("SALE FUNCION");
     }
 
+    public void MostrarInfoDeporte(View v){
+        Intent i = new Intent(this, activity_info_deporte.class);
+        i.putExtra("nombreDeporte", nombreDeporte);
+        startActivity(i);
+    }
+
     @Override
     public void Respuesta(JSONObject datos) {
         if(llamada == 1) {//Obtener información del evento
             try {
-                deporteText.setText("Evento de " + datos.getString("sport"));
+                nombreDeporte =  datos.getString("sport");
+                deporteText.setText("Evento de " + nombreDeporte);
                 descripcionText.setText(datos.getString("description"));
                 horaText.setText(datos.getString("date").substring(11, 16));
                 fechaText.setText(datos.getString("date").substring(0, 10));

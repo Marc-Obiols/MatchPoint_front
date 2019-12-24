@@ -65,8 +65,6 @@ public class activity_modificar_evento extends AppCompatActivity {
         Intent i = getIntent();
         id = i.getStringExtra("id");
 
-        System.out.println("ENTRA ONCREATE");
-
         String [] list_dep = new String[] {"Tenis", "Futbol", "Baloncesto", "Padel", "Hockey", "Golf", "Rugby"};
 
         ArrayAdapter<String> opcionesDeportes;

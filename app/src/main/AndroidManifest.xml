@@ -20,17 +20,18 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".menu_chats"></activity>
-        <activity android:name=".activity_chat" />
-        <activity android:name=".activity_main">
+        <activity android:name=".menu_chats" />
+        <activity android:name=".activity_evento" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity_modificar_evento" />
         <activity android:name=".activity_crear_evento" />
         <activity android:name=".activity_login" />
+        <activity android:name=".activity_info_deporte" />
         <activity android:name=".activity_register" />
         <activity android:name=".activity_profile_completo_modificable" />
         <activity android:name=".fragment_msgs" />
