@@ -5,6 +5,7 @@ public class UsuariSingleton {
     private String id;
     private String nom_usuari;
     private String mail;
+
     private static final UsuariSingleton ourInstance = new UsuariSingleton();
 
     public static UsuariSingleton getInstance() {

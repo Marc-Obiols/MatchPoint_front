@@ -15,6 +15,9 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,6 +38,8 @@ public class activity_crear_evento extends AppCompatActivity implements Interfaz
     private EditText Part;
     private EditText Descripcion;
     private int llamada;
+    private FirebaseDatabase database;
+    private DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +56,9 @@ public class activity_crear_evento extends AppCompatActivity implements Interfaz
         Part_total = (EditText) findViewById(R.id.editText9);
         Part = (EditText) findViewById(R.id.editText10);
         Descripcion = (EditText) findViewById(R.id.editText7);
+
+        database = FirebaseDatabase.getInstance();
+        databaseReference = database.getReference("chat");
 
         ArrayAdapter<String> aaNiv;
         String [] niv = new String[] {"Ninguno", "Aficionado", "Principiante", "Profesional", "Experto"};
@@ -124,7 +132,6 @@ public class activity_crear_evento extends AppCompatActivity implements Interfaz
                 String date = fecha + "T" + ini;
                 System.out.println(date);
                 try {
-
                     users.put("5db49aadffc609546f5091e3");
                     req.put("creator","5db49aadffc609546f5091e3");
                     Double lat = getIntent().getDoubleExtra("lat",99); //pillar la lat y long del new event (pablo)
@@ -167,6 +174,15 @@ public class activity_crear_evento extends AppCompatActivity implements Interfaz
             try {
                 System.out.println(datos.getInt("codigo"));
                 if (datos.getInt("codigo") == 200) {
+                    String idEvento = datos.getString("_id");
+                    System.out.println(idEvento);
+                    Mensaje mensaje = new Mensaje();
+                    mensaje.setContieneFoto(false);
+                    mensaje.setMensaje("Se ha creado el grupo");
+                    mensaje.setKeyEmisor("1234567890");
+                    Chat c = new Chat("Futbol Manyana");
+                    databaseReference.child(idEvento).setValue(c);
+                    databaseReference.child(idEvento).push().setValue(mensaje);
                     Intent i = new Intent(this, activity_main.class);
                     startActivity(i);
                 }

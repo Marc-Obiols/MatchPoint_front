@@ -14,6 +14,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,6 +27,9 @@ public class activity_register extends AppCompatActivity {
     private EditText user;
     private EditText pass;
     private EditText email;
+    private FirebaseAuth mAuth;
+    private FirebaseDatabase database;
+    private DatabaseReference referenceUsuarios;
     private RequestQueue queue; //cola de las solicitudes
 
 
@@ -35,7 +41,9 @@ public class activity_register extends AppCompatActivity {
         pass = findViewById(R.id.editText5);
         user = findViewById(R.id.editText6);
         queue = Volley.newRequestQueue(this); //inicializar el requestqueue
-
+        database = FirebaseDatabase.getInstance();
+        referenceUsuarios = database.getReference("Usuarios");
+        System.out.println(referenceUsuarios.toString());
     }
 
     public void login(View view) {
@@ -49,8 +57,14 @@ public class activity_register extends AppCompatActivity {
         String username = user.getText().toString();
         String password = pass.getText().toString();
         String useremail = email.getText().toString();
+
+        UsuariSingleton.getInstance().setMail(useremail);
+        UsuariSingleton.getInstance().setNom_usuari(username);
+        //UsuariSingleton.getInstance().setFotoPerfil("https://firebasestorage.googleapis.com/v0/b/fir-chat-f10b9.appspot.com/o/fotos_perfiles%2Fperfil.png?alt=media&token=15f5670d-1f8f-47d6-bcbe-add28cc6980b");
+
+        Intent i = new Intent(this, activity_main.class);
+        startActivity(i);
         Request(username,password,useremail);
-        //llamar a donde sea y tratar el resultado
     }
 
     private void Request(String username, String password, String email) {
@@ -71,6 +85,17 @@ public class activity_register extends AppCompatActivity {
                 String responses = response.toString();
                 Toast.makeText(activity_register.this, responses, LENGTH_SHORT).show();
                 System.out.println(responses);
+                try {
+                    System.out.println("SISU1");
+                    Usuari usuari = new Usuari();
+                    usuari.setCorreo(response.getString("email"));
+                    usuari.setFotoPerfilUrl("https://firebasestorage.googleapis.com/v0/b/fir-chat-f10b9.appspot.com/o/fotos_perfiles%2Fperfil.png?alt=media&token=15f5670d-1f8f-47d6-bcbe-add28cc6980b");
+                    usuari.setNombre(response.getString("username"));
+                    referenceUsuarios.child(response.getString("_id")).setValue(usuari);
+                    System.out.println("SISU2");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
             }
         }, new Response.ErrorListener() {

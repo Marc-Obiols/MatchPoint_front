@@ -17,12 +17,12 @@
             android:id="@+id/fotoPerfil"
             android:layout_width="48sp"
             android:layout_height="48sp"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@mipmap/logomp" />
         <TextView
             android:id="@+id/nombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Kevin"
+            android:text=""
             android:layout_gravity="center"/>
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
