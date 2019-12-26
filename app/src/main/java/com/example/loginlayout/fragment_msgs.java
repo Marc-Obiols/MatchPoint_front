@@ -82,6 +82,34 @@ public class fragment_msgs extends AppCompatActivity {
         nombre.setText(getIntent().getStringExtra("nombre_grupo"));
 
         String nombre_chat = getIntent().getStringExtra("id_chat");
+        String tema = getIntent().getStringExtra("deporte");
+        switch (tema){
+            case "futbol":
+                fotoPerfil.setImageResource(R.drawable.soccer);
+                break;
+            case "Baloncesto":
+                fotoPerfil.setImageResource(R.drawable.soccer);
+                break;
+            case "Tenis":
+                fotoPerfil.setImageResource(R.drawable.soccer);
+                break;
+            case "Padel":
+                fotoPerfil.setImageResource(R.drawable.soccer);
+                break;
+            case "Hockey":
+                fotoPerfil.setImageResource(R.drawable.soccer);
+                break;
+            case "Golf":
+                fotoPerfil.setImageResource(R.drawable.soccer);
+                break;
+            case "Rugby":
+                fotoPerfil.setImageResource(R.drawable.soccer);
+                break;
+            default:
+                fotoPerfil.setImageResource(R.drawable.soccer);
+                break;
+        }
+
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference("chat").child(nombre_chat);//Sala de chat
         storage = FirebaseStorage.getInstance();
@@ -138,13 +166,19 @@ public class fragment_msgs extends AppCompatActivity {
                     DatabaseReference aux = FirebaseDatabase.getInstance().getReference("Usuarios");
                     aux.addChildEventListener(new ChildEventListener() {
                         @Override
-                        public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                            System.out.println("HOLA");
-                            if (dataSnapshot.getKey().equals(lMensaje.getMensaje().getKeyEmisor())) {
-                                Usuari usuari = dataSnapshot.getValue(Usuari.class);
-                                System.out.println(dataSnapshot.getKey());
-                                LUsuari lUsuari = new LUsuari(usuari, dataSnapshot.getKey());
+                        public void onChildAdded(@NonNull DataSnapshot dataSnapshot2, @Nullable String s) {
+                            //System.out.println("HOLA");
+                            //System.out.println(dataSnapshot2.getKey());
+                            if (dataSnapshot2.getKey().equals(lMensaje.getMensaje().getKeyEmisor())) {
+                                Usuari usuari = dataSnapshot2.getValue(Usuari.class);
+                                //System.out.println("Foto Usuario: " + usuari.getFotoPerfil());
+                                //System.out.println("Nombre Usuario: " + usuari.getNom_usuari());
+                                //System.out.println("Correo Usuario: " + usuari.getMail());
+                                LUsuari lUsuari = new LUsuari(usuari, dataSnapshot2.getKey());
                                 lMensaje.setlUsuari(lUsuari);
+                                adapter.addMensaje(lMensaje);
+                                if (lMensaje.getlUsuari() == null) System.out.println("ME CAGO EN MIS PUTOS MUERTOS");
+                                else System.out.println("HA IDO BIEN");
                             }
                         }
 
@@ -168,7 +202,8 @@ public class fragment_msgs extends AppCompatActivity {
 
                         }
                     });
-                    adapter.addMensaje(lMensaje);
+                    //if (lMensaje.getlUsuari() == null) System.out.println("ME CAGO EN MIS PUTOS MUERTOS");
+                    //adapter.addMensaje(lMensaje);
                 }
             }
 

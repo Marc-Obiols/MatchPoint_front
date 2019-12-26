@@ -144,9 +144,9 @@ public class activity_register extends AppCompatActivity {
                 try {
                     System.out.println("SISU1");
                     Usuari usuari = new Usuari();
-                    usuari.setCorreo(response.getString("email"));
-                    usuari.setFotoPerfilUrl("https://firebasestorage.googleapis.com/v0/b/fir-chat-f10b9.appspot.com/o/fotos_perfiles%2Fperfil.png?alt=media&token=15f5670d-1f8f-47d6-bcbe-add28cc6980b");
-                    usuari.setNombre(response.getString("username"));
+                    usuari.setMail(response.getString("email"));
+                    usuari.setFotoPerfil("https://firebasestorage.googleapis.com/v0/b/fir-chat-f10b9.appspot.com/o/fotos_perfiles%2Fperfil.png?alt=media&token=15f5670d-1f8f-47d6-bcbe-add28cc6980b");
+                    usuari.setNom_usuari(response.getString("username"));
                     referenceUsuarios.child(response.getString("_id")).setValue(usuari);
                     System.out.println("SISU2");
                 } catch (JSONException e) {

@@ -123,13 +123,26 @@ public class activity_crear_evento extends AppCompatActivity implements Interfaz
         if((minutos_tot - minutos_act) > 0) {
             if (Integer.valueOf(p) < Integer.valueOf(pt)) {
                 //arreglar minutos mes y dia como hora
-                String fecha = any + "-" + mes + "-" + dia;
+                String mes_string;
+                String dia_string;
+                if (mes >= 0 && 9 >= mes) mes_string = "0" + String.valueOf(mes);
+                else mes_string = String.valueOf(mes);
+                if (dia >= 0 && 9 >= dia) dia_string = "0" + String.valueOf(dia);
+                else dia_string = String.valueOf(dia);
+                String fecha = String.valueOf(any) + "-" + mes_string + "-" + dia_string;
                 String ini;
-                if (hora >= 0 && 9 >= hora) ini = "0" + hora + ":" + min;
-                else ini = hora + ":" + min;
+                String hora_string;
+                String min_string;
+                if (hora >= 0 && 9 >= hora) hora_string = "0" + String.valueOf(hora);
+                else hora_string = String.valueOf(hora);
+                if (min >= 0 && 9 >= min) min_string = "0" + String.valueOf(min);
+                else min_string = String.valueOf(min);
+                ini = hora_string + ":" + min_string;
+                System.out.println(ini);
                 JSONObject req = new JSONObject();
                 JSONArray users = new JSONArray();
                 String date = fecha + "T" + ini;
+
                 System.out.println(date);
                 try {
                     users.put("5db49aadffc609546f5091e3");
@@ -175,12 +188,17 @@ public class activity_crear_evento extends AppCompatActivity implements Interfaz
                 System.out.println(datos.getInt("codigo"));
                 if (datos.getInt("codigo") == 200) {
                     String idEvento = datos.getString("_id");
-                    System.out.println(idEvento);
+                    String temaEvento = datos.getString("sport");
                     Mensaje mensaje = new Mensaje();
                     mensaje.setContieneFoto(false);
                     mensaje.setMensaje("Se ha creado el grupo");
-                    mensaje.setKeyEmisor("1234567890");
-                    Chat c = new Chat("Futbol Manyana");
+                    mensaje.setKeyEmisor(UsuariSingleton.getInstance().getId());
+                    String fechaEvento = datos.getString("date");
+                    String nombreEvento = temaEvento + " ";
+                    for (int i = 0; i < 10; ++i) {
+                        nombreEvento = nombreEvento + fechaEvento.charAt(i);
+                    }
+                    Chat c = new Chat(nombreEvento);
                     databaseReference.child(idEvento).setValue(c);
                     databaseReference.child(idEvento).push().setValue(mensaje);
                     Intent i = new Intent(this, activity_main.class);
