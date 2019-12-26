@@ -73,6 +73,7 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Interf
     private Boolean mLocationPermissionsGranted = false;
     private FusedLocationProviderClient mFusedLocationProviderClient;
 
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_map, container, false);
@@ -324,7 +325,7 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Interf
             for (int i = 0; i < response.length(); i++) {
                 JSONObject aux = response.getJSONObject(i); //JSON d 1 evento
                 String idEvent = aux.getString("_id"); //id de ese evento
-
+                System.out.println(aux.getString("creator"));
                 events.put(idEvent, aux); //se guarda en el map de JSONS de eventos
 
                 String deporte = aux.getString("sport"); //deporte del evento
@@ -332,13 +333,15 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Interf
                 Double lat = aux.getDouble("latitude");
                 Double lng = aux.getDouble("longitude"); //coords
 
-                String nomevent = "Evento de "+deporte;
-
+                String date = aux.getString("date");
+                String fecha = date.substring(0,10);
+                String hora = date.substring(11,16);
+                String nomevent = "Evento de " + deporte;
                 String infoevent =
+                                "Fecha: " + date.substring(8,10)+"-"+date.substring(5,7)+"-"+date.substring(0,4)  + "\n" +
+                                "Hora: " + hora  + "\n" +
                         "Participantes totales: " + aux.getInt("max_users")  + "\n" +
-                                "Plazas restantes: " + (aux.getInt("max_users")-aux.getInt("initial_users"))+ "\n" +
-                                "Nivel: " + aux.getString("level") + "\n" +
-                                "Descripción: " +aux.getString("description");
+                                "Plazas restantes: " + (aux.getInt("max_users")-aux.getInt("initial_users"));
 
 
                 if (deporte == "Futbol")
