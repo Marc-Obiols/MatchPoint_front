@@ -57,6 +57,7 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Interf
     private ImageView addbutton;
     private ImageView refreshbutton;
     private ImageView mGps;
+    private ImageView filterbutton;
     private int pulsado = 0;
     private HashMap<String, JSONObject> events;
     private View view;
@@ -134,6 +135,15 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Interf
             @Override
             public void onClick(View v) {
                 cargareventos();
+            }
+        });
+
+        filterbutton = view.findViewById(R.id.icfilter);
+        filterbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity().getBaseContext(), filter.class);
+                startActivity(i);
             }
         });
 
@@ -313,8 +323,20 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Interf
     }
 
     private void cargareventos() {//cargar todos los eventos de la BD en el mapa y crear map idEvent/JSON
-        Connection con = new Connection(this);
-        con.execute("http://10.4.41.144:3000/event/all", "GET", null);
+        if(getActivity().getIntent().getIntExtra("filtros",0) == 1){ //si tienes filtros te meteras aqui
+            String deporte = getActivity().getIntent().getStringExtra("filtrodeporte");
+            String nivel = getActivity().getIntent().getStringExtra("filtronivel");
+            String fecha = getActivity().getIntent().getStringExtra("filtrofecha");
+            //System.out.println(deporte);
+            //System.out.println(nivel);
+            //System.out.println(fecha);
+            //Connection con = new Connection(this);
+            //con.execute("http://10.4.41.144:3000/event/filtered/:time/:sport/:level", "GET", null);
+        }
+        else { //si tienes que cargar todos los eventos entraras aqui
+            Connection con = new Connection(this);
+            con.execute("http://10.4.41.144:3000/event/all", "GET", null);
+        }
     }
 
     @Override
@@ -325,7 +347,6 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Interf
             for (int i = 0; i < response.length(); i++) {
                 JSONObject aux = response.getJSONObject(i); //JSON d 1 evento
                 String idEvent = aux.getString("_id"); //id de ese evento
-                System.out.println(aux.getString("creator"));
                 events.put(idEvent, aux); //se guarda en el map de JSONS de eventos
 
                 String deporte = aux.getString("sport"); //deporte del evento

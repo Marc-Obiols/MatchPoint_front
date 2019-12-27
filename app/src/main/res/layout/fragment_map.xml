@@ -75,13 +75,24 @@
     <ImageView
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_below="@id/relLayout1"
+        android:layout_below="@id/icfilter"
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
         android:scaleType="centerCrop"
         android:id="@+id/icgps"
         android:src="@drawable/ic_gps"/>
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/relLayout1"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:scaleType="centerCrop"
+        android:id="@+id/icfilter"
+        android:src="@drawable/ic_filter"/>
 
 
 </RelativeLayout>

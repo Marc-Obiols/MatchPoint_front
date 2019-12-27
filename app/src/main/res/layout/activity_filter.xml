@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".filter">
+
+    <TextView
+        android:id="@+id/textFiltrarEventos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:text="    Filtrar Eventos"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/relLayout1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.391"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <RelativeLayout
+        android:id="@+id/relLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:elevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="80dp"
+            android:text="Selecciona un deporte:"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="167dp" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView9"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="100dp"
+            android:text="Selecciona un nivel:"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="167dp" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView10"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="100dp"
+            android:text="Selecciona una fecha:"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="167dp" />
+
+        <Spinner
+            android:id="@+id/spinnerdeportes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="34dp"
+            android:layout_marginLeft="34dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_toEndOf="@+id/textView9"
+            android:layout_toRightOf="@+id/textView9" />
+
+        <Spinner
+            android:id="@+id/spinnernivel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/spinnerdeportes"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="58dp"
+            android:layout_marginLeft="58dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_toEndOf="@+id/textView10"
+            android:layout_toRightOf="@+id/textView10" />
+
+        <Button
+            android:id="@+id/buttonfecha"
+            android:layout_width="500dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/spinnernivel"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="70dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="90dp"
+            android:layout_marginEnd="59dp"
+            android:layout_marginRight="59dp"
+            android:layout_toEndOf="@+id/textView12"
+            android:layout_toRightOf="@+id/textView12"
+            android:onClick="MostrarCalendario"
+            android:text="Fecha" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/buttonfiltrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Filtrar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="EnviarFiltro"
+        app:layout_constraintTop_toBottomOf="@+id/relLayout1" />
+</androidx.constraintlayout.widget.ConstraintLayout>

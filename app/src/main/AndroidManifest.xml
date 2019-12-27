@@ -20,8 +20,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".filter"></activity>
         <activity android:name=".menu_chats" />
-        <activity android:name=".activity_main" >
+        <activity android:name=".activity_main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
