@@ -29,6 +29,13 @@ public class UsuariSingleton {
         return true;
     }
 
+    public void user_LogOut() {
+        id = null;
+        nom_usuari = null;
+        mail = null;
+        eventos_part = null;
+    }
+
     public String getId() {return id;}
     public String getMail() {return mail;}
     public String getNom_usuari() {return nom_usuari;}

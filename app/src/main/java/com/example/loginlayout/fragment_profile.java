@@ -41,6 +41,7 @@ public class fragment_profile extends Fragment {
     private TextView valoracionNumero;
     private TextView fechaNacimiento;
     private Button buttonModificar;
+    private Button buttonDisconnect;
     private String idUser;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -56,12 +57,22 @@ public class fragment_profile extends Fragment {
         valoracionNumero = view.findViewById(R.id.telefonoNumero);
         fechaNacimiento = view.findViewById(R.id.fechaNacimiento);
         buttonModificar = view.findViewById(R.id.buttonModificar);
+        buttonDisconnect = view.findViewById(R.id.buttonDisconnect);
 
         buttonModificar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getContext(),activity_profile_completo_modificable.class);
                 i.putExtra("id",idUser);
+                startActivity(i);
+            }
+        });
+
+        buttonDisconnect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(),activity_main.class);
+                UsuariSingleton.getInstance().user_LogOut();
                 startActivity(i);
             }
         });
