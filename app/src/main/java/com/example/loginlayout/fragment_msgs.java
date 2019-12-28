@@ -167,13 +167,8 @@ public class fragment_msgs extends AppCompatActivity {
                     aux.addChildEventListener(new ChildEventListener() {
                         @Override
                         public void onChildAdded(@NonNull DataSnapshot dataSnapshot2, @Nullable String s) {
-                            //System.out.println("HOLA");
-                            //System.out.println(dataSnapshot2.getKey());
                             if (dataSnapshot2.getKey().equals(lMensaje.getMensaje().getKeyEmisor())) {
                                 Usuari usuari = dataSnapshot2.getValue(Usuari.class);
-                                //System.out.println("Foto Usuario: " + usuari.getFotoPerfil());
-                                //System.out.println("Nombre Usuario: " + usuari.getNom_usuari());
-                                //System.out.println("Correo Usuario: " + usuari.getMail());
                                 LUsuari lUsuari = new LUsuari(usuari, dataSnapshot2.getKey());
                                 lMensaje.setlUsuari(lUsuari);
                                 adapter.addMensaje(lMensaje);
@@ -237,7 +232,7 @@ public class fragment_msgs extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PHOTO_SEND && resultCode == RESULT_OK) {
-
+            System.out.println("ESTOY ENVIANDO UNA FOTO");
             Uri u = data.getData();
             storageReference = storage.getReference("fotos_chat"); //imagenes del chat
             final StorageReference fotoReferencia = storageReference.child(u.getLastPathSegment());
@@ -264,7 +259,6 @@ public class fragment_msgs extends AppCompatActivity {
                             mensaje.setUrlFoto(photoStringLink);
                             mensaje.setContieneFoto(true);
                             mensaje.setKeyEmisor(UsuariSingleton.getInstance().getId());
-                            //mensaje.setKeyEmisor(UsuarioDAO.getInstance().getKeyUsuario());
                             databaseReference.push().setValue(mensaje);
                         }
                     }

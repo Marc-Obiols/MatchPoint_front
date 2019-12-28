@@ -20,6 +20,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -44,6 +50,9 @@ public class fragment_profile extends Fragment {
     private Button buttonDisconnect;
     private String idUser;
 
+    private DatabaseReference databaseReference;
+    private FirebaseDatabase database;
+
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         idUser = UsuariSingleton.getInstance().getId();
@@ -58,6 +67,38 @@ public class fragment_profile extends Fragment {
         fechaNacimiento = view.findViewById(R.id.fechaNacimiento);
         buttonModificar = view.findViewById(R.id.buttonModificar);
         buttonDisconnect = view.findViewById(R.id.buttonDisconnect);
+
+        database = FirebaseDatabase.getInstance();
+        databaseReference = database.getReference("Usuarios").child(UsuariSingleton.getInstance().getId());
+        databaseReference.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                String u = (String) dataSnapshot.getValue();
+                System.out.println("NO HA CAMBIADO LA FOTO");
+                if (u.charAt(0) == 'h' && u.charAt(1) == 't' && u.charAt(2) == 't' && u.charAt(3) == 'p')
+                    Picasso.get().load(u).into(imageProfile);
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         buttonModificar.setOnClickListener(new View.OnClickListener() {
             @Override
