@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MatchPoint</string>
+    <string name="IB">Information</string>
+    <string name="title_map">Map</string>
+    <string name="title_create">Create Event</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_activity_prueba_mapa">Map</string>
+
+    <string name="buttonValoracion">SEND FEEDBACK</string>
+    <string name="preguntaEvento">How much satisfied with the organizer of the event?</string>
+    <string name="textEventoExpl">Your participation in the event has ended successfully</string>
+    <string name="nombreEvento">SOCCER EVENT</string>
+</resources>

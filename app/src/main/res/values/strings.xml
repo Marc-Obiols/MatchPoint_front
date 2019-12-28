@@ -5,4 +5,9 @@
     <string name="title_create">Crear Evento</string>
     <string name="title_profile">Perfil</string>
     <string name="title_activity_prueba_mapa">Map</string>
+
+    <string name="buttonValoracion">ENVIAR VALORACIÓN</string>
+    <string name="preguntaEvento">¿Cuánto de satisfecho con el organizador del evento?</string>
+    <string name="textEventoExpl">Su participación al evento ha finalizado con éxito</string>
+    <string name="nombreEvento">EVENTO DE FUTBOL</string>
 </resources>

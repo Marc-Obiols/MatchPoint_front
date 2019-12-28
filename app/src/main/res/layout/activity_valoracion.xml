@@ -15,7 +15,7 @@
         android:background="@color/quantum_vanillagreen700"
         android:onClick="Valorar"
         android:shadowColor="#1CDD24"
-        android:text="ENVIAR VALORACIÓN"
+        android:text="@string/buttonValoracion"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,11 +30,11 @@
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="40dp"
-        android:text="Su particpación al evento ha finalizado con éxito"
+        android:text="@string/textEventoExpl"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/nombeEvento" />
+        app:layout_constraintTop_toBottomOf="@+id/nombreEvento" />
 
     <TextView
         android:id="@+id/preguntaEvento"
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:gravity="center"
-        android:text="¿Cuánto de satisfecho con el organizador del evento?"
+        android:text="@string/preguntaEvento"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,18 +56,18 @@
         android:layout_marginLeft="56dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nombeEvento"
+        app:layout_constraintTop_toBottomOf="@+id/nombreEvento"
         app:srcCompat="@android:drawable/checkbox_on_background" />
 
     <TextView
-        android:id="@+id/nombeEvento"
+        android:id="@+id/nombreEvento"
         android:layout_width="409dp"
         android:layout_height="64dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="128dp"
         android:layout_marginRight="128dp"
         android:gravity="center"
-        android:text="EVENTO DE FUTBOL"
+        android:text="@string/nombreEvento"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
