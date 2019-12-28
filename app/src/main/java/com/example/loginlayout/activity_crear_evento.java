@@ -145,8 +145,8 @@ public class activity_crear_evento extends AppCompatActivity implements Interfaz
 
                 System.out.println(date);
                 try {
-                    users.put("5db49aadffc609546f5091e3");
-                    req.put("creator","5db49aadffc609546f5091e3");
+                    //users.put(UsuariSingleton.getInstance().getId());
+                    req.put("creator",UsuariSingleton.getInstance().getId());
                     Double lat = getIntent().getDoubleExtra("lat",99); //pillar la lat y long del new event (pablo)
                     req.put("latitude",lat);
                     Double lng = getIntent().getDoubleExtra("lng",99);
@@ -201,8 +201,14 @@ public class activity_crear_evento extends AppCompatActivity implements Interfaz
                     Chat c = new Chat(nombreEvento);
                     databaseReference.child(idEvento).setValue(c);
                     databaseReference.child(idEvento).push().setValue(mensaje);
-                    Intent i = new Intent(this, activity_main.class);
-                    startActivity(i);
+
+                    llamada = 3;
+                    JSONObject req = new JSONObject();
+                    req.put("idUser", UsuariSingleton.getInstance().getId());
+                    req.put("idEvent", idEvento);
+                    Connection con = new Connection(this);
+                    con.execute("http://10.4.41.144:3000/event/assign/" + UsuariSingleton.getInstance().getId() + "/" + idEvento, "POST", req.toString());
+
                 }
                 else {
                     Toast.makeText(activity_crear_evento.this, "error q flipas loco", LENGTH_SHORT).show();
@@ -227,6 +233,17 @@ public class activity_crear_evento extends AppCompatActivity implements Interfaz
             ArrayAdapter<String> aaDep;
             aaDep = new ArrayAdapter<String >(this, android.R.layout.simple_spinner_item, ress); //activity para mostrar, tipo de spinner, listado de valores
             deportes.setAdapter(aaDep);
+        }
+        else if (llamada == 3) {
+            try {
+                System.out.println(datos.getInt("codigo"));
+                if (datos.getInt("codigo") == 200) {
+                    Intent i = new Intent(this, activity_main.class);
+                    startActivity(i);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

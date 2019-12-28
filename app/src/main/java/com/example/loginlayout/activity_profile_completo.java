@@ -1,8 +1,11 @@
 package com.example.loginlayout;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,6 +17,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,6 +43,7 @@ public class activity_profile_completo extends AppCompatActivity {
     private TextView fechaNacimiento;
     private Button buttonModificar;
 
+
     private RequestQueue queue; //cola de las solicitudes
 
     @Override
@@ -52,11 +62,8 @@ public class activity_profile_completo extends AppCompatActivity {
         fechaNacimiento = findViewById(R.id.fechaNacimiento);
         buttonModificar = findViewById(R.id.buttonModificar);
 
-        System.out.println("MAIN");
         queue = Volley.newRequestQueue(this); //inicializar el requestqueue
-        System.out.println("QUEUE");
         Request(UsuariSingleton.getInstance().getId());
-        System.out.println("PETA");
     }
 
     public void Request(String id){
