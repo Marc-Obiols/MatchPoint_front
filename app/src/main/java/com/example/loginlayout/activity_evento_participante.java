@@ -135,9 +135,9 @@ public class activity_evento_participante extends AppCompatActivity implements I
             try {
                 estaApuntado = datos.getBoolean("response");
                 if(estaApuntado){
-                    buttonApuntarse.setText("DESAPUNTARSE");
+                    buttonApuntarse.setText(R.string.Desapuntarse);
                 }
-                else buttonApuntarse.setText("APUNTARSE");
+                else buttonApuntarse.setText(R.string.Apuntarse);
                 System.out.println("ESTA APUNTADO?" + estaApuntado);
             }catch (JSONException e) {
                 e.printStackTrace();

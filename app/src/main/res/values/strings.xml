@@ -22,4 +22,8 @@
     <string name="DescripcionEvento">Descripción del evento:</string>
     <string name="ModificarEvento">MODIFICAR EVENTO</string>
     <string name="EliminarEvento">ELIMINAR EVENTO</string>
+
+    //Pantalla activity_evento_participante
+    <string name="Apuntarse">APUNTARSE</string>
+    <string name="Desapuntarse">DESAPUNTARSE</string>
 </resources>

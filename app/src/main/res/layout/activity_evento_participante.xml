@@ -67,7 +67,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="20dp"
-        android:text="Hora"
+        android:text="@string/Hora"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/deporte" />
@@ -79,8 +79,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
+        android:text="@string/Fecha"
         android:textStyle="bold"
-        android:text="Fecha"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Hora" />
 
@@ -102,7 +102,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="40dp"
-        android:text="Número de participantes:"
+        android:text="@string/NumParticipantes"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Fecha" />
@@ -114,7 +114,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="20dp"
-        android:text="Número de asistentes:"
+        android:text="@string/NumAsistentes"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
@@ -164,7 +164,7 @@
         android:layout_marginStart="18dp"
         android:layout_marginLeft="18dp"
         android:layout_marginTop="24dp"
-        android:text="Descripción del evento:"
+        android:text="@string/DescripcionEvento"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -176,7 +176,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="32dp"
-        android:text="Nivel del evento:"
+        android:text="@string/NivelEvento"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
