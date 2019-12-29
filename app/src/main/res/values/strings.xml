@@ -6,8 +6,20 @@
     <string name="title_profile">Perfil</string>
     <string name="title_activity_prueba_mapa">Map</string>
 
+    //Pantalla activity_valoracion
     <string name="buttonValoracion">ENVIAR VALORACIÓN</string>
     <string name="preguntaEvento">¿Cuánto de satisfecho con el organizador del evento?</string>
     <string name="textEventoExpl">Su participación al evento ha finalizado con éxito</string>
     <string name="nombreEvento">EVENTO DE FUTBOL</string>
+
+
+    //Pantalla activity_evento
+    <string name="Hora">Hora</string>
+    <string name="Fecha">Fecha</string>
+    <string name="NumParticipantes">Número de participantes:</string>
+    <string name="NumAsistentes">Número de asistentes:</string>
+    <string name="NivelEvento">Nivel del evento:</string>
+    <string name="DescripcionEvento">Descripción del evento:</string>
+    <string name="ModificarEvento">MODIFICAR EVENTO</string>
+    <string name="EliminarEvento">ELIMINAR EVENTO</string>
 </resources>
