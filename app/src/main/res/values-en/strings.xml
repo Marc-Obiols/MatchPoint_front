@@ -38,7 +38,7 @@
     <string name="TituloFiltrarEventos">    Filter Events</string>
     <string name="FiltrarButton">FILTER</string>
 
-    //Pantalla activity_registrar
+    //Pantalla activity_registrar y activity_login
     <string name="NombreYApellidos">NAME AND SURNAME</string>
     <string name="Username">USERNAME</string>
     <string name="Género">GENDER</string>
@@ -48,4 +48,5 @@
     <string name="EresUsuario">Already a member?</string>
     <string name="LoginButton">LOGIN</string>
     <string name="RegisterButton">REGISTER</string>
+    <string name="SignUpButton">SIGN UP</string>
 </resources>
