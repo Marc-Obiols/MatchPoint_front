@@ -29,4 +29,12 @@
 
     //Pantalla activity_informacion_deporte
     <string name="TituloInfo">Sports information</string>
+
+    //Pantalla activity_filtrar
+    <string name="SeleccionaDeporte">Select a sport:</string>
+    <string name="FechaMayusculas">DATE</string>
+    <string name="SeleccionaNivel">Select a level:</string>
+    <string name="SeleccionaFecha">Select a date:</string>
+    <string name="TituloFiltrarEventos">    Filter Events</string>
+    <string name="FiltrarButton">FILTER</string>
 </resources>

@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"
-        android:text="    Filtrar Eventos"
+        android:text="@string/TituloFiltrarEventos"
         android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/relLayout1"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,7 +38,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="80dp"
-            android:text="Selecciona un deporte:"
+            android:text="@string/SeleccionaDeporte"
             android:textSize="18sp"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="167dp" />
@@ -51,7 +51,7 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="100dp"
-            android:text="Selecciona un nivel:"
+            android:text="@string/SeleccionaNivel"
             android:textSize="18sp"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="167dp" />
@@ -64,7 +64,7 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="100dp"
-            android:text="Selecciona una fecha:"
+            android:text="@string/SeleccionaFecha"
             android:textSize="18sp"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="167dp" />
@@ -114,7 +114,7 @@
             android:layout_toEndOf="@+id/textView12"
             android:layout_toRightOf="@+id/textView12"
             android:onClick="MostrarCalendario"
-            android:text="Fecha" />
+            android:text="@string/FechaMayusculas" />
 
     </RelativeLayout>
 
@@ -122,10 +122,10 @@
         android:id="@+id/buttonfiltrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Filtrar"
+        android:onClick="EnviarFiltro"
+        android:text="@string/FiltrarButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:onClick="EnviarFiltro"
         app:layout_constraintTop_toBottomOf="@+id/relLayout1" />
 </androidx.constraintlayout.widget.ConstraintLayout>
