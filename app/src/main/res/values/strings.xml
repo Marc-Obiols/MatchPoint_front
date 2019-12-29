@@ -23,7 +23,11 @@
     <string name="ModificarEvento">MODIFICAR EVENTO</string>
     <string name="EliminarEvento">ELIMINAR EVENTO</string>
 
-    //Pantalla activity_evento_participante
+    //Pantalla activity_evento_participante + utiliza activity_evento
     <string name="Apuntarse">APUNTARSE</string>
     <string name="Desapuntarse">DESAPUNTARSE</string>
+
+    //Pantalla activity_informacion_deporte
+    <string name="TituloInfo">Información del deporte</string>
+
 </resources>

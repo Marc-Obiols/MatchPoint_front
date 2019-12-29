@@ -23,7 +23,10 @@
     <string name="ModificarEvento">MODIFY EVENT</string>
     <string name="EliminarEvento">DELETE EVENT</string>
 
-    //Pantalla activity_evento_participante
+    //Pantalla activity_evento_participante + utiliza activity_evento
     <string name="Apuntarse">SUBSCRIBE</string>
     <string name="Desapuntarse">UNSUBSCRIBE</string>
+
+    //Pantalla activity_informacion_deporte
+    <string name="TituloInfo">Sports information</string>
 </resources>
