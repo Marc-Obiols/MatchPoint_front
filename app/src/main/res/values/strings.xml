@@ -38,4 +38,15 @@
     <string name="TituloFiltrarEventos">    Filtrar Eventos</string>
     <string name="FiltrarButton">FILTRAR</string>
 
+    //Pantalla activity_registrar
+    <string name="NombreYApellidos">NOMBRE Y APELLIDOS</string>
+    <string name="Username">NOMBRE DE USUARIO</string>
+    <string name="Género">GÉNERO</string>
+    <string name="FechaNacimiento">FECHA DE NACIMIENTO</string>
+    <string name="Email">CORREO ELECTRÓNICO</string>
+    <string name="Password">CONTRASEÑA</string>
+    <string name="EresUsuario">¿Ya eres usuario?</string>
+    <string name="LoginButton">INICIAR SESIÓN</string>
+    <string name="RegisterButton">REGISTRARSE</string>
+
 </resources>
