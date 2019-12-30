@@ -50,20 +50,16 @@
         app:layout_constraintTop_toBottomOf="@+id/profileDescripcion"
         app:layout_constraintVertical_bias="0.34" />
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imageProfile"
-        android:layout_width="114dp"
-        android:layout_height="112dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="65dp"
-        android:adjustViewBounds="true"
-        android:scaleType="center"
+        android:layout_width="127dp"
+        android:layout_height="124dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginLeft="48dp"
+
+        android:layout_marginTop="50dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nombreApellidos"
-        app:srcCompat="@mipmap/ic_launcher_foreground"
-        tools:ignore="MissingConstraints"
-        tools:srcCompat="@tools:sample/avatars[10]" />
+        app:layout_constraintTop_toBottomOf="@+id/nombreApellidos"/>
 
     <TextView
         android:id="@+id/textoGenero"

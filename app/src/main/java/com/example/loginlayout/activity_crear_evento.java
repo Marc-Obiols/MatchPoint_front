@@ -14,6 +14,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -37,7 +38,10 @@ public class activity_crear_evento extends AppCompatActivity implements Interfaz
     private EditText Part_total;
     private EditText Part;
     private EditText Descripcion;
+    private ToggleButton CapacidadReducida;
+
     private int llamada;
+
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
 
@@ -56,6 +60,7 @@ public class activity_crear_evento extends AppCompatActivity implements Interfaz
         Part_total = (EditText) findViewById(R.id.editText9);
         Part = (EditText) findViewById(R.id.editText10);
         Descripcion = (EditText) findViewById(R.id.editText7);
+        CapacidadReducida = (ToggleButton) findViewById(R.id.CapacidadReducida);
 
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference("chat");
@@ -143,7 +148,6 @@ public class activity_crear_evento extends AppCompatActivity implements Interfaz
                 JSONArray users = new JSONArray();
                 String date = fecha + "T" + ini;
 
-                System.out.println(date);
                 try {
                     //users.put(UsuariSingleton.getInstance().getId());
                     req.put("creator",UsuariSingleton.getInstance().getId());
@@ -158,6 +162,7 @@ public class activity_crear_evento extends AppCompatActivity implements Interfaz
                     req.put("description",desc);
                     req.put("date", date);
                     req.put("users",users);
+                    req.put("reduced_mobility", CapacidadReducida.isChecked());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

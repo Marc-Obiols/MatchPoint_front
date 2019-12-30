@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#363434"
-    tools:context=".activity_profile_completo">
+    tools:context=".activity_profile_completo_modificable">
 
     <TextView
         android:id="@+id/nombreApellidos"
@@ -50,20 +51,16 @@
         app:layout_constraintTop_toBottomOf="@+id/profileDescripcion"
         app:layout_constraintVertical_bias="0.106" />
 
-    <ImageView
-        android:id="@+id/imageProfile"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imageProf"
         android:layout_width="127dp"
         android:layout_height="124dp"
         android:layout_marginStart="48dp"
         android:layout_marginLeft="48dp"
 
-        android:layout_marginTop="28dp"
-        android:adjustViewBounds="true"
-        android:scaleType="center"
+        android:layout_marginTop="50dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nombreApellidos"
-        tools:ignore="MissingConstraints"
-        tools:srcCompat="@tools:sample/avatars[10]" />
+        app:layout_constraintTop_toBottomOf="@+id/nombreApellidos" />
 
     <TextView
         android:id="@+id/textoGenero"
@@ -147,4 +144,4 @@
         app:layout_constraintStart_toEndOf="@+id/valoracionTexto"
         app:layout_constraintTop_toBottomOf="@+id/fechaNacimiento" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
