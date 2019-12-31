@@ -43,7 +43,7 @@ public class filter extends AppCompatActivity implements Interfaz{
         botonfecha = (Button)  findViewById(R.id.buttonfecha);
         botonfecha.setTextSize(11);
         ArrayAdapter<String> aaNiv;
-        String [] niv = new String[] {"------", "Aficionado", "Principiante", "Profesional", "Experto"};
+        String [] niv = new String[] {"Todos", "Aficionado", "Principiante", "Profesional", "Experto"};
         //llamar al servidor
         aaNiv = new ArrayAdapter<String >(this, android.R.layout.simple_spinner_item, niv); //activity para mostrar, tipo de spinner, listado de valores
         nivel.setAdapter(aaNiv);
@@ -68,7 +68,7 @@ public class filter extends AppCompatActivity implements Interfaz{
                 if (dia >= 0 && 9 >= dia) dia_string = "0" + String.valueOf(dia);
                 else dia_string = String.valueOf(dia);
                 String fecha = String.valueOf(any) + "-" + mes_string + "-" + dia_string;
-                fechaselec = fecha + "T00:00:00.000+00:00";
+                fechaselec = fecha + "T23:59:59.000+00:00";
             } else {
                 fechaselec = "incorrecta";
             }
@@ -76,12 +76,12 @@ public class filter extends AppCompatActivity implements Interfaz{
             fechaselec = "none";
         }
         String dep = deportes.getSelectedItem().toString();
-        if(dep != "------"){
+        if(dep != "Todos"){
             deporteselec = dep;
         }
         else deporteselec = "none";
         String niv = nivel.getSelectedItem().toString();
-        if(niv !=  "------"){
+        if(niv !=  "Todos"){
             nivelselec = niv;
         }
         else nivelselec = "none";
@@ -136,7 +136,7 @@ public class filter extends AppCompatActivity implements Interfaz{
     public void Respuesta(JSONObject datos) {
         if (llamada == 1) {
             String [] ress = new String[datos.length()];
-            ress[0] = "------";
+            ress[0] = "Todos";
             for(int i = 0; i < datos.length()-1; ++i) {
                 System.out.println(i);
                 String name = String.valueOf(i);

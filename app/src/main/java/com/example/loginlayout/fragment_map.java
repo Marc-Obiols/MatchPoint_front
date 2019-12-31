@@ -125,8 +125,14 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Interf
         addbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(),"Choose a location", Toast.LENGTH_LONG).show();
-                pulsado = 1;
+                if(UsuariSingleton.getInstance().getId() != null){
+                    Toast.makeText(getActivity(),"Choose a location", Toast.LENGTH_LONG).show();
+                    pulsado = 1;
+                }
+                else{
+                    Intent i = new Intent(getActivity().getBaseContext(), activity_login.class);
+                    startActivity(i);
+                }
             }
         });
 
@@ -327,11 +333,13 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Interf
             String deporte = getActivity().getIntent().getStringExtra("filtrodeporte");
             String nivel = getActivity().getIntent().getStringExtra("filtronivel");
             String fecha = getActivity().getIntent().getStringExtra("filtrofecha");
-            //System.out.println(deporte);
-            //System.out.println(nivel);
-            //System.out.println(fecha);
-            //Connection con = new Connection(this);
-            //con.execute("http://10.4.41.144:3000/event/filtered/:time/:sport/:level", "GET", null);
+            System.out.println(deporte);
+            System.out.println(nivel);
+            System.out.println(fecha);
+            Connection con = new Connection(this);
+            String url = "http://10.4.41.144:3000/event/filtered/"+fecha+"/"+deporte+"/"+nivel;
+            System.out.println(url);
+            con.execute(url, "GET", null);
         }
         else { //si tienes que cargar todos los eventos entraras aqui
             Connection con = new Connection(this);

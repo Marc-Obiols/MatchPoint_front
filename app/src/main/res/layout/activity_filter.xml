@@ -76,11 +76,11 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginStart="34dp"
-            android:layout_marginLeft="34dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginLeft="48dp"
             android:layout_marginTop="80dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
             android:layout_toEndOf="@+id/textView9"
             android:layout_toRightOf="@+id/textView9" />
 
