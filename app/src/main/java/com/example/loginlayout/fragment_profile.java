@@ -110,9 +110,9 @@ public class fragment_profile extends Fragment {
         buttonDisconnect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getContext(),activity_main.class);
+                Intent j = new Intent(getContext(),activity_main.class);
                 UsuariSingleton.getInstance().user_LogOut();
-                startActivity(i);
+                startActivity(j);
             }
         });
 

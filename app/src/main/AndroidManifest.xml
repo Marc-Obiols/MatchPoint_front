@@ -36,6 +36,7 @@
         <activity android:name=".activity_evento" />
         <activity android:name=".activity_info_deporte" />
         <activity android:name=".activity_profile_completo_modificable" />
+        <activity android:name=".activity_register" />
         <activity android:name=".fragment_msgs" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

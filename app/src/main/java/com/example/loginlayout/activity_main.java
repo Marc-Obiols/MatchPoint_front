@@ -10,8 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import org.json.JSONObject;
-
 public class activity_main extends AppCompatActivity {
 
     @Override
@@ -44,7 +42,7 @@ public class activity_main extends AppCompatActivity {
                                 return true;
                             }
                             else {
-                                selectedFragment = new fragment_events();
+                                selectedFragment = new activity_list_events();
                             }
                             break;
 
