@@ -75,6 +75,9 @@ public class menu_chats extends Fragment implements Interfaz {
         try {
             if (datos.getInt("codigo") == 200) {
                 System.out.println("HE ENTRADO 200");
+                if (datos.getJSONArray("array") == null) {
+                    return;
+                }
                 JSONArray response = datos.getJSONArray("array");
                 System.out.println("TAMAÑO DE LA RESPUESTA: " + response.length());
                 for(int i = 0; i < response.length(); i++) {

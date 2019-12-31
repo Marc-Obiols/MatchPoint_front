@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="4dp"
+    >
+
+    <RelativeLayout
+        android:id="@+id/item"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:layout_margin="4dp"
+        android:background="@color/cardview_light_background">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/eventImage"
+            android:layout_width="48sp"
+            android:layout_height="48sp"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/eventTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="0dp"
+            android:layout_toEndOf="@+id/eventImage"
+            android:layout_toRightOf="@+id/eventImage"
+            android:text="NameOfEvent"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/eventDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="21dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="3dp"
+            android:layout_toEndOf="@+id/eventTitle"
+            android:layout_toRightOf="@+id/eventTitle"
+            android:text="Date"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textCreatedBy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/eventTitle"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="0dp"
+            android:layout_toEndOf="@+id/eventImage"
+            android:layout_toRightOf="@+id/eventImage"
+            android:text="Creado por:"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/eventCreator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/eventTitle"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="0dp"
+            android:layout_toEndOf="@+id/textCreatedBy"
+            android:layout_toRightOf="@+id/textCreatedBy"
+            android:text="TheHero27"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

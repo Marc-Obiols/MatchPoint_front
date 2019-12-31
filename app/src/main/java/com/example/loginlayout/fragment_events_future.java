@@ -9,10 +9,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class fragment_events extends Fragment {
+public class fragment_events_future extends Fragment {
+    View view;
+    public fragment_events_future(){
+
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_events, container, false);
+        view = inflater.inflate(R.layout.fragment_events_future, container, false);
+        return view;
     }
 }

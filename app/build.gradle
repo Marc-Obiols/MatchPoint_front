@@ -43,6 +43,9 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0' //Tarjetas
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'org.ocpsoft.prettytime:prettytime:4.0.1.Final'//Mensajes Hora
+    implementation "androidx.recyclerview:recyclerview:1.1.0"//Listar eventos
+    // For control over item selection of both touch and mouse driven selection
+    implementation "androidx.recyclerview:recyclerview-selection:1.1.0-beta01"
 
     //Firebase compile 'com.google.firebase:firebase-core:16.0.4'
     implementation 'com.google.firebase:firebase-database:19.2.0' //Base de Datos

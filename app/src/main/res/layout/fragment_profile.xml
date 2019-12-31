@@ -50,112 +50,112 @@
         app:layout_constraintTop_toBottomOf="@+id/profileDescripcion"
         app:layout_constraintVertical_bias="0.106" />
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imageProfile"
         android:layout_width="127dp"
         android:layout_height="124dp"
         android:layout_marginStart="48dp"
         android:layout_marginLeft="48dp"
 
-        android:layout_marginTop="28dp"
-        android:adjustViewBounds="true"
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nombreApellidos" />
+    <!--android:adjustViewBounds="true"
         android:scaleType="center"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nombreApellidos"
-        tools:ignore="MissingConstraints,VectorDrawableCompat"
-        tools:srcCompat="@tools:sample/avatars[10]" />
+    tools:ignore="MissingConstraints,VectorDrawableCompat"
+    tools:srcCompat="@tools:sample/avatars[10]" -->
 
-    <TextView
-        android:id="@+id/textoGenero"
-        android:layout_width="64dp"
-        android:layout_height="21dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="48dp"
-        android:text="Género:"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/imageProfile"
-        app:layout_constraintTop_toBottomOf="@+id/nombreApellidos" />
+<TextView
+    android:id="@+id/textoGenero"
+    android:layout_width="64dp"
+    android:layout_height="21dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginTop="48dp"
+    android:text="Género:"
+    android:textColor="@android:color/white"
+    android:textSize="18sp"
+    app:layout_constraintStart_toEndOf="@+id/imageProfile"
+    app:layout_constraintTop_toBottomOf="@+id/nombreApellidos" />
 
-    <TextView
-        android:id="@+id/textoNacimiento"
-        android:layout_width="98dp"
-        android:layout_height="23dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
-        android:text="Nacimiento:"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/imageProfile"
-        app:layout_constraintTop_toBottomOf="@+id/textoGenero" />
+<TextView
+    android:id="@+id/textoNacimiento"
+    android:layout_width="98dp"
+    android:layout_height="23dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginTop="16dp"
+    android:text="Nacimiento:"
+    android:textColor="@android:color/white"
+    android:textSize="18sp"
+    app:layout_constraintStart_toEndOf="@+id/imageProfile"
+    app:layout_constraintTop_toBottomOf="@+id/textoGenero" />
 
-    <TextView
-        android:id="@+id/valoracionTexto"
-        android:layout_width="91dp"
-        android:layout_height="22dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="24dp"
-        android:text="Valoración:"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/imageProfile"
-        app:layout_constraintTop_toBottomOf="@+id/textoNacimiento" />
+<TextView
+    android:id="@+id/valoracionTexto"
+    android:layout_width="91dp"
+    android:layout_height="22dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginTop="24dp"
+    android:text="Valoración:"
+    android:textColor="@android:color/white"
+    android:textSize="18sp"
+    app:layout_constraintStart_toEndOf="@+id/imageProfile"
+    app:layout_constraintTop_toBottomOf="@+id/textoNacimiento" />
 
-    <TextView
-        android:id="@+id/opcionGenero"
-        android:layout_width="86dp"
-        android:layout_height="21dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginLeft="2dp"
-        android:layout_marginTop="48dp"
-        android:text="Masculino"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textoGenero"
-        app:layout_constraintTop_toBottomOf="@+id/nombreApellidos" />
+<TextView
+    android:id="@+id/opcionGenero"
+    android:layout_width="86dp"
+    android:layout_height="21dp"
+    android:layout_marginStart="2dp"
+    android:layout_marginLeft="2dp"
+    android:layout_marginTop="48dp"
+    android:text="Masculino"
+    android:textColor="@android:color/white"
+    android:textSize="18sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toEndOf="@+id/textoGenero"
+    app:layout_constraintTop_toBottomOf="@+id/nombreApellidos" />
 
-    <TextView
-        android:id="@+id/fechaNacimiento"
-        android:layout_width="95dp"
-        android:layout_height="23dp"
-        android:layout_marginTop="16dp"
-        android:text="23/09/1997"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.09"
-        app:layout_constraintStart_toEndOf="@+id/textoNacimiento"
-        app:layout_constraintTop_toBottomOf="@+id/opcionGenero" />
+<TextView
+    android:id="@+id/fechaNacimiento"
+    android:layout_width="95dp"
+    android:layout_height="23dp"
+    android:layout_marginTop="16dp"
+    android:text="23/09/1997"
+    android:textColor="@android:color/white"
+    android:textSize="18sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.09"
+    app:layout_constraintStart_toEndOf="@+id/textoNacimiento"
+    app:layout_constraintTop_toBottomOf="@+id/opcionGenero" />
 
-    <TextView
-        android:id="@+id/telefonoNumero"
-        android:layout_width="66dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:text="agus"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.097"
-        app:layout_constraintStart_toEndOf="@+id/valoracionTexto"
-        app:layout_constraintTop_toBottomOf="@+id/fechaNacimiento" />
+<TextView
+    android:id="@+id/telefonoNumero"
+    android:layout_width="66dp"
+    android:layout_height="33dp"
+    android:layout_marginTop="24dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginRight="16dp"
+    android:text="agus"
+    android:textColor="@android:color/white"
+    android:textSize="18sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.097"
+    app:layout_constraintStart_toEndOf="@+id/valoracionTexto"
+    app:layout_constraintTop_toBottomOf="@+id/fechaNacimiento" />
 
-    <Button
-        android:id="@+id/buttonDisconnect"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Log out"
-        app:layout_constraintBottom_toTopOf="@+id/nombreApellidos"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+<Button
+    android:id="@+id/buttonDisconnect"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Log out"
+    app:layout_constraintBottom_toTopOf="@+id/nombreApellidos"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.9"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

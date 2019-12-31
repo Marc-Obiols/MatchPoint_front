@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +19,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -29,7 +27,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ServerValue;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -40,11 +37,14 @@ import org.json.JSONObject;
 
 import java.text.NumberFormat;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 import static android.widget.Toast.LENGTH_SHORT;
 
 public class activity_profile_completo_modificable extends AppCompatActivity implements fragment_delete_profile_dialog.DialogListener{
+
     private EditText nombreApellidos;
-    private ImageView imageProfile;
+    private CircleImageView imageProfile;
     private EditText profileDescripcion;
     private EditText opcionGenero;
     private EditText fechaNacimiento;
@@ -68,7 +68,9 @@ public class activity_profile_completo_modificable extends AppCompatActivity imp
         setContentView(R.layout.activity_profile_modificable);
 
         nombreApellidos = findViewById(R.id.nombreApellidos);
+
         imageProfile = findViewById(R.id.imageProfile);
+
         profileDescripcion = findViewById(R.id.profileDescripcion);
         opcionGenero = findViewById(R.id.opcionGenero);
         fechaNacimiento = findViewById(R.id.fechaNacimiento);
