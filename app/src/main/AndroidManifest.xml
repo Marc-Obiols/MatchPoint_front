@@ -21,7 +21,7 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".menu_chats" />
-        <activity android:name=".activity_info_deporte">
+        <activity android:name=".activity_ranking_top5">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,7 +31,6 @@
         <activity android:name=".activity_modificar_evento" />
         <activity android:name=".activity_valoracion" />
         <activity android:name=".activity_crear_evento" />
-        <activity android:name=".activity_login" />
         <activity android:name=".activity_evento_participante" />
         <activity android:name=".activity_evento" />
         <activity android:name=".activity_main" />

@@ -49,4 +49,8 @@
     <string name="LoginButton">LOGIN</string>
     <string name="RegisterButton">REGISTER</string>
     <string name="SignUpButton">SIGN UP</string>
+
+    //Pantalla activity_ranking_top5
+    <string name="Score">Score</string>
+    <string name="RankingUsername">Username</string>
 </resources>
