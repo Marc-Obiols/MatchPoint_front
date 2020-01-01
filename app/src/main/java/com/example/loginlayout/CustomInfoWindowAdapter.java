@@ -21,6 +21,7 @@ public class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
         mContext = context;
         mWindow = LayoutInflater.from(context).inflate(R.layout.custom_info_window, null);
 
+
     }
 
     private void rendowWindowText(Marker marker, View view){
@@ -38,6 +39,12 @@ public class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
         if(!snippet.equals("")){
             tvSnippet.setText(snippet);
         }
+        mWindow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("HOLAAAA");
+            }
+        });
     }
 
     @Override

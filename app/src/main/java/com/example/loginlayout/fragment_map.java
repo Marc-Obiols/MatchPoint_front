@@ -12,6 +12,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Pair;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,7 +52,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public class fragment_map extends Fragment implements OnMapReadyCallback, Interfaz {
+public class fragment_map extends Fragment implements OnMapReadyCallback, Interfaz, GoogleMap.OnInfoWindowClickListener {
 
     private GoogleMap mMap;
     private ImageView addbutton;
@@ -90,6 +91,7 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Interf
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        mMap.setOnInfoWindowClickListener(this);
 
         if (mLocationPermissionsGranted) {
             getDeviceLocation();
@@ -371,22 +373,21 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Interf
                                 "Hora: " + hora  + "\n" +
                         "Participantes totales: " + aux.getInt("max_users")  + "\n" +
                                 "Plazas restantes: " + (aux.getInt("max_users")-aux.getInt("initial_users"));
-
-
+                Pair<String,String> pair = new Pair<>(idEvent,aux.getString("creator")); //pair id evento y creador del evento
                 if (deporte == "Futbol")
-                    mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.soccer)).snippet(infoevent)).setTag(idEvent); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
+                    mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.soccer)).snippet(infoevent)).setTag(pair); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
                 else if (deporte == "Baloncesto")
-                    mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.soccer)).snippet(infoevent)).setTag(idEvent); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
+                    mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.soccer)).snippet(infoevent)).setTag(pair); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
                 else if (deporte == "Tenis")
-                    mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.soccer)).snippet(infoevent)).setTag(idEvent); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
+                    mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.soccer)).snippet(infoevent)).setTag(pair); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
                 else if (deporte == "Padel")
-                    mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.soccer)).snippet(infoevent)).setTag(idEvent); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
+                    mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.soccer)).snippet(infoevent)).setTag(pair); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
                 else if (deporte == "Hockey")
-                    mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.soccer)).snippet(infoevent)).setTag(idEvent); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
+                    mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.soccer)).snippet(infoevent)).setTag(pair); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
                 else if (deporte == "Golf")
-                    mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.soccer)).snippet(infoevent)).setTag(idEvent); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
+                    mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.soccer)).snippet(infoevent)).setTag(pair); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
                 else
-                    mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.soccer)).snippet(infoevent)).setTag(idEvent); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
+                    mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.soccer)).snippet(infoevent)).setTag(pair); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -394,4 +395,25 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Interf
         }
     }
 
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+        Pair<String, String> p = (Pair<String, String>) marker.getTag(); //first id evento second id creador evento
+        if (UsuariSingleton.getInstance().getId() == null) { //si no estas registrado registrate
+            Intent i = new Intent(getActivity().getBaseContext(), activity_login.class);
+            startActivity(i);
+        } else {
+            if(UsuariSingleton.getInstance().getId().equals(p.second)){
+                Intent i = new Intent(getActivity().getBaseContext(), activity_evento.class);
+                i.putExtra("idevento",p.first);
+                startActivity(i);
+            }
+            else {
+                Intent i = new Intent(getActivity().getBaseContext(), activity_evento_participante.class);
+                i.putExtra("idevento",p.first);
+                startActivity(i);
+            }
+
+        }
+
+    }
 }
