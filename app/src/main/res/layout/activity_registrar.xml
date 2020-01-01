@@ -22,7 +22,6 @@
 
 
                 <TextView
-                    android:id="@+id/textNombreApellidos"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="84dp"
@@ -227,7 +226,6 @@
 
 
                 <Button
-                    android:id="@+id/b_login"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="140dp"

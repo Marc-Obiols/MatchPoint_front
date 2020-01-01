@@ -1,10 +1,5 @@
 <resources>
     <string name="app_name">MatchPoint</string>
-    <string name="IB">Información</string>
-    <string name="title_map">Mapa</string>
-    <string name="title_create">Crear Evento</string>
-    <string name="title_profile">Perfil</string>
-    <string name="title_activity_prueba_mapa">Map</string>
 
     //Pantalla activity_valoracion
     <string name="buttonValoracion">ENVIAR VALORACIÓN</string>

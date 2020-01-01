@@ -39,8 +39,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:textSize="10sp"
-            android:textColor="#000"
-            android:id="@+id/textomasinfo"/>
+            android:textColor="#000" />
 
 
     </LinearLayout>

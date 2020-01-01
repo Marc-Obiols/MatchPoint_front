@@ -11,12 +11,13 @@ public class holder_event_card {
     private String user;
 
     public holder_event_card(String textTitle, String textUser, String date){
-        //this.image = image;
+        this.image = image;
         title = textTitle;
         user = textUser;
         data = date;
     }
 
+    //Getter
     public CircleImageView getEventImage(){
         return image;
     }
@@ -31,6 +32,24 @@ public class holder_event_card {
 
     public String getEventDate(){
         return data;
+    }
+
+
+    //Setter
+    public void setEventImage(CircleImageView input){
+        image = input;
+    }
+
+    public void setEventTitle(String input){
+        title = input;
+    }
+
+    public void setEventUser(String input){
+        user = input;
+    }
+
+    public void setEventDate(String input){
+        data = input;
     }
 
 }

@@ -1,28 +1,27 @@
 package com.example.loginlayout;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class eventList_page_viewer_adapter extends FragmentPagerAdapter  {
+public class events_list_viewpager_adapter extends FragmentStatePagerAdapter {
 
-    private final List<Fragment> fragments = new ArrayList<>();
+    private final List<Fragment> fragmentsList = new ArrayList<>();
     private final List<String> fragmentsTitles = new ArrayList<>();
 
-    public eventList_page_viewer_adapter(@NonNull FragmentManager fm) {
+    public events_list_viewpager_adapter(@NonNull FragmentManager fm) {
         super(fm);
     }
 
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        return fragments.get(position);
+        return fragmentsList.get(position);
     }
 
     @Override
@@ -36,7 +35,7 @@ public class eventList_page_viewer_adapter extends FragmentPagerAdapter  {
     }
 
     public void AddFragment(Fragment fragment, String title){
-        fragments.add(fragment);
+        fragmentsList.add(fragment);
         fragmentsTitles.add(title);
     }
 }

@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">MatchPoint</string>
-    <string name="IB">Information</string>
-    <string name="title_map">Map</string>
-    <string name="title_create">Create Event</string>
-    <string name="title_profile">Profile</string>
-    <string name="title_activity_prueba_mapa">Map</string>
 
     //Pantalla activity_valoracion
     <string name="buttonValoracion">SEND FEEDBACK</string>
