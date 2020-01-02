@@ -92,9 +92,10 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="110dp"
+        android:layout_width="200dp"
         android:layout_height="20dp"
-        android:text="@string/EresUsuario"
+        android:gravity="center"
+        android:text="@string/NoUsuario"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"

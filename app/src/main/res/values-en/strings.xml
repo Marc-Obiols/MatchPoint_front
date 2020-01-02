@@ -41,6 +41,7 @@
     <string name="Email">EMAIL</string>
     <string name="Password">PASSWORD</string>
     <string name="EresUsuario">Already a member?</string>
+    <string name="NoUsuario">Not a member yet?</string>
     <string name="LoginButton">LOGIN</string>
     <string name="RegisterButton">REGISTER</string>
     <string name="SignUpButton">SIGN UP</string>
