@@ -92,8 +92,7 @@ public class activity_evento extends AppCompatActivity {
 
 
     public void Eliminar(View v){
-
-        String idEvento = "5ddeb5c0b43de93e240d015d";
+        idEvento = getIntent().getStringExtra("idevento");
         String url = "http://10.4.41.144:3000/event/delete/" + idEvento;
 
         JSONObject req = new JSONObject();

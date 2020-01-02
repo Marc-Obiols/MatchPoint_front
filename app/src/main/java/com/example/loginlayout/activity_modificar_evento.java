@@ -1,7 +1,5 @@
 package com.example.loginlayout;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
@@ -11,9 +9,10 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -22,16 +21,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.DateFormat;
-import java.text.NumberFormat;
 import java.util.Calendar;
-import java.util.Vector;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
@@ -155,7 +148,7 @@ public class activity_modificar_evento extends AppCompatActivity {
         //numeroAsistentesModif = numeroAsistentes.getText();
         descripcionTextModif = descripcionText.getText().toString();
 
-        String idEvento = "5ddc07c50213c0169a70bae9";
+        String idEvento = id;
         String url = "http://10.4.41.144:3000/event/modify/" + idEvento;
 
         JSONObject req = new JSONObject();

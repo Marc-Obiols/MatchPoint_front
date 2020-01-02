@@ -1,7 +1,5 @@
 package com.example.loginlayout;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
@@ -15,6 +13,8 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -152,8 +152,12 @@ public class activity_crear_evento extends AppCompatActivity implements Interfaz
                     //users.put(UsuariSingleton.getInstance().getId());
                     req.put("creator",UsuariSingleton.getInstance().getId());
                     Double lat = getIntent().getDoubleExtra("lat",99); //pillar la lat y long del new event (pablo)
+                    System.out.println("LAT DEL CREARRRRR");
+                    System.out.println(lat);
                     req.put("latitude",lat);
                     Double lng = getIntent().getDoubleExtra("lng",99);
+                    System.out.println("LNG DEL CREARRRRR");
+                    System.out.println(lng);
                     req.put("longitude",lng);
                     req.put("sport",dep);
                     req.put("level",niv);

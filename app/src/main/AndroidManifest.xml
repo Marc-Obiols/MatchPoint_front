@@ -36,6 +36,7 @@
         <activity android:name=".activity_evento" />
         <activity android:name=".activity_login" />
         <activity android:name=".activity_register" />
+        <activity android:name=".activity_info_deporte" />
         <activity android:name=".activity_ranking_top5"/>
         <activity android:name=".activity_profile_completo_modificable" />
         <activity android:name=".fragment_msgs" />
