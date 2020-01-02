@@ -20,6 +20,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class fragment_events_future extends Fragment implements Interfaz{
     View view;
     private RecyclerView recyclerView;
@@ -46,7 +48,7 @@ public class fragment_events_future extends Fragment implements Interfaz{
         listEventsFuture = new ArrayList<>();
 
         Connection con = new Connection(this);
-        con.execute("http://10.4.41.144:3000/participant/coming/" + UsuariSingleton.getInstance().getId(), "GET", null);
+        con.execute("http://10.4.41.144:3000/participant/coming/username/" + UsuariSingleton.getInstance().getId(), "GET", null);
         /*
 
         listEventsFuture.add(new holder_event_card("Futbol", "John", "25/05/1999"));
@@ -64,17 +66,19 @@ public class fragment_events_future extends Fragment implements Interfaz{
                 if (datos.getJSONArray("array") == null) {
                     return;
                 }
+                System.out.println("TAAAAAA :" + datos);
                 JSONArray response = datos.getJSONArray("array");
                 System.out.println("TAMAÑO DE LA RESPUESTA2: " + response.length());
                 for(int i = 0; i < response.length(); i++) {
-                    JSONObject event = response.getJSONObject(i);
+                    JSONObject preevent = response.getJSONObject(i);
+                    JSONObject event = preevent.getJSONObject("event");
                     System.out.println(event);
                     String titulo = event.getString("sport");
 
                     String calendario = event.getString("date");
                     calendario = convertMongoDate(calendario);
 
-                    String creador = event.getString("creator");
+                    String creador = preevent.getString("username");
                     //parseJSON(creador);
                     //System.out.println("IM OUTTT: " + usuarioCreador);
                     //creador = usuarioCreador;

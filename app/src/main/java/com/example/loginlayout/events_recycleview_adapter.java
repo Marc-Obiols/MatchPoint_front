@@ -38,27 +38,34 @@ public class events_recycleview_adapter extends RecyclerView.Adapter<events_recy
         holder.tv_creator.setText(eventsList.get(position).getEventUser());
         holder.tv_date.setText(eventsList.get(position).getEventDate());
 
-        switch (holder.tv_title.toString()){
-            case "futbol":
-                holder.iv_image.setImageResource(R.drawable.soccer);
+
+        switch (eventsList.get(position).getEventTitle()){
+            case "Futbol":
+                holder.iv_image.setImageResource(R.drawable.futbol);
                 break;
             case "Baloncesto":
-                holder.iv_image.setImageResource(R.drawable.soccer);
+                holder.iv_image.setImageResource(R.drawable.baloncesto);
                 break;
-            case "Tenis":
-                holder.iv_image.setImageResource(R.drawable.soccer);
+            case "Running":
+                holder.iv_image.setImageResource(R.drawable.running);
                 break;
-            case "Padel":
-                holder.iv_image.setImageResource(R.drawable.soccer);
+            case "Ping Pong":
+                holder.iv_image.setImageResource(R.drawable.pingpong);
                 break;
             case "Hockey":
-                holder.iv_image.setImageResource(R.drawable.soccer);
+                holder.iv_image.setImageResource(R.drawable.hockey);
                 break;
             case "Golf":
-                holder.iv_image.setImageResource(R.drawable.soccer);
+                holder.iv_image.setImageResource(R.drawable.golf);
+                break;
+            case "Tennis":
+                holder.iv_image.setImageResource(R.drawable.tennis);
                 break;
             case "Rugby":
-                holder.iv_image.setImageResource(R.drawable.soccer);
+                holder.iv_image.setImageResource(R.drawable.rugby);
+                break;
+            case "Ciclismo":
+                holder.iv_image.setImageResource(R.drawable.ciclismo);
                 break;
             default:
                 holder.iv_image.setImageResource(R.drawable.soccer);

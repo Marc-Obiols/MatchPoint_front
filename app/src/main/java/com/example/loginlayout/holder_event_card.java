@@ -11,7 +11,6 @@ public class holder_event_card {
     private String user;
 
     public holder_event_card(String textTitle, String textUser, String date){
-        this.image = image;
         title = textTitle;
         user = textUser;
         data = date;
