@@ -60,6 +60,7 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Interf
     private ImageView mGps;
     private ImageView filterbutton;
     private int pulsado = 0;
+    private int reset = 0;
     private HashMap<String, JSONObject> events;
     private View view;
     private LatLng userlocation;
@@ -142,6 +143,7 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Interf
         refreshbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                reset = 1;
                 cargareventos();
             }
         });
@@ -332,7 +334,7 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Interf
     }
 
     private void cargareventos() {//cargar todos los eventos de la BD en el mapa y crear map idEvent/JSON
-        if(getActivity().getIntent().getIntExtra("filtros",0) == 1){ //si tienes filtros te meteras aqui
+        if((getActivity().getIntent().getIntExtra("filtros",0) == 1) && reset == 0){ //si tienes filtros te meteras aqui
             String deporte = getActivity().getIntent().getStringExtra("filtrodeporte");
             String nivel = getActivity().getIntent().getStringExtra("filtronivel");
             String fecha = getActivity().getIntent().getStringExtra("filtrofecha");
@@ -345,6 +347,7 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Interf
             con.execute(url, "GET", null);
         }
         else { //si tienes que cargar todos los eventos entraras aqui
+            reset = 0;
             Connection con = new Connection(this);
             con.execute("http://10.4.41.144:3000/event/all", "GET", null);
         }
@@ -375,7 +378,6 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Interf
                         "Participantes totales: " + aux.getInt("max_users")  + "\n" +
                                 "Plazas restantes: " + (aux.getInt("max_users")-aux.getInt("initial_users"));
                 Pair<String,String> pair = new Pair<>(idEvent,aux.getString("creator")); //pair id evento y creador del evento
-                System.out.println("HOLAAAAAAA "+deporte);
                 if (deporte.equals("Futbol"))
                     mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.futbol)).snippet(infoevent)).setTag(pair); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
                 else if (deporte.equals("Baloncesto"))
