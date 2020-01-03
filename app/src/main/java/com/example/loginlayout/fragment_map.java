@@ -263,7 +263,6 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Interf
 
         }
     }
-
     private void buildAlertMessageNoGps() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setMessage("Your GPS seems to be disabled, do you want to enable it?")
