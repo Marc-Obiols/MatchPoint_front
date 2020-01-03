@@ -36,7 +36,7 @@ public class fragment_events_future extends Fragment implements Interfaz{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_events_future, container, false);
         recyclerView = view.findViewById(R.id.recyclerId);
-        events_recycleview_adapter recyclerAdapter = new events_recycleview_adapter(getContext(), listEventsFuture);
+        events_recycleview_adapter recyclerAdapter = new events_recycleview_adapter(getContext(), listEventsFuture, false);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(recyclerAdapter);
         return view;
@@ -62,7 +62,7 @@ public class fragment_events_future extends Fragment implements Interfaz{
     public void Respuesta(JSONObject datos) {
         try {
             if (datos.getInt("codigo") == 200) {
-                System.out.println("HE ENTRADO 200");
+                System.out.println("HE ENTRADO FUTURE 200");
                 if (datos.getJSONArray("array") == null) {
                     return;
                 }
@@ -79,13 +79,10 @@ public class fragment_events_future extends Fragment implements Interfaz{
                     calendario = convertMongoDate(calendario);
 
                     String creador = preevent.getString("username");
-                    //parseJSON(creador);
-                    //System.out.println("IM OUTTT: " + usuarioCreador);
-                    //creador = usuarioCreador;
 
                     listEventsFuture.add(new holder_event_card(titulo, creador, calendario));
                 }
-                events_recycleview_adapter recyclerAdapter = new events_recycleview_adapter(getContext(), listEventsFuture);
+                events_recycleview_adapter recyclerAdapter = new events_recycleview_adapter(getContext(), listEventsFuture, false);
                 recyclerView.setAdapter(recyclerAdapter);
                 //OperacionAuxiliar();
                 System.out.println("HE SALIDO2");

@@ -20,21 +20,21 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class fragment_events_created extends Fragment implements Interfaz{
+public class fragment_events_valorar extends Fragment implements Interfaz {
     View view;
     private RecyclerView recyclerView;
-    private List<holder_event_card_simple> listEventsCreated;
+    private List<holder_event_card> listEventsValorar;
 
-    public fragment_events_created(){
+    public fragment_events_valorar(){
 
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_events_created, container, false);
+        view = inflater.inflate(R.layout.fragment_events_valorar, container, false);
         recyclerView = view.findViewById(R.id.recyclerId);
-        events_recycleview_adapter_simple recyclerAdapter = new events_recycleview_adapter_simple(getContext(), listEventsCreated);
+        events_recycleview_adapter recyclerAdapter = new events_recycleview_adapter(getContext(), listEventsValorar, true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(recyclerAdapter);
         return view;
@@ -44,18 +44,19 @@ public class fragment_events_created extends Fragment implements Interfaz{
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        listEventsCreated = new ArrayList<>();
+        listEventsValorar = new ArrayList<>();
 
         Connection con = new Connection(this);
-        con.execute("http://10.4.41.144:3000/participant/created/" + UsuariSingleton.getInstance().getId(), "GET", null);
+        con.execute("http://10.4.41.144:3000/participant/passed/username/notRated/" + UsuariSingleton.getInstance().getId(), "GET", null);
         //listEventsCreated.add(new holder_event_card("Placeholder", "John", "25/05/1999"));
     }
 
     @Override
     public void Respuesta(JSONObject datos) {
         try {
+            System.out.println("HE ENTRADO VALORAR 200");
             if (datos.getInt("codigo") == 200) {
-                System.out.println("HE ENTRADO CREATED 200");
+                System.out.println("HE ENTRADO VALORAR 200");
                 if (datos.getJSONArray("array") == null) {
                     return;
                 }
@@ -70,10 +71,11 @@ public class fragment_events_created extends Fragment implements Interfaz{
                     String calendario = event.getString("date");
                     calendario = convertMongoDate(calendario);
 
+                    String creador = event.getString("creator");
 
-                    listEventsCreated.add(new holder_event_card_simple(titulo, calendario));
+                    listEventsValorar.add(new holder_event_card(titulo, creador, calendario));
                 }
-                events_recycleview_adapter_simple recyclerAdapter = new events_recycleview_adapter_simple(getContext(), listEventsCreated);
+                events_recycleview_adapter recyclerAdapter = new events_recycleview_adapter(getContext(), listEventsValorar, true);
                 recyclerView.setAdapter(recyclerAdapter);
                 //OperacionAuxiliar();
                 System.out.println("HE SALIDO2");
@@ -96,5 +98,4 @@ public class fragment_events_created extends Fragment implements Interfaz{
         }
         return "";
     }
-
 }

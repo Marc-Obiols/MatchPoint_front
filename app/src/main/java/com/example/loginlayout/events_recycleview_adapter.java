@@ -1,13 +1,17 @@
 package com.example.loginlayout;
 
 import android.content.Context;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -16,10 +20,12 @@ public class events_recycleview_adapter extends RecyclerView.Adapter<events_recy
 
     Context eventContext;
     List<holder_event_card> eventsList;
+    boolean canClick;
 
-    public events_recycleview_adapter(Context eventContext, List<holder_event_card> eventsList) {
+    public events_recycleview_adapter(Context eventContext, List<holder_event_card> eventsList, boolean Clickable) {
         this.eventContext = eventContext;
         this.eventsList = eventsList;
+        this.canClick = Clickable;
     }
 
     @NonNull
@@ -27,8 +33,16 @@ public class events_recycleview_adapter extends RecyclerView.Adapter<events_recy
     public EventViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v;
         v = LayoutInflater.from(eventContext).inflate(R.layout.card_item_event_listed, parent, false);
-        EventViewHolder eviewHolder = new EventViewHolder(v);
+        final EventViewHolder eviewHolder = new EventViewHolder(v);
 
+        if(canClick) {
+            eviewHolder.item_event.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(eventContext, "Test Click" + String.valueOf(eviewHolder.getAdapterPosition()), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
         return eviewHolder;
     }
 
@@ -84,6 +98,7 @@ public class events_recycleview_adapter extends RecyclerView.Adapter<events_recy
         private TextView tv_creator;
         private TextView tv_date;
         private ImageView iv_image;
+        private CardView item_event;
 
         public EventViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -92,6 +107,7 @@ public class events_recycleview_adapter extends RecyclerView.Adapter<events_recy
             tv_title = itemView.findViewById(R.id.eventTitle);
             tv_creator = itemView.findViewById(R.id.eventCreator);
             tv_date = itemView.findViewById(R.id.eventDate);
+            item_event = itemView.findViewById(R.id.event_item_id);
         }
     }
 }

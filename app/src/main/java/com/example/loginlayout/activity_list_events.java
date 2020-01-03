@@ -29,8 +29,9 @@ public class activity_list_events extends Fragment {
         viewPager.setAdapter(adapter);
         //Añadir fragmentos de las tabs de listar eventos
         adapter.AddFragment(new fragment_events_future(), "Proximos Eventos");
-        adapter.AddFragment(new fragment_events_participated(), "Eventos participados");
+        adapter.AddFragment(new fragment_events_participated(), "Eventos realizados");
         adapter.AddFragment(new fragment_events_created(), "Eventos creados");
+        adapter.AddFragment(new fragment_events_valorar(), "Valorar eventos");
 
         viewPager.setAdapter(adapter);
         tablayout.setupWithViewPager(viewPager);
