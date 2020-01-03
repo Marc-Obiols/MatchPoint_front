@@ -28,7 +28,7 @@ import java.util.Calendar;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
-public class activity_modificar_evento extends AppCompatActivity {
+public class activity_modificar_evento extends AppCompatActivity implements Interfaz {
 
     private int dia, mes, any, hora, min;
 
@@ -41,6 +41,17 @@ public class activity_modificar_evento extends AppCompatActivity {
     private EditText descripcionText;
     private String id;
     private RequestQueue queue;
+    private int llamada;
+    private String idEvento;
+
+    private String spinnerStringNivelesModif;
+    private String spinnerStringDeportesModif;
+    private String numeroAsistentesModif;
+    private String numeroParticipantesModif;
+    private String tv_horaModif;
+    private String tv_fechaModif;
+    private String descripcionTextModif;
+    private  String nuevaFecha;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +66,9 @@ public class activity_modificar_evento extends AppCompatActivity {
         numeroAsistentes = (EditText) findViewById(R.id.numeroAsistentes);
         descripcionText = (EditText) findViewById(R.id.descriptionText);
 
-        Intent i = getIntent();
-        id = i.getStringExtra("id");
+        //Intent i = getIntent();
+        //id = i.getStringExtra("id");
+        idEvento = "5e0e38171c7b05635eeba0a6";
 
         String [] list_dep = new String[] {"Tenis", "Futbol", "Baloncesto", "Padel", "Hockey", "Golf", "Rugby"};
 
@@ -71,62 +83,18 @@ public class activity_modificar_evento extends AppCompatActivity {
         opcionesNiveles = new ArrayAdapter<String >(this, android.R.layout.simple_spinner_item, niv); //activity para mostrar, tipo de spinner, listado de valores
         spinnerNiveles.setAdapter(opcionesNiveles);
 
+        llamada = 1;
+        Connection con = new Connection(this);
         queue = Volley.newRequestQueue(this);
-        Request(id);
-    }
-
-    private void Request(String id) {
-        System.out.println("ENTRA PARA PONER SET y link peta");
-        String url = "http://10.4.41.144:3000/event/info/" + id;
-        System.out.println("ENTRA PARA PONER SET y link peta");
-
-        System.out.println("ENTRA Y PETA ARRAY");
-        //JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {   //@Override
-            public void onResponse(JSONObject response) {
-                System.out.println("ENTRA PARA PONER SET");
-                try {
-                    numeroAsistentes.setText(Integer.toString(response.getInt("initial_users")));
-                    numeroParticipantes.setText(Integer.toString(response.getInt("max_users")));
-                    System.out.println(response.getString("sport"));
-
-                    ArrayAdapter myAdapEsp = (ArrayAdapter) spinnerDeportes.getAdapter();
-                    int spinnerPositionEsport = myAdapEsp.getPosition(response.getString("sport"));
-                    spinnerDeportes.setSelection(spinnerPositionEsport);
-
-
-
-                    ArrayAdapter myAdapNiv = (ArrayAdapter) spinnerNiveles.getAdapter();
-                    int spinnerPositionNiv = myAdapNiv.getPosition(response.getString("level"));
-                    spinnerNiveles.setSelection(spinnerPositionNiv);
-
-
-                    tv_hora.setText(response.getString("date").substring(11, 16));
-
-                    tv_fecha.setText(response.getString("date").substring(0, 10));
-                    descripcionText.setText(response.getString("description"));
-                    spinnerNiveles.setPrompt(response.getString("level"));
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(activity_modificar_evento.this, error.toString(), LENGTH_SHORT).show();
-                System.out.println(error.toString());
-            }
-        });
-        queue.add(request);
+        con.execute("http://10.4.41.144:3000/event/info/" + idEvento,"GET", null);
     }
 
     public void Modificar(View v){
 
         String spinnerStringNivelesModif;
         String spinnerStringDeportesModif;
-        Integer numeroAsistentesModif;
-        Integer numeroParticipantesModif;
+        String numeroAsistentesModif;
+        String numeroParticipantesModif;
         String tv_horaModif;
         String tv_fechaModif;
         String descripcionTextModif;
@@ -135,20 +103,15 @@ public class activity_modificar_evento extends AppCompatActivity {
         spinnerStringNivelesModif = spinnerNiveles.getSelectedItem().toString();
         spinnerStringDeportesModif = spinnerDeportes.getSelectedItem().toString();
 
-        System.out.println("peta aqui");
-        numeroAsistentesModif = Integer.parseInt( numeroAsistentes.getText().toString());
-
-        numeroParticipantesModif = Integer.parseInt( numeroParticipantes.getText().toString());
-        System.out.println(numeroAsistentesModif+"AAAAA");
-
+        numeroAsistentesModif = numeroAsistentes.getText().toString();
+        numeroParticipantesModif = numeroParticipantes.getText().toString();
         tv_horaModif = tv_hora.getText().toString();
         tv_fechaModif = tv_fecha.getText().toString();
 
-
-        //numeroAsistentesModif = numeroAsistentes.getText();
+        System.out.println("Hora "+tv_horaModif);
+        System.out.println("Fecha "+tv_fechaModif);
         descripcionTextModif = descripcionText.getText().toString();
 
-        String idEvento = id;
         String url = "http://10.4.41.144:3000/event/modify/" + idEvento;
 
         JSONObject req = new JSONObject();
@@ -158,26 +121,25 @@ public class activity_modificar_evento extends AppCompatActivity {
             req.put("initial_users",numeroAsistentesModif);
             req.put("max_users",numeroParticipantesModif);
 
-            //Date convertedDate = new Date();
-            //SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSZ");
             String nuevaFecha = tv_fechaModif + "T" + tv_horaModif;
-           // convertedDate = dateFormat.parse(dateString);
-          //  Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(nuevaFecha);
-          //  req.put("date", DateFormat(nuevaFecha));
-            //req.put("date",tv_fechaModif);
             req.put("date",nuevaFecha);
             req.put("description",descripcionTextModif);
             req.put("level",spinnerStringNivelesModif);
+            System.out.println("PETA DENTRO DEL TRY");
         } catch (JSONException e) {
             e.printStackTrace();
+            System.out.println("PETA DENTRO DEL CATCH");
         }
 
         final JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, req, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                System.out.println("PETA ON RESPONSE0");
                 String responses = response.toString();
+                System.out.println("PETA ON RESPONSE1");
                 Toast.makeText(activity_modificar_evento.this, responses, LENGTH_SHORT).show();
                 System.out.println(responses);
+                System.out.println("PETA ON RESPONSE2");
             }
         }, new Response.ErrorListener() {
             @Override
@@ -189,31 +151,34 @@ public class activity_modificar_evento extends AppCompatActivity {
         queue.add(request);
     }
 
-    private void Request_sport() {
-        String url = "http://10.4.41.144:3000/sport";
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    String [] ress = new String[response.length()];
-                    for(int i = 0; i < response.length(); ++i) {
-                        String name = String.valueOf(i);
-                        ress[i] = response.getString(name);
+
+    private void Request_sport() {
+            String url = "http://10.4.41.144:3000/sport";
+
+            JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    try {
+                        String [] ress = new String[response.length()];
+                        for(int i = 0; i < response.length(); ++i) {
+                            String name = String.valueOf(i);
+                            ress[i] = response.getString(name);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(activity_modificar_evento.this, error.toString(), LENGTH_SHORT).show();
-                System.out.println("ERROR");
-            }
-        });
-        queue.add(request);
-    }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(activity_modificar_evento.this, error.toString(), LENGTH_SHORT).show();
+                    System.out.println("ERROR");
+                }
+            });
+            queue.add(request);
+       }
+
 
     public void MostrarCalendario(View view) {
         final Calendar c = Calendar.getInstance();
@@ -235,7 +200,6 @@ public class activity_modificar_evento extends AppCompatActivity {
     }
 
 
-
     public void MostrarReloj(View view) {
         final Calendar c = Calendar.getInstance();
         hora = c.get(Calendar.HOUR_OF_DAY);
@@ -252,4 +216,33 @@ public class activity_modificar_evento extends AppCompatActivity {
         timePickerDialog.show();
     }
 
+    @Override
+    public void Respuesta(JSONObject datos) {
+        if(llamada==1){
+            try {
+                numeroAsistentes.setText(Integer.toString(datos.getInt("initial_users")));
+                numeroParticipantes.setText(Integer.toString(datos.getInt("max_users")));
+                System.out.println(datos.getString("sport"));
+
+                ArrayAdapter myAdapEsp = (ArrayAdapter) spinnerDeportes.getAdapter();
+                int spinnerPositionEsport = myAdapEsp.getPosition(datos.getString("sport"));
+                spinnerDeportes.setSelection(spinnerPositionEsport);
+
+
+
+                ArrayAdapter myAdapNiv = (ArrayAdapter) spinnerNiveles.getAdapter();
+                int spinnerPositionNiv = myAdapNiv.getPosition(datos.getString("level"));
+                spinnerNiveles.setSelection(spinnerPositionNiv);
+
+
+                tv_hora.setText(datos.getString("date").substring(11, 16));
+
+                tv_fecha.setText(datos.getString("date").substring(0, 10));
+                descripcionText.setText(datos.getString("description"));
+                spinnerNiveles.setPrompt(datos.getString("level"));
+            }catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
