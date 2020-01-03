@@ -11,7 +11,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,29 +50,35 @@ public class AdapterChats extends RecyclerView.Adapter<HolderChat> {
             i += 1;
         }
         switch (tema){
-            case "futbol":
-                holder.getFotoGrupo().setImageResource(R.drawable.soccer);
+            case "Futbol":
+                holder.getFotoGrupo().setImageResource(R.drawable.futbol);
                 break;
             case "Baloncesto":
-                holder.getFotoGrupo().setImageResource(R.drawable.soccer);
+                holder.getFotoGrupo().setImageResource(R.drawable.baloncesto);
                 break;
             case "Tenis":
-                holder.getFotoGrupo().setImageResource(R.drawable.soccer);
+                holder.getFotoGrupo().setImageResource(R.drawable.tennis);
                 break;
-            case "Padel":
-                holder.getFotoGrupo().setImageResource(R.drawable.soccer);
+            case "Ping":
+                holder.getFotoGrupo().setImageResource(R.drawable.pingpong);
                 break;
             case "Hockey":
-                holder.getFotoGrupo().setImageResource(R.drawable.soccer);
+                holder.getFotoGrupo().setImageResource(R.drawable.hockey);
                 break;
             case "Golf":
-                holder.getFotoGrupo().setImageResource(R.drawable.soccer);
+                holder.getFotoGrupo().setImageResource(R.drawable.golf);
                 break;
             case "Rugby":
-                holder.getFotoGrupo().setImageResource(R.drawable.soccer);
+                holder.getFotoGrupo().setImageResource(R.drawable.rugby);
+                break;
+            case "Running":
+                holder.getFotoGrupo().setImageResource(R.drawable.running);
+                break;
+            case "Ciclismo":
+                holder.getFotoGrupo().setImageResource(R.drawable.ciclismo);
                 break;
             default:
-                holder.getFotoGrupo().setImageResource(R.drawable.soccer);
+                holder.getFotoGrupo().setImageResource(R.drawable.futbol);
                 break;
         }
 

@@ -84,29 +84,35 @@ public class fragment_msgs extends AppCompatActivity {
         String nombre_chat = getIntent().getStringExtra("id_chat");
         String tema = getIntent().getStringExtra("deporte");
         switch (tema){
-            case "futbol":
-                fotoPerfil.setImageResource(R.drawable.soccer);
+            case "Futbol":
+                fotoPerfil.setImageResource(R.drawable.futbol);
                 break;
             case "Baloncesto":
-                fotoPerfil.setImageResource(R.drawable.soccer);
+                fotoPerfil.setImageResource(R.drawable.baloncesto);
                 break;
             case "Tenis":
-                fotoPerfil.setImageResource(R.drawable.soccer);
+                fotoPerfil.setImageResource(R.drawable.tennis);
                 break;
-            case "Padel":
-                fotoPerfil.setImageResource(R.drawable.soccer);
+            case "Ping":
+                fotoPerfil.setImageResource(R.drawable.pingpong);
                 break;
             case "Hockey":
-                fotoPerfil.setImageResource(R.drawable.soccer);
+                fotoPerfil.setImageResource(R.drawable.hockey);
                 break;
             case "Golf":
-                fotoPerfil.setImageResource(R.drawable.soccer);
+                fotoPerfil.setImageResource(R.drawable.golf);
                 break;
             case "Rugby":
-                fotoPerfil.setImageResource(R.drawable.soccer);
+                fotoPerfil.setImageResource(R.drawable.rugby);
+                break;
+            case "Running":
+                fotoPerfil.setImageResource(R.drawable.running);
+                break;
+            case "Ciclismo":
+                fotoPerfil.setImageResource(R.drawable.ciclismo);
                 break;
             default:
-                fotoPerfil.setImageResource(R.drawable.soccer);
+                fotoPerfil.setImageResource(R.drawable.futbol);
                 break;
         }
 
