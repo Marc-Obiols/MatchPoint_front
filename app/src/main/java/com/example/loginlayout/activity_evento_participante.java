@@ -127,8 +127,10 @@ public class activity_evento_participante extends AppCompatActivity implements I
         }
         else if(llamada == 3){ //Desapuntarse
             try {
+                System.out.println("ERROR: " + datos.getInt("codigo"));
                 if (datos.getInt("codigo") == 200) {
-                    Intent i = new Intent(this, activity_evento_participante.class);
+                    Toast.makeText(activity_evento_participante.this, "Te has apuntado al evento correctamente!", LENGTH_SHORT).show();
+                    Intent i = new Intent(this, activity_main.class);
                     startActivity(i);
                 }
                 else {
@@ -142,9 +144,10 @@ public class activity_evento_participante extends AppCompatActivity implements I
         }
         else if(llamada == 4){ //Apuntarse
             try {
-                //System.out.println("ERROR: " + datos.getInt("codigo"));
+                System.out.println("ERROR: " + datos.getInt("codigo"));
                 if (datos.getInt("codigo") == 200) {
-                    Intent i = new Intent(this, activity_evento_participante.class);
+                    Toast.makeText(activity_evento_participante.this, "Te has apuntado al evento correctamente!", LENGTH_SHORT).show();
+                    Intent i = new Intent(this, activity_main.class);
                     startActivity(i);
                 }
                 else {
