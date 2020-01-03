@@ -23,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
@@ -85,6 +86,12 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Interf
         getLocationPermission();
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         events = new HashMap<>();
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+            }
+        };
+        getActivity().getOnBackPressedDispatcher().addCallback(this, callback);
         cargareventos();
         return (view);
     }
@@ -134,6 +141,7 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Interf
                 }
                 else{
                     Intent i = new Intent(getActivity().getBaseContext(), activity_login.class);
+                    i.putExtra("From","main");
                     startActivity(i);
                 }
             }
@@ -407,6 +415,7 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Interf
         Pair<String, String> p = (Pair<String, String>) marker.getTag(); //first id evento second id creador evento
         if (UsuariSingleton.getInstance().getId() == null) { //si no estas registrado registrate
             Intent i = new Intent(getActivity().getBaseContext(), activity_login.class);
+            i.putExtra("From","main");
             startActivity(i);
         } else {
             if(UsuariSingleton.getInstance().getId().equals(p.second)){
@@ -423,4 +432,5 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Interf
         }
 
     }
+
 }

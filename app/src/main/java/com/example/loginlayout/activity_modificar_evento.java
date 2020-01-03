@@ -66,9 +66,9 @@ public class activity_modificar_evento extends AppCompatActivity implements Inte
         numeroAsistentes = (EditText) findViewById(R.id.numeroAsistentes);
         descripcionText = (EditText) findViewById(R.id.descriptionText);
 
-        //Intent i = getIntent();
-        //id = i.getStringExtra("id");
-        idEvento = "5e0e38171c7b05635eeba0a6";
+        Intent i = getIntent();
+        idEvento = i.getStringExtra("id");
+        //idEvento = "5e0e38171c7b05635eeba0a6";
 
         String [] list_dep = new String[] {"Tenis", "Futbol", "Baloncesto", "Padel", "Hockey", "Golf", "Rugby"};
 
