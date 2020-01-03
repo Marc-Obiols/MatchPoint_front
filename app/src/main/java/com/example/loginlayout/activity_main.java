@@ -6,6 +6,7 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -22,6 +23,12 @@ public class activity_main extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new
                 fragment_map()).commit();
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this, callback);
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =

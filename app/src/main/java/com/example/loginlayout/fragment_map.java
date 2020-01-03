@@ -86,12 +86,6 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Interf
         getLocationPermission();
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         events = new HashMap<>();
-        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
-            @Override
-            public void handleOnBackPressed() {
-            }
-        };
-        getActivity().getOnBackPressedDispatcher().addCallback(this, callback);
         cargareventos();
         return (view);
     }
