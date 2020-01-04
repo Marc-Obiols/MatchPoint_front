@@ -137,18 +137,20 @@ public class activity_modificar_evento extends AppCompatActivity implements Inte
                 System.out.println("PETA ON RESPONSE0");
                 String responses = response.toString();
                 System.out.println("PETA ON RESPONSE1");
-                Toast.makeText(activity_modificar_evento.this, responses, LENGTH_SHORT).show();
+                //Toast.makeText(activity_modificar_evento.this, responses, LENGTH_SHORT).show();
                 System.out.println(responses);
                 System.out.println("PETA ON RESPONSE2");
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(activity_modificar_evento.this, error.toString(), LENGTH_SHORT).show();
+                //Toast.makeText(activity_modificar_evento.this, error.toString(), LENGTH_SHORT).show();
                 System.out.println(error.toString());
             }
         });
         queue.add(request);
+        Intent i = new Intent(this, activity_main.class);
+        startActivity(i);
     }
 
 

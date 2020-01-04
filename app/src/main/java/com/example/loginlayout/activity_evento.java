@@ -107,11 +107,13 @@ public class activity_evento extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(activity_evento.this, error.toString(), LENGTH_SHORT).show();
+                //Toast.makeText(activity_evento.this, error.toString(), LENGTH_SHORT).show();
                 System.out.println(error.toString());
             }
         });
         queue.add(request);
+        Intent i = new Intent(this, activity_main.class);
+        startActivity(i);
     }
 
     public void Modificar(View v) {

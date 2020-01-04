@@ -145,6 +145,7 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Interf
         refreshbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                getActivity().getIntent().putExtra("filtros",0);
                 reset = 1;
                 cargareventos();
             }
@@ -173,7 +174,6 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Interf
                 if (pulsado == 1) {
                     pulsado = 0;
                     Intent i = new Intent(getActivity().getBaseContext(), activity_crear_evento.class);
-                    System.out.println(latLng.latitude+" "+latLng.longitude);
                     i.putExtra("lat", latLng.latitude);
                     i.putExtra("lng", latLng.longitude);
                     startActivity(i);
@@ -339,12 +339,8 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Interf
             String deporte = getActivity().getIntent().getStringExtra("filtrodeporte");
             String nivel = getActivity().getIntent().getStringExtra("filtronivel");
             String fecha = getActivity().getIntent().getStringExtra("filtrofecha");
-            System.out.println(deporte);
-            System.out.println(nivel);
-            System.out.println(fecha);
             Connection con = new Connection(this);
             String url = "http://10.4.41.144:3000/event/filtered/"+fecha+"/"+deporte+"/"+nivel;
-            System.out.println(url);
             con.execute(url, "GET", null);
         }
         else { //si tienes que cargar todos los eventos entraras aqui
@@ -358,7 +354,6 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Interf
     public void Respuesta(JSONObject datos) {
         try {
             JSONArray response = datos.getJSONArray("array");
-            System.out.println(response.length());
             for (int i = 0; i < response.length(); i++) {
                 JSONObject aux = response.getJSONObject(i); //JSON d 1 evento
                 String idEvent = aux.getString("_id"); //id de ese evento
@@ -400,7 +395,6 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Interf
             }
         } catch (JSONException e) {
             e.printStackTrace();
-            System.out.println("CODIGOCATCH");
         }
     }
 

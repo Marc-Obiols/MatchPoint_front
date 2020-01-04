@@ -76,6 +76,7 @@ public class activity_evento_participante extends AppCompatActivity implements I
             llamada=3;
             con = new Connection(this);
             con.execute("http://10.4.41.144:3000/event/unassign/" + idUser +"/" + idEvento,"POST", null);
+
             System.out.println("PETA A LA FUNCION APUNTARSE");
         }
         else{
