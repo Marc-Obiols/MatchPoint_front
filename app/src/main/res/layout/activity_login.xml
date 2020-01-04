@@ -57,6 +57,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+
     <Button
         android:id="@+id/button"
         style="@style/Widget.AppCompat.Button.Borderless.Colored"
@@ -73,6 +74,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText2"
         app:layout_constraintVertical_bias="0.535" />
+
+    <TextView
+        android:id="@+id/recovery"
+        android:layout_width="200dp"
+        android:layout_height="20dp"
+        android:gravity="left"
+        android:text="Has olvidado tu contraseña?"
+        android:textColor="#FFFFFF"
+        android:textSize="12dp"
+        android:onClick="recovery"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.132"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText2"
+        app:layout_constraintVertical_bias="0.272" />
 
     <Button
         android:id="@+id/button2"

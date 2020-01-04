@@ -130,7 +130,7 @@ public class activity_evento_participante extends AppCompatActivity implements I
             try {
                 System.out.println("ERROR: " + datos.getInt("codigo"));
                 if (datos.getInt("codigo") == 200) {
-                    Toast.makeText(activity_evento_participante.this, "Te has apuntado al evento correctamente!", LENGTH_SHORT).show();
+                    Toast.makeText(activity_evento_participante.this, "Te has desapuntado del evento correctamente", LENGTH_SHORT).show();
                     Intent i = new Intent(this, activity_main.class);
                     startActivity(i);
                 }

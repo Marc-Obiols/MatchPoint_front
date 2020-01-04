@@ -59,6 +59,12 @@ public class activity_login extends AppCompatActivity {
         //llamar a donde sea y tratar el resultado
     }
 
+    public void recovery(View view) {
+        Toast.makeText(activity_login.this, "recuperar", LENGTH_SHORT).show();
+        //Intent i = new Intent(this, activity_recovery.class);
+        //startActivity(i);
+    }
+
     public void signup(View view) {
         Intent i = new Intent(this, activity_register.class);
         startActivity(i);
