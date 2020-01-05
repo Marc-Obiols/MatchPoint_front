@@ -44,6 +44,7 @@ import static android.widget.Toast.LENGTH_SHORT;
 public class activity_profile_completo_modificable extends AppCompatActivity implements fragment_delete_profile_dialog.DialogListener{
 
     private EditText nombreApellidos;
+    private EditText username;
     private CircleImageView imageProfile;
     private EditText profileDescripcion;
     private EditText opcionGenero;
@@ -71,6 +72,7 @@ public class activity_profile_completo_modificable extends AppCompatActivity imp
 
         imageProfile = findViewById(R.id.imageProfile);
 
+        username = findViewById(R.id.Username);
         profileDescripcion = findViewById(R.id.profileDescripcion);
         opcionGenero = findViewById(R.id.opcionGenero);
         fechaNacimiento = findViewById(R.id.fechaNacimiento);
@@ -143,12 +145,14 @@ public class activity_profile_completo_modificable extends AppCompatActivity imp
             String opcionGeneroModif;
             String fechaNacimientoModif;
             Integer numeroTelefonoModif;
+            String usernameModif;
 
             nombreApellidosModif = nombreApellidos.getText().toString();
             profileDescripcionModif = profileDescripcion.getText().toString();
             opcionGeneroModif = opcionGenero.getText().toString();
             fechaNacimientoModif = fechaNacimiento.getText().toString();
             numeroTelefonoModif = Integer.parseInt( numeroTelefono.getText().toString() );
+            usernameModif = username.getText().toString();
 
             JSONObject req = new JSONObject();
             try {
@@ -157,6 +161,7 @@ public class activity_profile_completo_modificable extends AppCompatActivity imp
                 req.put("sex",opcionGeneroModif);
                 req.put("birth_date",fechaNacimientoModif);
                 req.put("phone_number",numeroTelefonoModif);
+                req.put("username",usernameModif);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -176,6 +181,9 @@ public class activity_profile_completo_modificable extends AppCompatActivity imp
                 }
             });
             queue.add(request);
+
+            /*Intent i = new Intent(getBaseContext(),fragment_profile.class);
+            startActivity(i);*/
     }
 
    public void Request(String id) {
@@ -186,6 +194,7 @@ public class activity_profile_completo_modificable extends AppCompatActivity imp
            public void onResponse(JSONObject response) {
                try {
                    nombreApellidos.setText(response.getString("real_name"));
+                   username.setText(response.getString("username"));
                    profileDescripcion.setText(response.getString("description"));
                    opcionGenero.setText(response.getString("sex"));
                    fechaNacimiento.setText(response.getString("birth_date").substring(0,10));
@@ -221,7 +230,6 @@ public class activity_profile_completo_modificable extends AppCompatActivity imp
        } catch (JSONException e) {
            e.printStackTrace();
        }
-       System.out.println("FUK");
        final JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, req, new Response.Listener<JSONObject>() {
            @Override
            public void onResponse(JSONObject response) {
