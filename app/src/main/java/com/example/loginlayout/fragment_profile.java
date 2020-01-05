@@ -59,7 +59,7 @@ public class fragment_profile extends Fragment {
         textoGenero = view.findViewById(R.id.textoGenero);
         textoNacimiento = view.findViewById(R.id.textoNacimiento);
         valoracionTexto = view.findViewById(R.id.valoracionTexto);
-        valoracionNumero = view.findViewById(R.id.telefonoNumero);
+        valoracionNumero = view.findViewById(R.id.valoracionNumero);
         fechaNacimiento = view.findViewById(R.id.fechaNacimiento);
         buttonModificar = view.findViewById(R.id.buttonModificar);
         buttonDisconnect = view.findViewById(R.id.buttonDisconnect);
