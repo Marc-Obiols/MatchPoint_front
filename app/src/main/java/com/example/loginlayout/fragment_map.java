@@ -380,7 +380,7 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Interf
                     mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.baloncesto)).snippet(infoevent)).setTag(pair); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
                 else if (deporte.equals("Tenis"))
                     mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.tennis)).snippet(infoevent)).setTag(pair); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
-                else if (deporte.equals("Ping Pong"))
+                else if (deporte.equals("PingPong"))
                     mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.pingpong)).snippet(infoevent)).setTag(pair); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
                 else if (deporte.equals("Hockey"))
                     mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.hockey)).snippet(infoevent)).setTag(pair); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas

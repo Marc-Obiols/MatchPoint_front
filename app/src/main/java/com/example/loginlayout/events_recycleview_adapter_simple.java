@@ -48,7 +48,7 @@ public class events_recycleview_adapter_simple extends RecyclerView.Adapter<even
             case "Running":
                 holder.iv_image_simple.setImageResource(R.drawable.running);
                 break;
-            case "Ping Pong":
+            case "PingPong":
                 holder.iv_image_simple.setImageResource(R.drawable.pingpong);
                 break;
             case "Hockey":

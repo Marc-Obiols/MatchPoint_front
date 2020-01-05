@@ -36,7 +36,7 @@ public class fragment_events_future extends Fragment implements Interfaz{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_events_future, container, false);
         recyclerView = view.findViewById(R.id.recyclerId);
-        events_recycleview_adapter recyclerAdapter = new events_recycleview_adapter(getContext(), listEventsFuture, false);
+        events_recycleview_adapter recyclerAdapter = new events_recycleview_adapter(getContext(), listEventsFuture, false, true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(recyclerAdapter);
         return view;
@@ -86,7 +86,7 @@ public class fragment_events_future extends Fragment implements Interfaz{
 
                     listEventsFuture.add(new holder_event_card(titulo, creador, calendario, idCreador, evnt));
                 }
-                events_recycleview_adapter recyclerAdapter = new events_recycleview_adapter(getContext(), listEventsFuture, false);
+                events_recycleview_adapter recyclerAdapter = new events_recycleview_adapter(getContext(), listEventsFuture, false, true);
                 recyclerView.setAdapter(recyclerAdapter);
                 //OperacionAuxiliar();
                 System.out.println("HE SALIDO2");

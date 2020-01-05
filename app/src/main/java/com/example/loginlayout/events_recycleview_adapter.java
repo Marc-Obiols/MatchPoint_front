@@ -23,11 +23,13 @@ public class events_recycleview_adapter extends RecyclerView.Adapter<events_recy
     List<holder_event_card> eventsList;
     int elementPosition;
     boolean evaluate;
+    boolean clickable;
 
-    public events_recycleview_adapter(Context eventContext, List<holder_event_card> eventsList, boolean eval) {
+    public events_recycleview_adapter(Context eventContext, List<holder_event_card> eventsList, boolean eval, boolean click) {
         this.eventContext = eventContext;
         this.eventsList = eventsList;
         this.evaluate = eval;
+        this.clickable = click;
     }
 
     @NonNull
@@ -37,19 +39,19 @@ public class events_recycleview_adapter extends RecyclerView.Adapter<events_recy
         v = LayoutInflater.from(eventContext).inflate(R.layout.card_item_event_listed, parent, false);
         final EventViewHolder eviewHolder = new EventViewHolder(v);
 
-
+        if(clickable) {
             eviewHolder.item_event.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     String creator = eventsList.get(elementPosition).getEventCreatorId();
                     String eventId = eventsList.get(elementPosition).getEventId();
                     //Toast.makeText(eventContext, "Test Click" + String.valueOf(eviewHolder.getAdapterPosition()), Toast.LENGTH_SHORT).show();
-                    if(evaluate) {
+                    if (evaluate) {
                         Intent i = new Intent(eventContext, activity_valoracion.class);
                         i.putExtra("idevento", creator);
+                        i.putExtra("nombrevento", eventsList.get(elementPosition).getEventTitle());
                         eventContext.startActivity(i);
-                    }
-                    else {
+                    } else {
                         if (UsuariSingleton.getInstance().getId().equals(creator)) {
                             Intent i = new Intent(eventContext, activity_evento.class);
                             i.putExtra("idevento", eventId);
@@ -63,6 +65,7 @@ public class events_recycleview_adapter extends RecyclerView.Adapter<events_recy
 
                 }
             });
+        }
 
         return eviewHolder;
     }
@@ -85,7 +88,7 @@ public class events_recycleview_adapter extends RecyclerView.Adapter<events_recy
             case "Running":
                 holder.iv_image.setImageResource(R.drawable.running);
                 break;
-            case "Ping Pong":
+            case "PingPong":
                 holder.iv_image.setImageResource(R.drawable.pingpong);
                 break;
             case "Hockey":

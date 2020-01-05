@@ -43,7 +43,7 @@ public class fragment_events_participated extends Fragment implements Interfaz{
         view = inflater.inflate(R.layout.fragment_events_participated, container, false);
 
         recyclerView = view.findViewById(R.id.recyclerId);
-        events_recycleview_adapter recyclerAdapter = new events_recycleview_adapter(getContext(), listEventsParticipated, false);
+        events_recycleview_adapter recyclerAdapter = new events_recycleview_adapter(getContext(), listEventsParticipated, false, false);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(recyclerAdapter);
 
@@ -94,7 +94,7 @@ public class fragment_events_participated extends Fragment implements Interfaz{
 
                     listEventsParticipated.add(new holder_event_card(titulo, creador, calendario, idCreador, evnt));
                 }
-                events_recycleview_adapter recyclerAdapter = new events_recycleview_adapter(getContext(), listEventsParticipated, false);
+                events_recycleview_adapter recyclerAdapter = new events_recycleview_adapter(getContext(), listEventsParticipated, false, false);
                 recyclerView.setAdapter(recyclerAdapter);
                 //OperacionAuxiliar();
                 System.out.println("HE SALIDO2");

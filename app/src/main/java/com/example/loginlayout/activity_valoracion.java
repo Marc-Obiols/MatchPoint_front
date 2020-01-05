@@ -7,6 +7,7 @@ import android.media.Rating;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +29,7 @@ public class activity_valoracion extends AppCompatActivity {
     private RatingBar valoracionRatingBar;
     private Button buttonValoracion;
     private String idAdmin;
+    private TextView sportEvent;
     private RequestQueue queue; //cola de las solicitudes
 
     @Override
@@ -37,9 +39,12 @@ public class activity_valoracion extends AppCompatActivity {
 
         valoracionRatingBar = findViewById(R.id.ratingBarValoracion);
         buttonValoracion = findViewById(R.id.buttonValoracion);
+        sportEvent = findViewById(R.id.nombreEvento);
 
         queue = Volley.newRequestQueue(this); //inicializar el requestqueue
         idAdmin = getIntent().getStringExtra("idevento");
+
+        sportEvent.setText( "EVENTO DE " + getIntent().getStringExtra("nombrevento"));
     }
 
     public void Valorar(View v){
