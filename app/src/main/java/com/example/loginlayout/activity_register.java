@@ -136,6 +136,7 @@ public class activity_register extends AppCompatActivity implements Interfaz{
                 UsuariSingleton.getInstance().setMail(datos.getString("email"));
                 UsuariSingleton.getInstance().setNom_usuari(datos.getString("username"));
                 UsuariSingleton.getInstance().setId(datos.getString("_id"));
+                Toast.makeText(activity_register.this,"Te has registrado correctamente!", LENGTH_SHORT).show();
 
                 Intent i = new Intent(this, activity_main.class);
                 startActivity(i);

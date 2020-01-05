@@ -1,6 +1,7 @@
 package com.example.loginlayout;
 
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,9 +38,11 @@ public class fragment_profile extends Fragment {
 
     private TextView nombreApellidos;
     private CircleImageView imageProfile;
+    private CircleImageView imageTrophy;
     private TextView opcionGenero;
     private TextView textoGenero;
     private TextView textoNacimiento;
+    private TextView nivel;
     private TextView valoracionTexto;
     private TextView valoracionNumero;
     private TextView fechaNacimiento;
@@ -63,7 +66,8 @@ public class fragment_profile extends Fragment {
         fechaNacimiento = view.findViewById(R.id.fechaNacimiento);
         buttonModificar = view.findViewById(R.id.buttonModificar);
         buttonDisconnect = view.findViewById(R.id.buttonDisconnect);
-
+        imageTrophy = view.findViewById(R.id.trophy);
+        nivel = view.findViewById(R.id.nivel);
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference("Usuarios").child(UsuariSingleton.getInstance().getId());
         databaseReference.addChildEventListener(new ChildEventListener() {
@@ -136,6 +140,17 @@ public class fragment_profile extends Fragment {
                     nombreApellidos.setText(response.getString("username"));
                     opcionGenero.setText(response.getString("sex"));
                     fechaNacimiento.setText(response.getString("birth_date"));
+                    Integer lvl = response.getInt("level");
+                    nivel.setText(lvl.toString());
+                    if(lvl<11){
+                        imageTrophy.setImageResource(R.drawable.bronze);
+                    }
+                    else if(lvl<21){
+                        imageTrophy.setImageResource(R.drawable.silver);
+                    }
+                    else{
+                        imageTrophy.setImageResource(R.drawable.gold);
+                    }
                     Double result = response.getDouble("reputation");
                     NumberFormat nm =  NumberFormat.getNumberInstance();
                     valoracionNumero.setText(nm.format(result));
