@@ -42,9 +42,11 @@ public class activity_login extends AppCompatActivity {
             public void handleOnBackPressed() {
                 Intent i = getIntent();
                 String from = i.getStringExtra("From");
-                if(from.equals("main")){
-                    i = new Intent(getApplicationContext(),activity_main.class);
-                    startActivity(i);
+                if(from!=null){
+                    if(from.equals("main")){
+                        i = new Intent(getApplicationContext(),activity_main.class);
+                        startActivity(i);
+                    }
                 }
                 finish();
             }
