@@ -23,7 +23,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
@@ -358,40 +357,80 @@ public class fragment_map extends Fragment implements OnMapReadyCallback, Interf
                 JSONObject aux = response.getJSONObject(i); //JSON d 1 evento
                 String idEvent = aux.getString("_id"); //id de ese evento
                 events.put(idEvent, aux); //se guarda en el map de JSONS de eventos
+                if (aux.getBoolean("sponsored")) { //si es patrocinado los pintas de otro color y pones otra info
+                    if (aux.getInt("max_users") - aux.getInt("initial_users") > 0) { //si aun quedan plazas se pintan
+                        String deporte = aux.getString("sport"); //deporte del evento
+                        Double lat = aux.getDouble("latitude");
+                        Double lng = aux.getDouble("longitude"); //coords
 
-                String deporte = aux.getString("sport"); //deporte del evento
+                        String date = aux.getString("date");
+                        String fecha = date.substring(0, 10);
+                        String hora = date.substring(11, 16);
+                        String nomevent = "Evento patrocinado de " + deporte;
+                        String infoevent =
+                                "Fecha: " + date.substring(8, 10) + "-" + date.substring(5, 7) + "-" + date.substring(0, 4) + "\n" +
+                                        "Hora: " + hora + "\n" +
+                                        "Participantes totales: " + aux.getInt("max_users") + "\n" +
+                                        "Plazas restantes: " + (aux.getInt("max_users") - aux.getInt("initial_users"));
+                        Pair<String, String> pair = new Pair<>(idEvent, aux.getString("creator")); //pair id evento y creador del evento
+                        if (deporte.equals("Futbol"))
+                            mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.futpatro)).snippet(infoevent)).setTag(pair); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
+                        else if (deporte.equals("Baloncesto"))
+                            mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.basketpatro)).snippet(infoevent)).setTag(pair); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
+                        else if (deporte.equals("Tenis"))
+                            mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.tenispatro)).snippet(infoevent)).setTag(pair); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
+                        else if (deporte.equals("PingPong"))
+                            mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.pingpatro)).snippet(infoevent)).setTag(pair); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
+                        else if (deporte.equals("Hockey"))
+                            mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.hockeypatro)).snippet(infoevent)).setTag(pair); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
+                        else if (deporte.equals("Golf"))
+                            mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.golfpatro)).snippet(infoevent)).setTag(pair); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
+                        else if (deporte.equals("Running"))
+                            mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.runpatro)).snippet(infoevent)).setTag(pair); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
+                        else if (deporte.equals("Rugby"))
+                            mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.rugbypatro)).snippet(infoevent)).setTag(pair); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
+                        else
+                            mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.bikepatro)).snippet(infoevent)).setTag(pair); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
+                    }
 
-                Double lat = aux.getDouble("latitude");
-                Double lng = aux.getDouble("longitude"); //coords
+                }
+               else { //eventos normales (sin patrocinar)
+                    if (aux.getInt("max_users") - aux.getInt("initial_users") > 0) { //si aun quedan plazas se pinta
+                        String deporte = aux.getString("sport"); //deporte del evento
 
-                String date = aux.getString("date");
-                String fecha = date.substring(0,10);
-                String hora = date.substring(11,16);
-                String nomevent = "Evento de " + deporte;
-                String infoevent =
-                                "Fecha: " + date.substring(8,10)+"-"+date.substring(5,7)+"-"+date.substring(0,4)  + "\n" +
-                                "Hora: " + hora  + "\n" +
-                        "Participantes totales: " + aux.getInt("max_users")  + "\n" +
-                                "Plazas restantes: " + (aux.getInt("max_users")-aux.getInt("initial_users"));
-                Pair<String,String> pair = new Pair<>(idEvent,aux.getString("creator")); //pair id evento y creador del evento
-                if (deporte.equals("Futbol"))
-                    mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.futbol)).snippet(infoevent)).setTag(pair); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
-                else if (deporte.equals("Baloncesto"))
-                    mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.baloncesto)).snippet(infoevent)).setTag(pair); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
-                else if (deporte.equals("Tenis"))
-                    mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.tennis)).snippet(infoevent)).setTag(pair); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
-                else if (deporte.equals("PingPong"))
-                    mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.pingpong)).snippet(infoevent)).setTag(pair); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
-                else if (deporte.equals("Hockey"))
-                    mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.hockey)).snippet(infoevent)).setTag(pair); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
-                else if (deporte.equals("Golf"))
-                    mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.golf)).snippet(infoevent)).setTag(pair); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
-                else if (deporte.equals("Running"))
-                    mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.running)).snippet(infoevent)).setTag(pair); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
-                else if (deporte.equals("Rugby"))
-                    mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.rugby)).snippet(infoevent)).setTag(pair); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
-                else
-                    mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.ciclismo)).snippet(infoevent)).setTag(pair); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
+                        Double lat = aux.getDouble("latitude");
+                        Double lng = aux.getDouble("longitude"); //coords
+
+                        String date = aux.getString("date");
+                        String fecha = date.substring(0, 10);
+                        String hora = date.substring(11, 16);
+                        String nomevent = "Evento de " + deporte;
+                        String infoevent =
+                                "Fecha: " + date.substring(8, 10) + "-" + date.substring(5, 7) + "-" + date.substring(0, 4) + "\n" +
+                                        "Hora: " + hora + "\n" +
+                                        "Participantes totales: " + aux.getInt("max_users") + "\n" +
+                                        "Plazas restantes: " + (aux.getInt("max_users") - aux.getInt("initial_users"));
+                        Pair<String, String> pair = new Pair<>(idEvent, aux.getString("creator")); //pair id evento y creador del evento
+                        if (deporte.equals("Futbol"))
+                            mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.futbol)).snippet(infoevent)).setTag(pair); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
+                        else if (deporte.equals("Baloncesto"))
+                            mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.baloncesto)).snippet(infoevent)).setTag(pair); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
+                        else if (deporte.equals("Tenis"))
+                            mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.tennis)).snippet(infoevent)).setTag(pair); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
+                        else if (deporte.equals("PingPong"))
+                            mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.pingpong)).snippet(infoevent)).setTag(pair); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
+                        else if (deporte.equals("Hockey"))
+                            mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.hockey)).snippet(infoevent)).setTag(pair); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
+                        else if (deporte.equals("Golf"))
+                            mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.golf)).snippet(infoevent)).setTag(pair); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
+                        else if (deporte.equals("Running"))
+                            mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.running)).snippet(infoevent)).setTag(pair); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
+                        else if (deporte.equals("Rugby"))
+                            mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.rugby)).snippet(infoevent)).setTag(pair); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
+                        else
+                            mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(nomevent).icon(BitmapDescriptorFactory.fromResource(R.drawable.ciclismo)).snippet(infoevent)).setTag(pair); //crear un marcador en la coordenada y asignarle la id del evento al marcador para futuras busquedas
+                    }
+                }
             }
         } catch (JSONException e) {
             e.printStackTrace();
