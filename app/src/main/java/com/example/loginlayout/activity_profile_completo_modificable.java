@@ -1,17 +1,16 @@
 package com.example.loginlayout;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
-
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -160,18 +159,20 @@ public class activity_profile_completo_modificable extends AppCompatActivity imp
                 @Override
                 public void onResponse(JSONObject response) {
                     String responses = response.toString();
-                    Toast.makeText(activity_profile_completo_modificable.this, responses, LENGTH_SHORT).show();
+                    //Toast.makeText(activity_profile_completo_modificable.this, responses, LENGTH_SHORT).show();
                     System.out.println(responses);
                 }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(activity_profile_completo_modificable.this, error.toString(), LENGTH_SHORT).show();
+                    //Toast.makeText(activity_profile_completo_modificable.this, error.toString(), LENGTH_SHORT).show();
                     System.out.println(error.toString());
                 }
             });
             queue.add(request);
-
+            Toast.makeText(activity_profile_completo_modificable.this,"Se ha modificado tu perfil", Toast.LENGTH_LONG).show();
+            Intent i = new Intent(this, activity_main.class);
+            startActivity(i);
             /*Intent i = new Intent(getBaseContext(),fragment_profile.class);
             startActivity(i);*/
     }
@@ -233,6 +234,9 @@ public class activity_profile_completo_modificable extends AppCompatActivity imp
            }
        });
        queue.add(request);
+       Intent i = new Intent(this, activity_main.class);
+       UsuariSingleton.getInstance().user_LogOut();
+       startActivity(i);
    }
 
     @Override

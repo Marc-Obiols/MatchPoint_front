@@ -1,6 +1,7 @@
 package com.example.loginlayout;
 
 import android.content.Context;
+import android.content.Intent;
 import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,6 +41,8 @@ public class events_recycleview_adapter extends RecyclerView.Adapter<events_recy
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(eventContext, "Test Click" + String.valueOf(eviewHolder.getAdapterPosition()), Toast.LENGTH_SHORT).show();
+                    Intent myIntent = new Intent(eventContext, activity_valoracion.class);
+                    eventContext.startActivity(myIntent);
                 }
             });
         }
