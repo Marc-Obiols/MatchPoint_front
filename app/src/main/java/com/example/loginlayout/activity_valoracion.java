@@ -29,6 +29,7 @@ public class activity_valoracion extends AppCompatActivity {
     private RatingBar valoracionRatingBar;
     private Button buttonValoracion;
     private String idAdmin;
+    private String idVoter;
     private TextView sportEvent;
     private RequestQueue queue; //cola de las solicitudes
 
@@ -43,8 +44,9 @@ public class activity_valoracion extends AppCompatActivity {
 
         queue = Volley.newRequestQueue(this); //inicializar el requestqueue
         idAdmin = getIntent().getStringExtra("idevento");
+        idVoter = UsuariSingleton.getInstance().getId();
 
-        sportEvent.setText( "EVENTO DE " + getIntent().getStringExtra("nombrevento"));
+        sportEvent.setText( "Evento de " + getIntent().getStringExtra("nombrevento"));
     }
 
     public void Valorar(View v){
@@ -71,7 +73,34 @@ public class activity_valoracion extends AppCompatActivity {
             }
         });
         queue.add(request);
+        UpdateUserPoints();
+
     }
 
+    public void UpdateUserPoints(){
+        System.out.println("HECHO BIENNN");
+        String url2 = "http://10.4.41.144:3000/profile/addPoints/" + idVoter;
+        JSONObject req2 = new JSONObject();
+        try {
+            req2.put("points", "30");
+        }catch (JSONException e) {
+            e.printStackTrace();
+        }
+        final JsonObjectRequest request2 = new JsonObjectRequest(Request.Method.POST, url2, req2, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response1) {
+                String responses1 = response1.toString();
+                //Toast.makeText(activity_valoracion.this, responses1, LENGTH_SHORT).show();
+                System.out.println(responses1);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(activity_valoracion.this, error.toString(), LENGTH_SHORT).show();
+                System.out.println(error.toString());
+            }
+        });
+        queue.add(request2);
+    }
 
 }
