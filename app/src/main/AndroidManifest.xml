@@ -20,10 +20,11 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
+
         <activity
             android:name=".activity_recuperar_contra"
             android:label="@string/title_activity_recuperar_contra"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".menu_chats" />
         <activity android:name=".activity_main">
             <intent-filter>
@@ -32,6 +33,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity_productes" />
         <activity android:name=".activity_modificar_evento" />
         <activity android:name=".activity_valoracion" />
         <activity android:name=".filter" />
