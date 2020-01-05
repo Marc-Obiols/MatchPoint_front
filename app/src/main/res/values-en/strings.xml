@@ -24,6 +24,13 @@
 
     //Pantalla activity_informacion_deporte
     <string name="TituloInfo">Sports information</string>
+    <string name="DuracionActividad">Approximate Duration of the activity:</string>
+    <string name="Min_players">Minimum of players:</string>
+    <string name="Max_players">Maximum of players:</string>
+    <string name="MaterialNecesario">Material needed:</string>
+    <string name="Calorias">Calories burned during a session:</string>
+    <string name="NivelFisico">Intensity of the activity:</string>
+
 
     //Pantalla activity_filtrar
     <string name="SeleccionaDeporte">Select a sport:</string>
