@@ -1,17 +1,16 @@
 package com.example.loginlayout;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
-
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -44,12 +43,11 @@ import static android.widget.Toast.LENGTH_SHORT;
 public class activity_profile_completo_modificable extends AppCompatActivity implements fragment_delete_profile_dialog.DialogListener{
 
     private EditText nombreApellidos;
+    private EditText username;
     private CircleImageView imageProfile;
-    private EditText profileDescripcion;
     private EditText opcionGenero;
     private EditText fechaNacimiento;
     private Button buttonModificar;
-    private TextView numeroTelefono;
     private Button eraseButton;
 
     private FirebaseStorage storage;
@@ -71,11 +69,10 @@ public class activity_profile_completo_modificable extends AppCompatActivity imp
 
         imageProfile = findViewById(R.id.imageProfile);
 
-        profileDescripcion = findViewById(R.id.profileDescripcion);
+        username = findViewById(R.id.Username);
         opcionGenero = findViewById(R.id.opcionGenero);
         fechaNacimiento = findViewById(R.id.fechaNacimiento);
         buttonModificar = findViewById(R.id.buttonModificar);
-        numeroTelefono = findViewById(R.id.telefonoNumero);
         eraseButton = findViewById(R.id.buttonerase);
 
         Intent i = getIntent();
@@ -139,24 +136,21 @@ public class activity_profile_completo_modificable extends AppCompatActivity imp
     public void modificar(View v){
 
             String nombreApellidosModif;
-            String profileDescripcionModif;
             String opcionGeneroModif;
             String fechaNacimientoModif;
-            Integer numeroTelefonoModif;
+            String usernameModif;
 
             nombreApellidosModif = nombreApellidos.getText().toString();
-            profileDescripcionModif = profileDescripcion.getText().toString();
             opcionGeneroModif = opcionGenero.getText().toString();
             fechaNacimientoModif = fechaNacimiento.getText().toString();
-            numeroTelefonoModif = Integer.parseInt( numeroTelefono.getText().toString() );
+            usernameModif = username.getText().toString();
 
             JSONObject req = new JSONObject();
             try {
                 req.put("real_name",nombreApellidosModif);
-                req.put("description",profileDescripcionModif);
                 req.put("sex",opcionGeneroModif);
                 req.put("birth_date",fechaNacimientoModif);
-                req.put("phone_number",numeroTelefonoModif);
+                req.put("username",usernameModif);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -165,17 +159,22 @@ public class activity_profile_completo_modificable extends AppCompatActivity imp
                 @Override
                 public void onResponse(JSONObject response) {
                     String responses = response.toString();
-                    Toast.makeText(activity_profile_completo_modificable.this, responses, LENGTH_SHORT).show();
+                    //Toast.makeText(activity_profile_completo_modificable.this, responses, LENGTH_SHORT).show();
                     System.out.println(responses);
                 }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(activity_profile_completo_modificable.this, error.toString(), LENGTH_SHORT).show();
+                    //Toast.makeText(activity_profile_completo_modificable.this, error.toString(), LENGTH_SHORT).show();
                     System.out.println(error.toString());
                 }
             });
             queue.add(request);
+            Toast.makeText(activity_profile_completo_modificable.this,"Se ha modificado tu perfil", Toast.LENGTH_LONG).show();
+            Intent i = new Intent(this, activity_main.class);
+            startActivity(i);
+            /*Intent i = new Intent(getBaseContext(),fragment_profile.class);
+            startActivity(i);*/
     }
 
    public void Request(String id) {
@@ -186,12 +185,11 @@ public class activity_profile_completo_modificable extends AppCompatActivity imp
            public void onResponse(JSONObject response) {
                try {
                    nombreApellidos.setText(response.getString("real_name"));
-                   profileDescripcion.setText(response.getString("description"));
+                   username.setText(response.getString("username"));
                    opcionGenero.setText(response.getString("sex"));
                    fechaNacimiento.setText(response.getString("birth_date").substring(0,10));
                    Integer result = response.getInt("phone_number");
                    NumberFormat nm =  NumberFormat.getNumberInstance();
-                   numeroTelefono.setText(nm.format(result));
                } catch (JSONException e) {
                    e.printStackTrace();
                }
@@ -221,7 +219,6 @@ public class activity_profile_completo_modificable extends AppCompatActivity imp
        } catch (JSONException e) {
            e.printStackTrace();
        }
-       System.out.println("FUK");
        final JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, req, new Response.Listener<JSONObject>() {
            @Override
            public void onResponse(JSONObject response) {
@@ -237,6 +234,9 @@ public class activity_profile_completo_modificable extends AppCompatActivity imp
            }
        });
        queue.add(request);
+       Intent i = new Intent(this, activity_main.class);
+       UsuariSingleton.getInstance().user_LogOut();
+       startActivity(i);
    }
 
     @Override

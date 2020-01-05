@@ -49,5 +49,6 @@
     //Pantalla activity_ranking_top5
     <string name="Score">Score</string>
     <string name="RankingUsername">Username</string>
+    <string name="title_activity_recuperar_contra">Recuperación de contraseña</string>
 
 </resources>

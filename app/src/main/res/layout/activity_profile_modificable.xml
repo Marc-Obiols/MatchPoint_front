@@ -13,53 +13,36 @@
         android:layout_height="60dp"
         android:layout_marginStart="6dp"
         android:layout_marginLeft="6dp"
-        android:layout_marginTop="52dp"
-        android:text="Agustí Conesa"
+        android:layout_marginTop="96dp"
         android:textColor="@android:color/white"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.214"
+        app:layout_constraintHorizontal_bias="0.196"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/profileDescripcion"
-        android:layout_width="341dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="16dp"
-        android:maxLength="140"
-        android:text="Amo el deporte "
-        android:textColor="@android:color/white"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.571"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/valoracionTexto" />
-
     <Button
-        android:id="@+id/buttonModificar"
+        android:id="@+id/buttonApuntarse"
         android:layout_width="352dp"
         android:layout_height="57dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginTop="40dp"
         android:onClick="modificar"
         android:text="GUARDAR CAMBIOS"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileDescripcion"
-        app:layout_constraintVertical_bias="0.34" />
+        app:layout_constraintTop_toBottomOf="@+id/imageProfile" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imageProfile"
         android:layout_width="127dp"
         android:layout_height="124dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginLeft="48dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
 
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="28dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nombreApellidos"/>
+        app:layout_constraintTop_toBottomOf="@+id/nombreApellidos" />
 
     <TextView
         android:id="@+id/textoGenero"
@@ -78,9 +61,9 @@
         android:id="@+id/textoUsername"
         android:layout_width="95dp"
         android:layout_height="31dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="24dp"
         android:text="Username:"
         android:textColor="@android:color/white"
         android:textSize="18sp"
@@ -100,27 +83,13 @@
         app:layout_constraintStart_toEndOf="@+id/imageProfile"
         app:layout_constraintTop_toBottomOf="@+id/textoGenero" />
 
-    <TextView
-        android:id="@+id/valoracionTexto"
-        android:layout_width="95dp"
-        android:layout_height="31dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
-        android:text="Teléfono:"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/imageProfile"
-        app:layout_constraintTop_toBottomOf="@+id/textoNacimiento" />
-
     <EditText
         android:id="@+id/opcionGenero"
-        android:layout_width="132dp"
+        android:layout_width="wrap_content"
         android:layout_height="46dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="7dp"
         android:layout_marginRight="7dp"
-        android:text="Masculino"
         android:textColor="@android:color/white"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -130,12 +99,11 @@
 
     <EditText
         android:id="@+id/Username"
-        android:layout_width="132dp"
+        android:layout_width="wrap_content"
         android:layout_height="46dp"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="7dp"
         android:layout_marginRight="7dp"
-        android:text="agusticonesa"
         android:textColor="@android:color/white"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -145,12 +113,11 @@
 
     <EditText
         android:id="@+id/fechaNacimiento"
-        android:layout_width="132dp"
+        android:layout_width="wrap_content"
         android:layout_height="46dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="7dp"
         android:layout_marginRight="7dp"
-        android:text="23/09/1997"
         android:textColor="@android:color/white"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -158,31 +125,20 @@
         app:layout_constraintStart_toEndOf="@+id/textoNacimiento"
         app:layout_constraintTop_toBottomOf="@+id/opcionGenero" />
 
-    <EditText
-        android:id="@+id/telefonoNumero"
-        android:layout_width="132dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="7dp"
-        android:layout_marginRight="7dp"
-        android:text="676236998"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/valoracionTexto"
-        app:layout_constraintTop_toBottomOf="@+id/fechaNacimiento" />
-
     <Button
         android:id="@+id/buttonerase"
         android:layout_width="142dp"
         android:layout_height="49dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginBottom="88dp"
         android:background="#F04141"
         android:text="ELIMINAR CUENTA"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.873"
+        app:layout_constraintHorizontal_bias="0.891"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonModificar"
-        app:layout_constraintVertical_bias="0.683" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonApuntarse"
+        app:layout_constraintVertical_bias="0.182" />
 </androidx.constraintlayout.widget.ConstraintLayout>
