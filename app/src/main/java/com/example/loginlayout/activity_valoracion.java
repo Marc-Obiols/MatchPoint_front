@@ -39,7 +39,7 @@ public class activity_valoracion extends AppCompatActivity {
         buttonValoracion = findViewById(R.id.buttonValoracion);
 
         queue = Volley.newRequestQueue(this); //inicializar el requestqueue
-        idAdmin = "5ddbfa3cf60154307ca94eed";
+        idAdmin = getIntent().getStringExtra("idevento");
     }
 
     public void Valorar(View v){

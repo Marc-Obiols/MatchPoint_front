@@ -64,16 +64,21 @@ public class fragment_events_valorar extends Fragment implements Interfaz {
                 JSONArray response = datos.getJSONArray("array");
                 System.out.println("TAMAÑO DE LA RESPUESTA2: " + response.length());
                 for(int i = 0; i < response.length(); i++) {
-                    JSONObject event = response.getJSONObject(i);
+                    JSONObject preevent = response.getJSONObject(i);
+                    JSONObject event = preevent.getJSONObject("event");
                     System.out.println(event);
                     String titulo = event.getString("sport");
 
                     String calendario = event.getString("date");
                     calendario = convertMongoDate(calendario);
 
-                    String creador = event.getString("creator");
+                    String idCreador = event.getString("creator");
 
-                    listEventsValorar.add(new holder_event_card(titulo, creador, calendario));
+                    String evnt = event.getString("_id");
+
+                    String creador = preevent.getString("username");
+
+                    listEventsValorar.add(new holder_event_card(titulo, creador, calendario, idCreador, evnt));
                 }
                 events_recycleview_adapter recyclerAdapter = new events_recycleview_adapter(getContext(), listEventsValorar, true);
                 recyclerView.setAdapter(recyclerAdapter);

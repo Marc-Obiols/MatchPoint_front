@@ -78,9 +78,13 @@ public class fragment_events_future extends Fragment implements Interfaz{
                     String calendario = event.getString("date");
                     calendario = convertMongoDate(calendario);
 
+                    String idCreador = event.getString("creator");
+
+                    String evnt = event.getString("_id");
+
                     String creador = preevent.getString("username");
 
-                    listEventsFuture.add(new holder_event_card(titulo, creador, calendario));
+                    listEventsFuture.add(new holder_event_card(titulo, creador, calendario, idCreador, evnt));
                 }
                 events_recycleview_adapter recyclerAdapter = new events_recycleview_adapter(getContext(), listEventsFuture, false);
                 recyclerView.setAdapter(recyclerAdapter);

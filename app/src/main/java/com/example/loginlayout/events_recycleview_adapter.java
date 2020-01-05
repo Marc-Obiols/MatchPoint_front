@@ -21,12 +21,13 @@ public class events_recycleview_adapter extends RecyclerView.Adapter<events_recy
 
     Context eventContext;
     List<holder_event_card> eventsList;
-    boolean canClick;
+    int elementPosition;
+    boolean evaluate;
 
-    public events_recycleview_adapter(Context eventContext, List<holder_event_card> eventsList, boolean Clickable) {
+    public events_recycleview_adapter(Context eventContext, List<holder_event_card> eventsList, boolean eval) {
         this.eventContext = eventContext;
         this.eventsList = eventsList;
-        this.canClick = Clickable;
+        this.evaluate = eval;
     }
 
     @NonNull
@@ -36,16 +37,33 @@ public class events_recycleview_adapter extends RecyclerView.Adapter<events_recy
         v = LayoutInflater.from(eventContext).inflate(R.layout.card_item_event_listed, parent, false);
         final EventViewHolder eviewHolder = new EventViewHolder(v);
 
-        if(canClick) {
+
             eviewHolder.item_event.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(eventContext, "Test Click" + String.valueOf(eviewHolder.getAdapterPosition()), Toast.LENGTH_SHORT).show();
-                    Intent myIntent = new Intent(eventContext, activity_valoracion.class);
-                    eventContext.startActivity(myIntent);
+                    String creator = eventsList.get(elementPosition).getEventCreatorId();
+                    String eventId = eventsList.get(elementPosition).getEventId();
+                    //Toast.makeText(eventContext, "Test Click" + String.valueOf(eviewHolder.getAdapterPosition()), Toast.LENGTH_SHORT).show();
+                    if(evaluate) {
+                        Intent i = new Intent(eventContext, activity_valoracion.class);
+                        i.putExtra("idevento", creator);
+                        eventContext.startActivity(i);
+                    }
+                    else {
+                        if (UsuariSingleton.getInstance().getId().equals(creator)) {
+                            Intent i = new Intent(eventContext, activity_evento.class);
+                            i.putExtra("idevento", eventId);
+                            eventContext.startActivity(i);
+                        } else {
+                            Intent i = new Intent(eventContext, activity_evento_participante.class);
+                            i.putExtra("idevento", eventId);
+                            eventContext.startActivity(i);
+                        }
+                    }
+
                 }
             });
-        }
+
         return eviewHolder;
     }
 
@@ -54,6 +72,7 @@ public class events_recycleview_adapter extends RecyclerView.Adapter<events_recy
         holder.tv_title.setText(eventsList.get(position).getEventTitle());
         holder.tv_creator.setText(eventsList.get(position).getEventUser());
         holder.tv_date.setText(eventsList.get(position).getEventDate());
+        elementPosition = position;
 
 
         switch (eventsList.get(position).getEventTitle()){
@@ -75,7 +94,7 @@ public class events_recycleview_adapter extends RecyclerView.Adapter<events_recy
             case "Golf":
                 holder.iv_image.setImageResource(R.drawable.golf);
                 break;
-            case "Tennis":
+            case "Tenis":
                 holder.iv_image.setImageResource(R.drawable.tennis);
                 break;
             case "Rugby":
