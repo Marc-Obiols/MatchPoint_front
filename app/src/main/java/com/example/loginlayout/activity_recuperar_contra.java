@@ -27,21 +27,26 @@ public class activity_recuperar_contra extends AppCompatActivity implements Inte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recuperar_contra);
-        emailT = (EditText) findViewById(R.id.editText);
+        emailT = (EditText) findViewById(R.id.editText2);
     }
 
     public void recuperar(View view){
         String url = "http://10.4.41.144:3000/recovery";
         String email = emailT.getText().toString();
-        JSONObject req = new JSONObject();
-        try {
-            req.put("email",email);
-        } catch (JSONException e) {
-            e.printStackTrace();
+        if(!isEmailValid(email)){
+            Toast.makeText(activity_recuperar_contra.this,"Introduce una dirección de correo válida.", LENGTH_SHORT).show();
         }
-        llamada = 1;
-        Connection con = new Connection(this);
-        con.execute(url, "POST", req.toString());
+        else {
+            JSONObject req = new JSONObject();
+            try {
+                req.put("email", email);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            llamada = 1;
+            Connection con = new Connection(this);
+            con.execute(url, "POST", req.toString());
+        }
     }
 
     public void login(View view){
@@ -49,15 +54,18 @@ public class activity_recuperar_contra extends AppCompatActivity implements Inte
         startActivity(i);
     }
 
+    boolean isEmailValid(CharSequence email) {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
     @Override
     public void Respuesta(JSONObject datos) {
-        if (llamada==1){
-            try {
-                Toast.makeText(activity_recuperar_contra.this, datos.getInt("codigo"), LENGTH_SHORT).show();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
 
+        if (llamada==1){
+            Toast.makeText(activity_recuperar_contra.this,"Se ha enviado un correo a la dirección indicada con los pasos a seguir para recuperar tu" +
+                    "contraseña", Toast.LENGTH_LONG).show();
+            Intent i = new Intent(this, activity_login.class);
+            startActivity(i);
         }
     }
 }

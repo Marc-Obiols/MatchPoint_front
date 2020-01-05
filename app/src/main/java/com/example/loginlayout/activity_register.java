@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -20,6 +21,7 @@ import org.json.JSONObject;
 
 import java.util.Calendar;
 
+import static android.widget.Toast.LENGTH_SHORT;
 
 
 public class activity_register extends AppCompatActivity implements Interfaz{
@@ -93,7 +95,16 @@ public class activity_register extends AppCompatActivity implements Interfaz{
         String spinnerGen = spinnerGénero.getSelectedItem().toString();
         String fechaNac = fechaNacimiento.getText().toString();
 
-        Request(username,password,useremail, nombreAp, spinnerGen, fechaNac);
+        if(!isEmailValid(useremail)){
+            Toast.makeText(activity_register.this,"Introduce una dirección de correo válida.", LENGTH_SHORT).show();
+        }
+        else{
+            Request(username,password,useremail, nombreAp, spinnerGen, fechaNac);
+        }
+    }
+
+    boolean isEmailValid(CharSequence email) {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
     private void Request(String username, String password, String email, String nombreAp, String spinnerGen, String fechaNac) {
