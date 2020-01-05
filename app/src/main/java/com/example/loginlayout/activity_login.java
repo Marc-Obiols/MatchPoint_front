@@ -107,7 +107,7 @@ public class activity_login extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(activity_login.this, error.toString(), LENGTH_SHORT).show();
+                Toast.makeText(activity_login.this, "Login incorrecto. Comprueba los datos introducidos.", LENGTH_SHORT).show();
                 System.out.println(error.toString());
             }
         });
