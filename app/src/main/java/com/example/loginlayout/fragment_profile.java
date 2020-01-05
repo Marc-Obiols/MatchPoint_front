@@ -37,7 +37,6 @@ public class fragment_profile extends Fragment {
 
     private TextView nombreApellidos;
     private CircleImageView imageProfile;
-    private TextView profileDescripcion;
     private TextView opcionGenero;
     private TextView textoGenero;
     private TextView textoNacimiento;
@@ -56,7 +55,6 @@ public class fragment_profile extends Fragment {
         idUser = UsuariSingleton.getInstance().getId();
         nombreApellidos = view.findViewById(R.id.nombreApellidos);
         imageProfile = view.findViewById(R.id.imageProfile);
-        profileDescripcion = view.findViewById(R.id.profileDescripcion);
         opcionGenero = view.findViewById(R.id.opcionGenero);
         textoGenero = view.findViewById(R.id.textoGenero);
         textoNacimiento = view.findViewById(R.id.textoNacimiento);
@@ -136,7 +134,6 @@ public class fragment_profile extends Fragment {
                     //for(int i=0; i<mJsonArray.length();i++);
 
                     nombreApellidos.setText(response.getString("username"));
-                    profileDescripcion.setText(response.getString("description"));
                     opcionGenero.setText(response.getString("sex"));
                     fechaNacimiento.setText(response.getString("birth_date"));
                     Double result = response.getDouble("reputation");

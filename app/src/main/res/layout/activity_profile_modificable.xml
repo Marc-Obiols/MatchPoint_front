@@ -13,7 +13,7 @@
         android:layout_height="60dp"
         android:layout_marginStart="6dp"
         android:layout_marginLeft="6dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="96dp"
         android:textColor="@android:color/white"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,32 +21,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/profileDescripcion"
-        android:layout_width="341dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:hint="Añadir tu descripción"
-        android:maxLength="140"
-        android:textColor="@android:color/white"
-        android:textColorHint="@android:color/white"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.571"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/valoracionTexto" />
-
     <Button
         android:id="@+id/buttonApuntarse"
         android:layout_width="352dp"
         android:layout_height="57dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:onClick="modificar"
         android:text="GUARDAR CAMBIOS"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileDescripcion" />
+        app:layout_constraintTop_toBottomOf="@+id/imageProfile" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imageProfile"
@@ -98,19 +83,6 @@
         app:layout_constraintStart_toEndOf="@+id/imageProfile"
         app:layout_constraintTop_toBottomOf="@+id/textoGenero" />
 
-    <TextView
-        android:id="@+id/valoracionTexto"
-        android:layout_width="95dp"
-        android:layout_height="31dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
-        android:text="Teléfono:"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/imageProfile"
-        app:layout_constraintTop_toBottomOf="@+id/textoNacimiento" />
-
     <EditText
         android:id="@+id/opcionGenero"
         android:layout_width="wrap_content"
@@ -152,20 +124,6 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/textoNacimiento"
         app:layout_constraintTop_toBottomOf="@+id/opcionGenero" />
-
-    <EditText
-        android:id="@+id/telefonoNumero"
-        android:layout_width="wrap_content"
-        android:layout_height="46dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="7dp"
-        android:layout_marginRight="7dp"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/valoracionTexto"
-        app:layout_constraintTop_toBottomOf="@+id/fechaNacimiento" />
 
     <Button
         android:id="@+id/buttonerase"

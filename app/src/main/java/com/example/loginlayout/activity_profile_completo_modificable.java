@@ -46,11 +46,9 @@ public class activity_profile_completo_modificable extends AppCompatActivity imp
     private EditText nombreApellidos;
     private EditText username;
     private CircleImageView imageProfile;
-    private EditText profileDescripcion;
     private EditText opcionGenero;
     private EditText fechaNacimiento;
     private Button buttonModificar;
-    private TextView numeroTelefono;
     private Button eraseButton;
 
     private FirebaseStorage storage;
@@ -73,11 +71,9 @@ public class activity_profile_completo_modificable extends AppCompatActivity imp
         imageProfile = findViewById(R.id.imageProfile);
 
         username = findViewById(R.id.Username);
-        profileDescripcion = findViewById(R.id.profileDescripcion);
         opcionGenero = findViewById(R.id.opcionGenero);
         fechaNacimiento = findViewById(R.id.fechaNacimiento);
         buttonModificar = findViewById(R.id.buttonModificar);
-        numeroTelefono = findViewById(R.id.telefonoNumero);
         eraseButton = findViewById(R.id.buttonerase);
 
         Intent i = getIntent();
@@ -141,26 +137,20 @@ public class activity_profile_completo_modificable extends AppCompatActivity imp
     public void modificar(View v){
 
             String nombreApellidosModif;
-            String profileDescripcionModif;
             String opcionGeneroModif;
             String fechaNacimientoModif;
-            Integer numeroTelefonoModif;
             String usernameModif;
 
             nombreApellidosModif = nombreApellidos.getText().toString();
-            profileDescripcionModif = profileDescripcion.getText().toString();
             opcionGeneroModif = opcionGenero.getText().toString();
             fechaNacimientoModif = fechaNacimiento.getText().toString();
-            numeroTelefonoModif = Integer.parseInt( numeroTelefono.getText().toString() );
             usernameModif = username.getText().toString();
 
             JSONObject req = new JSONObject();
             try {
                 req.put("real_name",nombreApellidosModif);
-                req.put("description",profileDescripcionModif);
                 req.put("sex",opcionGeneroModif);
                 req.put("birth_date",fechaNacimientoModif);
-                req.put("phone_number",numeroTelefonoModif);
                 req.put("username",usernameModif);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -195,12 +185,10 @@ public class activity_profile_completo_modificable extends AppCompatActivity imp
                try {
                    nombreApellidos.setText(response.getString("real_name"));
                    username.setText(response.getString("username"));
-                   profileDescripcion.setText(response.getString("description"));
                    opcionGenero.setText(response.getString("sex"));
                    fechaNacimiento.setText(response.getString("birth_date").substring(0,10));
                    Integer result = response.getInt("phone_number");
                    NumberFormat nm =  NumberFormat.getNumberInstance();
-                   numeroTelefono.setText(nm.format(result));
                } catch (JSONException e) {
                    e.printStackTrace();
                }
