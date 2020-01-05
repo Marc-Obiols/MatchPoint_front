@@ -20,6 +20,10 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:name=".activity_recuperar_contra"
+            android:label="@string/title_activity_recuperar_contra"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".menu_chats" />
         <activity android:name=".activity_main">
             <intent-filter>
@@ -37,7 +41,7 @@
         <activity android:name=".activity_login" />
         <activity android:name=".activity_register" />
         <activity android:name=".activity_info_deporte" />
-        <activity android:name=".activity_ranking_top5"/>
+        <activity android:name=".activity_ranking_top5" />
         <activity android:name=".activity_profile_completo_modificable" />
         <activity android:name=".fragment_msgs" />
         <!--
