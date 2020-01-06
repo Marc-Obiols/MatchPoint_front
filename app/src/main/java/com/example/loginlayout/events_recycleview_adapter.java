@@ -21,7 +21,6 @@ public class events_recycleview_adapter extends RecyclerView.Adapter<events_recy
 
     Context eventContext;
     List<holder_event_card> eventsList;
-    int elementPosition;
     boolean evaluate;
     boolean clickable;
 
@@ -34,7 +33,7 @@ public class events_recycleview_adapter extends RecyclerView.Adapter<events_recy
 
     @NonNull
     @Override
-    public EventViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public EventViewHolder onCreateViewHolder(@NonNull final ViewGroup parent, int viewType) {
         View v;
         v = LayoutInflater.from(eventContext).inflate(R.layout.card_item_event_listed, parent, false);
         final EventViewHolder eviewHolder = new EventViewHolder(v);
@@ -43,13 +42,14 @@ public class events_recycleview_adapter extends RecyclerView.Adapter<events_recy
             eviewHolder.item_event.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String creator = eventsList.get(elementPosition).getEventCreatorId();
-                    String eventId = eventsList.get(elementPosition).getEventId();
+                    String creator = eventsList.get(eviewHolder.getAdapterPosition()).getEventCreatorId();
+                    String eventId = eventsList.get(eviewHolder.getAdapterPosition()).getEventId();
                     //Toast.makeText(eventContext, "Test Click" + String.valueOf(eviewHolder.getAdapterPosition()), Toast.LENGTH_SHORT).show();
                     if (evaluate) {
                         Intent i = new Intent(eventContext, activity_valoracion.class);
                         i.putExtra("idevento", creator);
-                        i.putExtra("nombrevento", eventsList.get(elementPosition).getEventTitle());
+                        i.putExtra("id", eventId);
+                        i.putExtra("nombrevento", eventsList.get(eviewHolder.getAdapterPosition()).getEventTitle());
                         eventContext.startActivity(i);
                     } else {
                         if (UsuariSingleton.getInstance().getId().equals(creator)) {
@@ -75,7 +75,6 @@ public class events_recycleview_adapter extends RecyclerView.Adapter<events_recy
         holder.tv_title.setText(eventsList.get(position).getEventTitle());
         holder.tv_creator.setText(eventsList.get(position).getEventUser());
         holder.tv_date.setText(eventsList.get(position).getEventDate());
-        elementPosition = position;
 
 
         switch (eventsList.get(position).getEventTitle()){

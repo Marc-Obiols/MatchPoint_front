@@ -59,7 +59,7 @@ public class AdapterChats extends RecyclerView.Adapter<HolderChat> {
             case "Tenis":
                 holder.getFotoGrupo().setImageResource(R.drawable.tennis);
                 break;
-            case "Ping":
+            case "PingPong":
                 holder.getFotoGrupo().setImageResource(R.drawable.pingpong);
                 break;
             case "Hockey":

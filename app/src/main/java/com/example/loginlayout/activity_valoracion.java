@@ -30,6 +30,7 @@ public class activity_valoracion extends AppCompatActivity {
     private Button buttonValoracion;
     private String idAdmin;
     private String idVoter;
+    private String idEvent;
     private TextView sportEvent;
     private RequestQueue queue; //cola de las solicitudes
 
@@ -44,12 +45,38 @@ public class activity_valoracion extends AppCompatActivity {
 
         queue = Volley.newRequestQueue(this); //inicializar el requestqueue
         idAdmin = getIntent().getStringExtra("idevento");
+        idEvent = getIntent().getStringExtra("id");
         idVoter = UsuariSingleton.getInstance().getId();
 
         sportEvent.setText( "Evento de " + getIntent().getStringExtra("nombrevento"));
     }
 
     public void Valorar(View v){
+        String url = "http://10.4.41.144:3000/event/rateAndGetCreator/" + idEvent + "/" + idVoter;
+        JSONObject req = new JSONObject();
+
+        final JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, req, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                String responses = response.toString();
+                Toast.makeText(activity_valoracion.this, responses, LENGTH_SHORT).show();
+                System.out.println(responses);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(activity_valoracion.this, error.toString(), LENGTH_SHORT).show();
+                System.out.println(error.toString());
+            }
+        });
+        queue.add(request);
+        SetEventValorado();
+        UpdateUserPoints();
+        Intent j = new Intent(activity_valoracion.this,activity_main.class);
+        startActivity(j);
+    }
+
+    private void SetEventValorado() {
         String url = "http://10.4.41.144:3000/profile/rate/" + idAdmin;
         JSONObject req = new JSONObject();
         try {
@@ -73,7 +100,7 @@ public class activity_valoracion extends AppCompatActivity {
             }
         });
         queue.add(request);
-        UpdateUserPoints();
+
 
     }
 
