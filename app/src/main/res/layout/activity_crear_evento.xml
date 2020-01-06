@@ -26,7 +26,7 @@
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintStart_toEndOf="@+id/deporte"
         app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
@@ -46,7 +46,7 @@
         android:layout_height="45dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="20dp"
         android:text="Elige un deporte:"
         android:textColor="#FFFFFF"
         android:textSize="18dp"
@@ -59,6 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="128dp"
         android:layout_marginLeft="128dp"
+        android:layout_marginTop="11dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/button_signup"
         android:onClick="CrearEvento"
@@ -66,7 +67,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText7"
-        app:layout_constraintVertical_bias="0.545" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/Hora"
@@ -163,7 +164,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="20dp"
         android:text="Descripción del evento:"
 
         android:textColor="#FFFFFF"
@@ -203,7 +204,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="35dp"
         android:text="Apto para movilidad reducida:"
         android:textColor="#FFFFFF"
         android:textSize="18dp"
@@ -216,7 +217,7 @@
         android:layout_height="35dp"
         android:layout_marginStart="40dp"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="27dp"
         android:background="@drawable/button_signup"
         android:text="ToggleButton"
         android:textOff="No"
@@ -230,7 +231,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
         android:layout_marginLeft="60dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="5dp"
         android:text="CREAR EVENTO"
         android:textColor="#FFFFFF"
         android:textSize="40dp"
