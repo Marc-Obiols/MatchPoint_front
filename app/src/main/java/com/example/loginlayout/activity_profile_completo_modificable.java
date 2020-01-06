@@ -69,7 +69,7 @@ public class activity_profile_completo_modificable extends AppCompatActivity imp
 
         imageProfile = findViewById(R.id.imageProfile);
 
-        username = findViewById(R.id.Username);
+        //username = findViewById(R.id.Username);
         opcionGenero = findViewById(R.id.opcionGenero);
         fechaNacimiento = findViewById(R.id.fechaNacimiento);
         buttonModificar = findViewById(R.id.buttonModificar);
@@ -138,19 +138,19 @@ public class activity_profile_completo_modificable extends AppCompatActivity imp
             String nombreApellidosModif;
             String opcionGeneroModif;
             String fechaNacimientoModif;
-            String usernameModif;
+            //String usernameModif;
 
             nombreApellidosModif = nombreApellidos.getText().toString();
             opcionGeneroModif = opcionGenero.getText().toString();
             fechaNacimientoModif = fechaNacimiento.getText().toString();
-            usernameModif = username.getText().toString();
+            //usernameModif = username.getText().toString();
 
             JSONObject req = new JSONObject();
             try {
                 req.put("real_name",nombreApellidosModif);
                 req.put("sex",opcionGeneroModif);
                 req.put("birth_date",fechaNacimientoModif);
-                req.put("username",usernameModif);
+                //req.put("username",usernameModif);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -185,7 +185,7 @@ public class activity_profile_completo_modificable extends AppCompatActivity imp
            public void onResponse(JSONObject response) {
                try {
                    nombreApellidos.setText(response.getString("real_name"));
-                   username.setText(response.getString("username"));
+                   //username.setText(response.getString("username"));
                    opcionGenero.setText(response.getString("sex"));
                    fechaNacimiento.setText(response.getString("birth_date").substring(0,10));
                    Integer result = response.getInt("phone_number");

@@ -70,7 +70,7 @@ public class activity_modificar_evento extends AppCompatActivity implements Inte
         idEvento = i.getStringExtra("id");
         //idEvento = "5e0e38171c7b05635eeba0a6";
 
-        String [] list_dep = new String[] {"Tenis", "Futbol", "Baloncesto", "Padel", "Hockey", "Golf", "Rugby"};
+        String [] list_dep = new String[] {"Tenis", "Futbol", "Baloncesto", "Hockey", "Golf", "Rugby", "PingPong", "Running", "Ciclismo"};
 
         ArrayAdapter<String> opcionesDeportes;
         opcionesDeportes = new ArrayAdapter<String >(this, android.R.layout.simple_spinner_item, list_dep);

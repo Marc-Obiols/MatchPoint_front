@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#363434"
     tools:context=".activity_crear_evento">
 
     <EditText
@@ -12,6 +13,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
         android:ems="10"
+        android:textColor="#FFFFFF"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.329"
@@ -24,7 +26,7 @@
         android:layout_height="40dp"
         android:layout_marginStart="56dp"
         android:layout_marginLeft="56dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="100dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/deporte"
@@ -48,8 +50,9 @@
         android:layout_height="45dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="100dp"
         android:text="Elige un deporte:"
+        android:textColor="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -57,9 +60,10 @@
         android:id="@+id/buttoncrear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="44dp"
-        android:layout_marginRight="44dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginEnd="152dp"
+        android:layout_marginRight="152dp"
+        android:layout_marginBottom="44dp"
+        android:background="@drawable/button_signup"
         android:onClick="CrearEvento"
         android:text="Crear Evento"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -72,6 +76,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="16dp"
+        android:background="@drawable/button_signup"
         android:onClick="MostrarReloj"
         android:text="Hora"
         app:layout_constraintStart_toStartOf="parent"
@@ -84,6 +89,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="12dp"
+        android:background="@drawable/button_signup"
         android:onClick="MostrarCalendario"
         android:text="Fecha"
         app:layout_constraintStart_toStartOf="parent"
@@ -93,10 +99,11 @@
         android:id="@+id/tv_hora"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="40dp"
         android:text="TextView"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.379"
+        app:layout_constraintHorizontal_bias="0.452"
         app:layout_constraintStart_toEndOf="@+id/Hora"
         app:layout_constraintTop_toBottomOf="@+id/spinner1" />
 
@@ -106,6 +113,7 @@
         android:layout_height="24dp"
         android:layout_marginTop="36dp"
         android:text="TextView"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.602"
         app:layout_constraintStart_toEndOf="@+id/Fecha"
@@ -118,6 +126,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="24dp"
+        android:textColor="#FFFFFF"
         android:text="Número de participantes totales:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Fecha" />
@@ -129,6 +138,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="40dp"
+        android:textColor="#FFFFFF"
         android:text="Número de participantes:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
@@ -139,10 +149,11 @@
         android:layout_height="96dp"
         android:ems="10"
         android:gravity="start|top"
+        android:textColor="#FFFFFF"
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toTopOf="@+id/buttoncrear"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.463"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView13"
         app:layout_constraintVertical_bias="0.0" />
@@ -154,19 +165,11 @@
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="28dp"
+        android:textColor="#FFFFFF"
+
         android:text="Descripción del evento:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:text="Invitar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/buttoncrear"
-        app:layout_constraintHorizontal_bias="0.207"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView3"
@@ -176,6 +179,7 @@
         android:layout_marginLeft="32dp"
         android:layout_marginTop="24dp"
         android:text="Nivel del evento:"
+        android:textColor="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
@@ -185,6 +189,7 @@
         android:layout_height="46dp"
         android:layout_marginTop="8dp"
         android:ems="10"
+        android:textColor="#FFFFFF"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.447"
@@ -200,6 +205,7 @@
         android:layout_marginTop="48dp"
         android:text="Apto para movilidad reducida:"
         app:layout_constraintStart_toStartOf="parent"
+        android:textColor="#FFFFFF"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <ToggleButton
@@ -209,6 +215,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="56dp"
         android:layout_marginRight="56dp"
+        android:background="@drawable/button_signup"
         android:text="ToggleButton"
         android:textOff="No"
         android:textOn="Si"
@@ -216,5 +223,18 @@
         app:layout_constraintHorizontal_bias="0.937"
         app:layout_constraintStart_toEndOf="@+id/textView5"
         app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="24dp"
+        android:text="CREAR EVENTO"
+        android:textColor="#FFFFFF"
+        android:textSize="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

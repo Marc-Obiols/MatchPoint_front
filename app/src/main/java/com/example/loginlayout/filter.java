@@ -42,10 +42,11 @@ public class filter extends AppCompatActivity implements Interfaz{
         nivel = (Spinner) findViewById(R.id.spinnernivel);
         botonfecha = (Button)  findViewById(R.id.buttonfecha);
         botonfecha.setTextSize(11);
-        ArrayAdapter<String> aaNiv;
+
         String [] niv = new String[] {"Todos", "Aficionado", "Principiante", "Profesional", "Experto"};
         //llamar al servidor
-        aaNiv = new ArrayAdapter<String >(this, android.R.layout.simple_spinner_item, niv); //activity para mostrar, tipo de spinner, listado de valores
+        ArrayAdapter<String> aaNiv = new ArrayAdapter<String>(this, R.layout.spinner_item, niv); //activity para mostrar, tipo de spinner, listado de valores
+        aaNiv.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         nivel.setAdapter(aaNiv);
         llamada = 1;
         Connection con = new Connection((Interfaz) this);
@@ -147,7 +148,8 @@ public class filter extends AppCompatActivity implements Interfaz{
                 }
             }
             ArrayAdapter<String> aaDep;
-            aaDep = new ArrayAdapter<String >(this, android.R.layout.simple_spinner_item, ress); //activity para mostrar, tipo de spinner, listado de valores
+            aaDep = new ArrayAdapter<String >(this,  R.layout.spinner_item, ress); //activity para mostrar, tipo de spinner, listado de valores
+            aaDep.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             deportes.setAdapter(aaDep);
         }
     }
