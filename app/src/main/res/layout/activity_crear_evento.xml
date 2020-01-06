@@ -9,14 +9,14 @@
 
     <EditText
         android:id="@+id/editText9"
-        android:layout_width="80dp"
+        android:layout_width="50dp"
         android:layout_height="48dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="32dp"
         android:ems="10"
-        android:textColor="#FFFFFF"
         android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.329"
+        android:textColor="#FFFFFF"
         app:layout_constraintStart_toEndOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/tv_fecha" />
 
@@ -24,55 +24,54 @@
         android:id="@+id/spinner1"
         android:layout_width="145dp"
         android:layout_height="40dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginLeft="56dp"
-        android:layout_marginTop="100dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toEndOf="@+id/deporte"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
     <Spinner
         android:id="@+id/spinner2"
         android:layout_width="169dp"
         android:layout_height="30dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginRight="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.681"
+        android:layout_marginStart="68dp"
+        android:layout_marginLeft="68dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintStart_toEndOf="@+id/textView3"
         app:layout_constraintTop_toBottomOf="@+id/editText10" />
 
     <TextView
         android:id="@+id/deporte"
-        android:layout_width="120dp"
+        android:layout_width="200dp"
         android:layout_height="45dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="28dp"
         android:text="Elige un deporte:"
         android:textColor="#FFFFFF"
+        android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
     <Button
         android:id="@+id/buttoncrear"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="152dp"
-        android:layout_marginRight="152dp"
-        android:layout_marginBottom="44dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginLeft="128dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/button_signup"
         android:onClick="CrearEvento"
         android:text="Crear Evento"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText7"
+        app:layout_constraintVertical_bias="0.545" />
 
     <Button
         android:id="@+id/Hora"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="16dp"
@@ -85,7 +84,7 @@
     <Button
         android:id="@+id/Fecha"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="12dp"
@@ -99,11 +98,11 @@
         android:id="@+id/tv_hora"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="164dp"
+        android:layout_marginLeft="164dp"
+        android:layout_marginTop="36dp"
         android:text="TextView"
         android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.452"
         app:layout_constraintStart_toEndOf="@+id/Hora"
         app:layout_constraintTop_toBottomOf="@+id/spinner1" />
 
@@ -111,11 +110,11 @@
         android:id="@+id/tv_fecha"
         android:layout_width="140dp"
         android:layout_height="24dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="164dp"
+        android:layout_marginLeft="164dp"
+        android:layout_marginTop="20dp"
         android:text="TextView"
         android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.602"
         app:layout_constraintStart_toEndOf="@+id/Fecha"
         app:layout_constraintTop_toBottomOf="@+id/tv_hora" />
 
@@ -125,9 +124,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="24dp"
-        android:textColor="#FFFFFF"
+        android:layout_marginTop="32dp"
         android:text="Número de participantes totales:"
+        android:textColor="#FFFFFF"
+        android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Fecha" />
 
@@ -138,8 +138,9 @@
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="40dp"
+        android:text="¿Cuántos sois ya?"
         android:textColor="#FFFFFF"
-        android:text="Número de participantes:"
+        android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
@@ -147,16 +148,14 @@
         android:id="@+id/editText7"
         android:layout_width="342dp"
         android:layout_height="96dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
         android:ems="10"
         android:gravity="start|top"
-        android:textColor="#FFFFFF"
         android:inputType="textMultiLine"
-        app:layout_constraintBottom_toTopOf="@+id/buttoncrear"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
+        android:textColor="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <TextView
         android:id="@+id/textView13"
@@ -165,9 +164,10 @@
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="28dp"
-        android:textColor="#FFFFFF"
-
         android:text="Descripción del evento:"
+
+        android:textColor="#FFFFFF"
+        android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
@@ -177,22 +177,23 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:text="Nivel del evento:"
         android:textColor="#FFFFFF"
+        android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <EditText
         android:id="@+id/editText10"
-        android:layout_width="110dp"
+        android:layout_width="50dp"
         android:layout_height="46dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="144dp"
+        android:layout_marginLeft="144dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
-        android:textColor="#FFFFFF"
         android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.447"
+        android:textColor="#FFFFFF"
         app:layout_constraintStart_toEndOf="@+id/textView8"
         app:layout_constraintTop_toBottomOf="@+id/editText9" />
 
@@ -204,23 +205,22 @@
         android:layout_marginLeft="32dp"
         android:layout_marginTop="48dp"
         android:text="Apto para movilidad reducida:"
-        app:layout_constraintStart_toStartOf="parent"
         android:textColor="#FFFFFF"
+        android:textSize="18dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <ToggleButton
         android:id="@+id/CapacidadReducida"
         android:layout_width="67dp"
-        android:layout_height="37dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="56dp"
-        android:layout_marginRight="56dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/button_signup"
         android:text="ToggleButton"
         android:textOff="No"
         android:textOn="Si"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.937"
         app:layout_constraintStart_toEndOf="@+id/textView5"
         app:layout_constraintTop_toBottomOf="@+id/spinner2" />
 

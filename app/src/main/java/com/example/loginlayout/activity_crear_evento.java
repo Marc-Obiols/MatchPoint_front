@@ -65,10 +65,11 @@ public class activity_crear_evento extends AppCompatActivity implements Interfaz
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference("chat");
 
-        ArrayAdapter<String> aaNiv;
+
         String [] niv = new String[] {"Ninguno", "Aficionado", "Principiante", "Profesional", "Experto"};
         //llamar al servidor
-        aaNiv = new ArrayAdapter<String >(this, android.R.layout.simple_spinner_item, niv); //activity para mostrar, tipo de spinner, listado de valores
+        ArrayAdapter<String> aaNiv = new ArrayAdapter<String>(this, R.layout.spinner_item, niv); //activity para mostrar, tipo de spinner, listado de valores
+        aaNiv.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         nivel.setAdapter(aaNiv);
         llamada = 1;
         Connection con = new Connection(this);
@@ -240,7 +241,8 @@ public class activity_crear_evento extends AppCompatActivity implements Interfaz
             }
 
             ArrayAdapter<String> aaDep;
-            aaDep = new ArrayAdapter<String >(this, android.R.layout.simple_spinner_item, ress); //activity para mostrar, tipo de spinner, listado de valores
+            aaDep = new ArrayAdapter<String >(this, R.layout.spinner_item, ress); //activity para mostrar, tipo de spinner, listado de valores
+            aaDep.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             deportes.setAdapter(aaDep);
         }
         else if (llamada == 3) {
