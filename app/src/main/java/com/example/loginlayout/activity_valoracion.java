@@ -59,19 +59,20 @@ public class activity_valoracion extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 String responses = response.toString();
-                Toast.makeText(activity_valoracion.this, responses, LENGTH_SHORT).show();
+                //Toast.makeText(activity_valoracion.this, responses, LENGTH_SHORT).show();
                 System.out.println(responses);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(activity_valoracion.this, error.toString(), LENGTH_SHORT).show();
+                //Toast.makeText(activity_valoracion.this, error.toString(), LENGTH_SHORT).show();
                 System.out.println(error.toString());
             }
         });
         queue.add(request);
         SetEventValorado();
         UpdateUserPoints();
+        Toast.makeText(activity_valoracion.this, "Actividad valorada", LENGTH_SHORT).show();
         Intent j = new Intent(activity_valoracion.this,activity_main.class);
         startActivity(j);
     }
@@ -89,13 +90,13 @@ public class activity_valoracion extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 String responses = response.toString();
-                Toast.makeText(activity_valoracion.this, responses, LENGTH_SHORT).show();
+                //Toast.makeText(activity_valoracion.this, responses, LENGTH_SHORT).show();
                 System.out.println(responses);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(activity_valoracion.this, error.toString(), LENGTH_SHORT).show();
+                //Toast.makeText(activity_valoracion.this, error.toString(), LENGTH_SHORT).show();
                 System.out.println(error.toString());
             }
         });
@@ -123,7 +124,7 @@ public class activity_valoracion extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(activity_valoracion.this, error.toString(), LENGTH_SHORT).show();
+                //Toast.makeText(activity_valoracion.this, error.toString(), LENGTH_SHORT).show();
                 System.out.println(error.toString());
             }
         });
