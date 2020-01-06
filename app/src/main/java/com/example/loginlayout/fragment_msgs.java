@@ -93,7 +93,7 @@ public class fragment_msgs extends AppCompatActivity {
             case "Tenis":
                 fotoPerfil.setImageResource(R.drawable.tennis);
                 break;
-            case "Ping":
+            case "PingPong":
                 fotoPerfil.setImageResource(R.drawable.pingpong);
                 break;
             case "Hockey":
