@@ -73,14 +73,16 @@ public class activity_modificar_evento extends AppCompatActivity implements Inte
         String [] list_dep = new String[] {"Tenis", "Futbol", "Baloncesto", "Hockey", "Golf", "Rugby", "PingPong", "Running", "Ciclismo"};
 
         ArrayAdapter<String> opcionesDeportes;
-        opcionesDeportes = new ArrayAdapter<String >(this, android.R.layout.simple_spinner_item, list_dep);
+        opcionesDeportes = new ArrayAdapter<String >(this, R.layout.spinner_item, list_dep);
+        opcionesDeportes.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerDeportes.setAdapter(opcionesDeportes);
 
 
         ArrayAdapter<String> opcionesNiveles;
         String [] niv = new String[] {"Ninguno", "Aficionado", "Principiante", "Profesional", "Experto"};
 
-        opcionesNiveles = new ArrayAdapter<String >(this, android.R.layout.simple_spinner_item, niv); //activity para mostrar, tipo de spinner, listado de valores
+        opcionesNiveles = new ArrayAdapter<String >(this,R.layout.spinner_item, niv); //activity para mostrar, tipo de spinner, listado de valores
+        opcionesNiveles.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerNiveles.setAdapter(opcionesNiveles);
 
         llamada = 1;
